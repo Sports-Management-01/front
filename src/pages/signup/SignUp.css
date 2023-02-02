@@ -37,3 +37,16 @@
 .Register_title__QRiY2 {
     font-weight: 600;
 }
+.btn-primary {
+    color: #fff;
+    background-color: #E9AD28;
+    border-color: #E9AD28;
+}
+.loginLink{
+    color: #E9AD28;
+    border-color: #E9AD28;
+}
+.loginLink:hover{
+    color: #E9AD28;
+    border-color: #E9AD28;
+}

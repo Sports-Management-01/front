@@ -1,6 +1,6 @@
 import './SignUp.css';
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Header from '../../components/Header/Header';
 
 const SignUp = () => {
@@ -78,7 +78,7 @@ const SignUp = () => {
                                 </div>
                                 <div className='row mt-5 align-items-center'>
                                     <div className='col-5'>
-                                        <a className="w-100" href="/signin">Login</a>
+                                        <Link className="loginLink w-100" to={"/signin"}>Login</Link>
                                     </div>
                                     <div className='col-7'>
                                         <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>
