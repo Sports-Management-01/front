@@ -18,7 +18,7 @@ const Header = () => {
                                 <div className="header__top__auth">
                                     <ul>
                                         <li><a href="#">Login</a></li>
-                                        <li><a href="#">Register</a></li>
+                                        <li>                    <button onClick={()=>navigate('/signup')}  type="button" className="btn  btn-secondary" style={{padding:10,}}>Register</button></li>
                                     </ul>
                                 </div>
                             </div>

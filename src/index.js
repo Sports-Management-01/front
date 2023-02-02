@@ -10,11 +10,16 @@ import './assets/css/elegant-icons.css'
 import './assets/css/nice-select.css'
 import './assets/css/style.css'
 
+import { BrowserRouter } from 'react-router-dom';
+import UserManager from './contexts/AuthContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+  <UserManager>
+  <App />
+  </UserManager>
+ </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
