@@ -14,7 +14,7 @@ const SignUp = () => {
     });
     const createUser = async (data) => {
         setIsLoading(true)
-        const res = await fetch(`http://ferasjobeir.com/api/users/register`, {
+        const res = await fetch(`http://localhost:3000/users/register`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

@@ -10,7 +10,6 @@ const UserManager = ({ children }) => {
   const signin = (userData, userToken) => {
     setUser(userData);
     setToken(userToken);
-    setLoggedIn(true);
     localStorage.setItem("the_user", JSON.stringify(userData));
     localStorage.setItem("the_token", userToken);
   };
@@ -20,7 +19,6 @@ const UserManager = ({ children }) => {
   const signOut = () => {
     localStorage.removeItem("the_user");
     localStorage.removeItem("the_token");
-    setLoggedIn(false);
     setUser({});
     setToken("");
   };

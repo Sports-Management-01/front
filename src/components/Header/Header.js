@@ -8,16 +8,17 @@ const Header = () => {
                     <div className="row">
                         <div className="col-lg-7">
                             <ul className="header__top__widget">
-                                <li><span className="icon_pin_alt"></span> 96 Ernser Vista Suite 437, NY, US</li>
-                                <li><span className="icon_phone"></span> (123) 456-78-910</li>
+                                <li><span className="icon_pin_alt"></span> Büyükşehir,Beylikdüzü/İstanbul</li>
+                                <li><span className="icon_phone"></span> (+90) 538-411-99-85</li>
                             </ul>
                         </div>
                         <div className="col-lg-5">
                             <div className="header__top__right">
                                 <div className="header__top__auth">
                                     <ul>
-                                        <li><a href="#">Login</a></li>
+                                        <li><Link to={"/signin"}>Login</Link></li>
                                         <li> <Link to={"/signup"}>Register</Link></li>
+                                        <li> <Link to={"/signout"}>LogOut</Link></li>
                                     </ul>
                                 </div>
                             </div>
