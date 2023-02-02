@@ -1,6 +1,6 @@
 import logo from '../assets/img/logo.png'
 import lang from '../assets/img/lan.png'
-
+import {Link} from 'react-router-dom'
 const Header = () => {
     return (
         <header className="header">
@@ -18,7 +18,7 @@ const Header = () => {
                                 <div className="header__top__auth">
                                     <ul>
                                         <li><a href="#">Login</a></li>
-                                        <li>                    <button onClick={()=>navigate('/signup')}  type="button" className="btn  btn-secondary" style={{padding:10,}}>Register</button></li>
+                                        <li> <Link to={"/signup"}>Register</Link></li>
                                     </ul>
                                 </div>
                             </div>
