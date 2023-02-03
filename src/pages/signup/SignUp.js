@@ -9,6 +9,9 @@ const SignUp = () => {
     const [userData, setUserData] = useState({
         name: "",
         email: "",
+        roleId:"",
+        approvedAt:"",
+        phone:"",
         password: "",
         passwordConfirmation: ""
     });
@@ -67,6 +70,16 @@ const SignUp = () => {
                                 <div className="form-field mb-3">
                                     <label htmlFor="email" className="form-label">Email Address</label>
                                     <input type="email" className="form-control" name='email' onChange={handleOnChange} />
+                                </div>
+                                <div className=" mb-3">
+                                    <label htmlFor="accountType" className="form-label mb-3 m-2">User</label>
+                                    <input type="radio"  name='roleId' value="3"  onChange={handleOnChange} />
+                                    <label htmlFor="accountType" className="form-label mb-3 m-2">Company</label>
+                                    <input type="radio" name='roleId' value="2"  onChange={handleOnChange} />
+                                </div>
+                                <div className="form-field mb-3">
+                                    <label htmlFor="phone" className="form-label">Phone</label>
+                                    <input type="phone" className="form-control" name='phone' onChange={handleOnChange} />
                                 </div>
                                 <div className="form-field mb-3">
                                     <label htmlFor="password" className="form-label">Password</label>
