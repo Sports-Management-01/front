@@ -1,21 +1,15 @@
-/* import { AuthContext } from "../../contexts/AuthContext";
+ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect,useRef,useState } from "react";
 import HomeField from "../HomeField/HomeField";
 
 const HomeFields = () =>{
-const {fields, setFields, token}  = useContext(AuthContext);
-//const [load, setLoad] = useState(false);
-//const [page, setPage] = useState(1);
-//const [lastPage, setLastPage] = useState(1);
-//const [currentPage, setCurrentPage] = useState(1);
-const endRef = useRef();
+const {fields, setFields}  = useContext(AuthContext);
+
 const allFields = async () => {
  
 const res = await fetch(`http://localhost:3000/fields`,{
     method: 'GET',
-   /*  headers: {
-        Authorization: `Bearer ${token}`,
-    }, */
+  
 });
 const json = await res.json();
 console.log(json)
@@ -49,7 +43,7 @@ return(
                 
                 {
     fields?.map((field,i)=>(<HomeField key={i} data={field}   />)
-     // To do for every single post ::Post component that display post area at home page
+     
      )
     
                  }
@@ -76,4 +70,4 @@ return(
     
 }
 
-export default HomeFields; */
+export default HomeFields; 
