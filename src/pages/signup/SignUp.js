@@ -10,7 +10,7 @@ const SignUp = () => {
         name: "",
         email: "",
         password: "",
-        password_confirmation: ""
+        passwordConfirmation: ""
     });
     const createUser = async (data) => {
         setIsLoading(true)
@@ -74,7 +74,7 @@ const SignUp = () => {
                                 </div>
                                 <div className="form-field mb-3">
                                     <label htmlFor="passwordConfirm" className="form-label">password Confirmation</label>
-                                    <input type="Password" className="form-control" name='password_confirmation' onChange={handleOnChange}></input>
+                                    <input type="Password" className="form-control" name='passwordConfirmation' onChange={handleOnChange}></input>
                                 </div>
                                 <div className='row mt-5 align-items-center'>
                                     <div className='col-5'>
