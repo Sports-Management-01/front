@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 const UserManager = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("the_user") || "{}"));
   const [token, setToken] = useState(localStorage.getItem("the_token") || "");
+  const [fields, setFields] = useState([]);
 
   //Signin Function
   const signin = (userData, userToken) => {
@@ -32,6 +33,8 @@ const UserManager = ({ children }) => {
         token,
         signin,
         signOut,
+        fields,
+        setFields,
       }}
     >
       {children}
