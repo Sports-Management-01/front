@@ -16,6 +16,7 @@ console.log(json)
 if(json.success){
     console.log(`fielddddd`)
     setFields(fields)
+    console.log(setFields)
 }
 else{window.alert("There is no Field!")
 console.log(json.data)}
@@ -42,9 +43,7 @@ return(
             <div className="row">
                 
                 {
-    fields?.map((field,i)=>(<HomeField key={i} data={field}   />)
-     
-     )
+    fields?.map((field,i)=>(<HomeField key={i} data={field}/>))
     
                  }
                    
