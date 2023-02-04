@@ -38,14 +38,14 @@ const Header = () => {
                             <div className="header__nav">
                                 <nav className="header__menu">
                                     <ul className="menu__class">
-                                        <li className="active"><a href="./index.html">Home</a></li>
-                                        <li><a href="./rooms.html">Rooms</a></li>
+                                        <li className="active"><a href="/">Home</a></li>
+                                        <li><a href="/exploreFields">Courts</a></li>
                                         <li><a href="./about.html">About Us</a></li>
-                                        <li><a href="#">Pages</a>
+                                        <li><a href="#">Category</a>
                                             <ul className="dropdown">
-                                                <li><a href="./about.html">About Us</a></li>
-                                                <li><a href="./room-details.html">Room Details</a></li>
-                                                <li><a href="./blog-details.html">Blog Details</a></li>
+                                                <li><a href="./about.html">Football</a></li>
+                                                <li><a href="./room-details.html">Basketball</a></li>
+                                                <li><a href="./blog-details.html">Tenis</a></li>
                                             </ul>
                                         </li>
                                         <li><a href="./blog.html">News</a></li>

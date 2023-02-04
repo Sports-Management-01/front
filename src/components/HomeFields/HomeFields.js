@@ -51,7 +51,7 @@ const HomeFields = () => {
                     <div className="home__explore">
                         <div className="row">
                             <div className="col-lg-9 col-md-8">
-                                <h3>Planning your next trip? Save up to 25% on your hotel</h3>
+                                <h3>Planning your next match? Save up to 25% on your challange</h3>
                             </div>
                             <div className="col-lg-3 col-md-4 text-center">
                             <Link className="primary-btn " to={"/exploreFields"}>Explore More</Link>    

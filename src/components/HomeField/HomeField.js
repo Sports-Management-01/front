@@ -1,4 +1,4 @@
-import img1 from "../../assets/img/home-room/img1.jpg";
+import img1 from "../../assets/img/soccer.jpeg";
 
 const HomeField = ({data}) => {
   return (

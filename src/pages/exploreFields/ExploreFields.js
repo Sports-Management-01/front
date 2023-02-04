@@ -5,10 +5,10 @@ import Header  from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import breadcrumb from "../../assets/img/breadcrumb-bg.jpg";
 import SimpleImageSlider from "react-simple-image-slider";
-import img1 from "../../assets/img/rooms/room-1.jpg";
-import img2 from "../../assets/img/rooms/room-2.jpg";
-import img3 from "../../assets/img/rooms/room-3.jpg";
-import img4 from "../../assets/img/rooms/room-4.jpg";
+import img1 from "../../assets/img/soccer.jpeg";
+import img2 from "../../assets/img/soccer.jpeg";
+import img3 from "../../assets/img/soccer.jpeg";
+import img4 from "../../assets/img/soccer.jpeg";
 
 
     const images = [
@@ -83,7 +83,8 @@ const ExploreFields = () =>{
                         <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
                         <li><span>View:</span>Sea View</li>
                     </ul>
-                    <a href="#">View Details</a>
+                    <Link to={`/fieldDetails/${field.id}`}>View Details </Link>
+                    
                     <SimpleImageSlider
     width={540}
     height={400}
