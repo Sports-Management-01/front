@@ -5,13 +5,13 @@ const HomeField = ({data}) => {
     <>
       <div className="col-lg-3 col-md-6 col-sm-6 p-0">
         <div
-          class="home__room__item set-bg"
+          className="home__room__item set-bg"
           style={{
             backgroundImage: `url(${img1})`,
             backgroundRepeat: "no-repeat",
           }}
         >
-          <div class="home__room__title">
+          <div className="home__room__title">
             <h4>{data.name}</h4>
             <h2>
               <sup>$</sup>{data.hourPrice}<span>/hour</span>

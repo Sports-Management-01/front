@@ -1,8 +1,11 @@
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import HomeField from "../HomeField/HomeField";
+import { Link } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 const HomeFields = () => {
+    const  navigate = useNavigate();
     const [fields, setFields] = useState([])
     const allFields = async () => {
         const res = await fetch(`http://localhost:3000/fields`, {
@@ -51,7 +54,7 @@ const HomeFields = () => {
                                 <h3>Planning your next trip? Save up to 25% on your hotel</h3>
                             </div>
                             <div className="col-lg-3 col-md-4 text-center">
-                                <a href="#" className="primary-btn">Explorer More</a>
+                            <Link className="primary-btn " to={"/exploreFields"}>Explore More</Link>    
                             </div>
                         </div>
                     </div>
