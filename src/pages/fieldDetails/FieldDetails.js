@@ -20,6 +20,7 @@ const images = [
 const FieldDetails = () => {
     const { id } = useParams()
     const [field, setField] = useState({})
+    const [equipments, setEquipments] = useState([])
 
     useEffect(() => {
         fetch(`http://localhost:3000/fields/${id}`)
@@ -30,6 +31,24 @@ const FieldDetails = () => {
             })
             .catch()
     }, [id])
+    const getAllEquipments = async ()=>{
+        const res = await fetch(`http://localhost:3000/equipments`,{
+            method: 'GET',
+        });
+        const json = await res.json();
+        if(json.success){
+            console.log(json.success)
+            setEquipments(json.data)
+            console.log(json.data)
+        }else{
+            window.alert("There is no Field!")
+            console.log(json.data)
+        }
+    };
+    useEffect(() => {
+        getAllEquipments();
+    }, []);
+        
     return(
         <>
         <Header/>
@@ -97,53 +116,24 @@ const FieldDetails = () => {
                             </div>
                             <div className="col-lg-6 col-md-6 col-sm-6">
                                 <div className="room__details__more__facilities">
-                                    <h2>Most popular facilities:</h2>
+                                <h2>Most popular facilities:</h2>
+                                    {
+                                        equipments.map((equipment, i)=>(
+                                            <>
+                                            
                                     <div className="row">
                                         <div className="col-lg-6">
                                             <div className="room__details__more__facilities__item">
                                                 <div className="icon"><img src="img/rooms/details/facilities/fac-1.png"
                                                         alt=""/></div>
-                                                <h6>Air Conditioning</h6>
+                                                <h6>{equipment.name}</h6>
                                             </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-2.png"
-                                                        alt=""/></div>
-                                                <h6>Cable TV</h6>
-                                            </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-3.png"
-                                                        alt=""/></div>
-                                                <h6>Free drinks</h6>
-                                            </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-4.png"
-                                                        alt=""/></div>
-                                                <h6>Unlimited Wifi</h6>
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6">
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-5.png"
-                                                        alt=""/></div>
-                                                <h6>Restaurant quality</h6>
-                                            </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-6.png"
-                                                        alt=""/></div>
-                                                <h6>Service 24/24</h6>
-                                            </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-7.png"
-                                                        alt=""/></div>
-                                                <h6>Gym Centre</h6>
-                                            </div>
-                                            <div className="room__details__more__facilities__item">
-                                                <div className="icon"><img src="img/rooms/details/facilities/fac-8.png"
-                                                        alt=""/></div>
-                                                <h6>Spa & Wellness</h6>
-                                            </div>
-                                        </div>
+                                              </div>
                                     </div>
+                                            </>
+                                        ))
+                                    }
+                                    
                                 </div>
                             </div>
                         </div>
