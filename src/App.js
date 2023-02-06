@@ -12,7 +12,6 @@ const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
 const Home = React.lazy(() => import('./pages/home/Home'));
 const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFields'));
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
-const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 
 
 function App() {
@@ -27,7 +26,6 @@ function App() {
         {token && <Route path='/signout' element={<Suspense fallback={<Loading />} ><SignOut /></Suspense>} />}
         <Route path='/exploreFields' element={<Suspense fallback={<Loading />} ><ExploreFields /></Suspense>} />
         <Route path='/fieldDetails/:id' element={<Suspense fallback={<Loading />} ><FieldDetails /></Suspense>} />
-        <Route path='/admin' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
 
         <Route path="*" element={<>NOT FOUND</>} />
        
