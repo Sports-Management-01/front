@@ -15,11 +15,14 @@ import './assets/css/style.css'
 import { BrowserRouter } from 'react-router-dom';
 import UserManager from './contexts/AuthContext';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <UserManager>
+   
       <App />
+      
     </UserManager>
   </BrowserRouter>
 );
