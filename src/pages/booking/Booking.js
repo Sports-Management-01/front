@@ -2,123 +2,86 @@ import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import SimpleImageSlider from "react-simple-image-slider";
 
-const Booking = ()=>{
+const Booking = () => {
+  const { id } = useParams();
+  const [field, setField] = useState({});
+  const [equipments, setEquipments] = useState([]);
+  const [date, setDate] = useState(null)
 
-  const { id } = useParams()
-    const [field, setField] = useState({})
-    const [equipments, setEquipments] = useState([])
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/fields/${id}`)
-            .then((response) => {
-                return response.json().then((json) => {
-                    setField(json.data)
-                })
-            })
-            .catch()
-    }, [id])
-    const getAllEquipments = async ()=>{
-        const res = await fetch(`http://localhost:3000/equipments`,{
-            method: 'GET',
+  useEffect(() => {
+    fetch(`http://localhost:3000/fields/${id}`)
+      .then((response) => {
+        return response.json().then((json) => {
+          setField(json.data);
         });
-        const json = await res.json();
-        if(json.success){
-            console.log(json.success)
-            setEquipments(json.data)
-            console.log(json.data)
-        }else{
-            window.alert("There is no Field!")
-            console.log(json.data)
-        }
-    };
-    useEffect(() => {
-        getAllEquipments();
-    }, []);
-        
-
-
-
-     return (
-        <>
-        <Header/>
-       <form style={{padding:100}}>
-  <div className="form-group row">
-    <div className="col-sm-10">
-    <label for="court" className="col-sm-2 col-form-label">Court Name</label>
-      <input type="text" className="form-control w-50" id="court" placeholder="Court Name"
-       name={field.name} />
-    </div>
-  </div>
-  <div className="form-group row">
-    <div className="col-sm-10">
-    <label for="category" className="col-sm-2 col-form-label">Category</label>
-      <input type="text" className="form-control w-50" id="category" placeholder="Category" />
-    </div>
-  </div>
-  <div className="form-group row">
-    <div className="col-sm-10">
-    <label for="date" className="col-sm-2 col-form-label">Date</label>
-      <input type="date" className="form-control w-50" id="date" placeholder="Time" />
-    </div>
-  </div>
-  <fieldset className="form-group">
-    <div className="row">
-      <legend className="col-form-label col-sm-2 pt-0">Times : </legend>
-      <div className="col-sm-10">
-        <div className="form-check">
-          <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked/>
-          <label className="form-check-label" for="gridRadios1">
-            First radio
-          </label>
-        </div>
-        <div className="form-check">
-          <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2"/>
-          <label className="form-check-label" for="gridRadios2">
-            Second radio
-          </label>
-        </div>
-        <div className="form-check disabled">
-          <input className="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled/>
-          <label className="form-check-label" for="gridRadios3">
-            Third disabled radio
-          </label>
-        </div>
-      </div>
-    </div>
-  </fieldset>
-  <div className="form-group row">
-    <div className="col-sm-2">Equipment </div>
-    { equipments.map((eq)=>(
-
-<>
-<div className="col-sm-10">
- <div className="form-check">
-   <input className="form-check-input" type="checkbox" id="gridCheck1"/>
-   <label className="form-check-label" for="gridCheck1">
-     {eq.name}
-   </label>
-   <input className="ml-5 w-10" type="number"  />
- </div>
-</div>
-</>
-
-
-    ));
-
+      })
+      .catch();
+  }, [id]);
+  const getAllEquipments = async () => {
+    const res = await fetch(`http://localhost:3000/equipments`, {
+      method: "GET",
+    });
+    const json = await res.json();
+    if (json.success) {
+      setEquipments(json.data);
+    } else {
+      window.alert("There is no Field!");
+      console.log(json.data);
     }
-   
-  </div>
-  <div className="form-group row">
-    <div className="col-sm-10">
-      <button type="submit" className="btn btn-primary">Book Now</button>
-    </div>
-  </div>
-</form>
+  };
+  useEffect(() => {
+    getAllEquipments();
+  }, []);
 
-         <Footer/>        
+  const handleDateChange = async (e) => {
+    const times = await fetch(`http://localhost:3000/fields/${id}/availability`, {
+        method: "POST" ,
+        body: JSON.stringify({date: e.target.value})
+
+    });
+    
+    const data = await times.json()
+  }
+
+  return (
+    <>
+      <Header />
+      {field.name && (
+        <>
+          <SimpleImageSlider
+            width={"100%"}
+            height={600}
+            images={field?.image}
+            showBullets={true}
+            showNavs={true}
+          />
+          <div className="container my-5">
+            <div className="row">
+              <div className="col">
+                <h1>{field.name}</h1>
+                <h5 className="mt-4">Category: {field.Category.name}</h5>
+              </div>
+            </div>
+            <form>
+              <div className="row pt-5">
+                <div className="col-12 col-md-6 offset-md-3">
+                  <h4>Reserve Now:</h4>
+                  <p className="mb-1 mt-3"><label htmlFor="required-date">Required Date:</label></p>
+                  <div className="form-row">
+                    <input type='date'className="form-control" onChange={handleDateChange} />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </>
-     )
-}
+      )}
+
+      <Footer />
+    </>
+  );
+};
 
 export default Booking;

@@ -5,10 +5,6 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import breadcrumb from "../../assets/img/breadcrumb-bg.jpg";
 import SimpleImageSlider from "react-simple-image-slider";
-import img1 from "../../assets/img/soccer.jpeg";
-import img2 from "../../assets/img/soccer.jpeg";
-import img3 from "../../assets/img/soccer.jpeg";
-import img4 from "../../assets/img/soccer.jpeg";
 
 const ExploreFields = () => {
   const navigate = useNavigate();

@@ -27,7 +27,7 @@ function App() {
         {token && <Route path='/signout' element={<Suspense fallback={<Loading />} ><SignOut /></Suspense>} />}
         <Route path='/exploreFields' element={<Suspense fallback={<Loading />} ><ExploreFields /></Suspense>} />
         <Route path='/fieldDetails/:id' element={<Suspense fallback={<Loading />} ><FieldDetails /></Suspense>} />
-        <Route path='/booking' element={<Suspense fallback={<Loading />} ><Booking /></Suspense>} />
+        <Route path='/booking/:id' element={<Suspense fallback={<Loading />} ><Booking /></Suspense>} />
 
         <Route path="*" element={<>NOT FOUND</>} />
        

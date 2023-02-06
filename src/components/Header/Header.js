@@ -13,7 +13,6 @@ const Header = () => {
     if (json.success) {
       console.log(json.success)
       setCategories(json.data)
-      console.log(setCategories);
     } else {
       window.alert("There is no category!");
     }
