@@ -31,6 +31,7 @@ const ExploreFields = () =>{
             if (json.success) {
                 console.log(`fielddddd`)
                 setFields(json.data)
+                
             }
             else {
                 window.alert("There is no Field!")
@@ -77,11 +78,11 @@ const ExploreFields = () =>{
                     <h3>{field.name}</h3>
                     <h2><sup>$</sup>{field.hourPrice}<span>/hour</span></h2>
                     <ul>
-                        <li><span>Size:</span>30 ft</li>
-                        <li><span>Capacity:</span>Max persion 3</li>
-                        <li><span>Bed:</span>King Beds</li>
-                        <li><span>Services:</span>Wifi, Television, Bathroom,...</li>
-                        <li><span>View:</span>Sea View</li>
+                        <li><span>Length:</span>{field.length}</li>
+                        <li><span>Width:</span>{field.width}</li>
+                        <li><span>Open At:</span>{field.from}</li>
+                        <li><span>Close At:</span>{field.to}</li>
+                        <li><span>Address:</span>{field.adress}</li>
                     </ul>
                     <Link to={`/fieldDetails/${field.id}`}>View Details </Link>
                     
