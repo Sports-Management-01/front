@@ -1,11 +1,14 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
 import findItemByObjectID from "../../utils/utils";
+import { AuthContext } from "../../contexts/AuthContext";
+
 const Booking = () => {
+  const { token } = useContext(AuthContext);
   const { id } = useParams();
   const [cost, setCost] = useState({
     times: 0,
@@ -18,6 +21,11 @@ const Booking = () => {
     times: [],
     equipment: [],
   });
+  
+
+  
+
+
   useEffect(() => {
     fetch(`http://localhost:3000/fields/${id}`)
       .then((response) => {
@@ -27,6 +35,31 @@ const Booking = () => {
       })
       .catch();
   }, [id]);
+  const booking = async (e)=>{
+    e.preventDefault()
+    const reserveNow = await fetch (`http://localhost:3000/reservations`,  {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json",
+
+      },
+      body: JSON.stringify({
+        fieldId: field.id,
+        times: reservation.times,
+        date: reservation.date,
+        equipment: reservation.equipment
+      }),
+  
+    });
+    const bookingData = await reserveNow.json();
+    if(bookingData.success){
+
+    }
+  }
+
+
+
 
   const handleDateChange = async (e) => {
     setReservation((pr) => {
@@ -50,6 +83,8 @@ const Booking = () => {
   useEffect(() => {
     console.log(reservation);
   }, [reservation]);
+
+
 
   const updateReservationTimes = (e) => {
     let finalTimes = [...reservation.times];
@@ -122,7 +157,7 @@ const Booking = () => {
                 <h5 className="mt-4">Category: {field.Category.name}</h5>
               </div>
             </div>
-            <form>
+            <form onSubmit={booking}>
               <div className="row pt-5">
                 <div className="col-12 col-md-6 offset-md-2">
                   <h4>Reserve Now:</h4>
