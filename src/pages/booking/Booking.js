@@ -3,6 +3,7 @@ import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
+import { type } from "@testing-library/user-event/dist/type";
 
 const Booking = () => {
   const { id } = useParams();
@@ -33,23 +34,21 @@ const Booking = () => {
   };
   useEffect(() => {
     getAllEquipments();
+    console.log(id)
   }, []);
 
   const handleDateChange = async (e) => {
-    const times = await fetch(
-      `http://localhost:3000/fields/${id}/availability`,
-      {
-        method: "POST",
-        headers: {
+    const times = await fetch(`http://localhost:3000/fields/${id}/availability`, {
+        method: "POST" ,
+        headers:{
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ date: e.target.value }),
-      }
-    );
+        body: JSON.stringify({date: e.target.value})
 
-    const data = await times.json();
-    console.log(data);
-  };
+    });
+    
+    const data = await times.json()
+  }
 
   return (
     <>
@@ -78,11 +77,7 @@ const Booking = () => {
                     <label htmlFor="required-date">Required Date:</label>
                   </p>
                   <div className="form-row">
-                    <input
-                      type="date"
-                      className="form-control"
-                      onChange={handleDateChange}
-                    />
+                    <input type='date'className="form-control" onChange={handleDateChange} />
                   </div>
                 </div>
               </div>

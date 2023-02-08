@@ -7,7 +7,8 @@ const Header = () => {
   const getCategory = async () => {
     const res = await fetch(`http://localhost:3000/categories`, {
       method: "GET",
-    });
+    }
+    );
     const json = await res.json();
     console.log(json);
     if (json.success) {

@@ -14,6 +14,8 @@ const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFiel
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
 
+const Categories = React.lazy(() => import('./pages/categories/Categories'));
+
 
 function App() {
   const { token } = useContext(AuthContext)
@@ -28,6 +30,8 @@ function App() {
         <Route path='/exploreFields' element={<Suspense fallback={<Loading />} ><ExploreFields /></Suspense>} />
         <Route path='/fieldDetails/:id' element={<Suspense fallback={<Loading />} ><FieldDetails /></Suspense>} />
         <Route path='/booking/:id' element={<Suspense fallback={<Loading />} ><Booking /></Suspense>} />
+
+        <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
 
         <Route path="*" element={<>NOT FOUND</>} />
        
