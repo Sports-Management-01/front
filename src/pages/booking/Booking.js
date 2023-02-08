@@ -38,6 +38,9 @@ const Booking = () => {
   const handleDateChange = async (e) => {
     const times = await fetch(`http://localhost:3000/fields/${id}/availability`, {
         method: "POST" ,
+        headers:{
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({date: e.target.value})
 
     });
