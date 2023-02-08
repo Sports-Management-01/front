@@ -4,13 +4,15 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
-
 const Booking = () => {
   const { id } = useParams();
   const [field, setField] = useState({});
-  const [equipments, setEquipments] = useState([]);
-  const [date, setDate] = useState(null);
-
+  const [data, setData] = useState({});
+  const [reservation, setReservation] = useState({
+    date: "",
+    times: [],
+    equipment: {},
+  });
   useEffect(() => {
     fetch(`http://localhost:3000/fields/${id}`)
       .then((response) => {
@@ -20,35 +22,67 @@ const Booking = () => {
       })
       .catch();
   }, [id]);
-  const getAllEquipments = async () => {
-    const res = await fetch(`http://localhost:3000/equipments`, {
-      method: "GET",
-    });
-    const json = await res.json();
-    if (json.success) {
-      setEquipments(json.data);
-    } else {
-      window.alert("There is no Field!");
-      console.log(json.data);
-    }
-  };
-  useEffect(() => {
-    getAllEquipments();
-    console.log(id)
-  }, []);
 
   const handleDateChange = async (e) => {
-    const times = await fetch(`http://localhost:3000/fields/${id}/availability`, {
-        method: "POST" ,
-        headers:{
+    setReservation((pr) => {
+      return { ...pr, date: e.target.value };
+    });
+    const times = await fetch(
+      `http://localhost:3000/fields/${id}/availability`,
+      {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({date: e.target.value})
+        body: JSON.stringify({ date: e.target.value }),
+      }
+    );
 
+    const data = await times.json();
+    setData(data.data);
+  };
+
+  useEffect(() => {
+    console.log(reservation);
+  }, [reservation]);
+
+  const updateReservationTimes = (e) => {
+    let finalTimes = [...reservation.times];
+    if (e.target.checked) {
+      finalTimes.push(e.target.value);
+    } else {
+      finalTimes.splice(finalTimes.indexOf(e.target.value), 1);
+    }
+
+    setReservation((pr) => {
+      return {
+        ...pr,
+        times: finalTimes,
+      };
     });
-    
-    const data = await times.json()
-  }
+  };
+
+  const updateReservationEquipment = (e, eqId, name, price) => {
+    const equipments = { ...reservation.equipment };
+    if (reservation.equipment[eqId]) {
+      equipments[eqId] = { count: +e.target.value };
+    } else {
+      equipments[eqId] = { count: 1 };
+    }
+    equipments[eqId].name = name;
+    equipments[eqId].price = price;
+
+    if (e.target.value == 0) {
+      delete equipments[eqId]
+    }
+
+    setReservation((pr) => {
+      return {
+        ...pr,
+        equipment: equipments,
+      };
+    });
+  };
 
   return (
     <>
@@ -71,37 +105,141 @@ const Booking = () => {
             </div>
             <form>
               <div className="row pt-5">
-                <div className="col-12 col-md-6 offset-md-3">
+                <div className="col-12 col-md-6 offset-md-2">
                   <h4>Reserve Now:</h4>
-                  <p className="mb-1 mt-3">
+                  <p className="mb-1 mt-4">
                     <label htmlFor="required-date">Required Date:</label>
                   </p>
                   <div className="form-row">
-                    <input type='date'className="form-control" onChange={handleDateChange} />
+                    <input
+                      type="date"
+                      className="form-control"
+                      onChange={handleDateChange}
+                      min={new Date().toISOString().split("T")[0]}
+                    />
                   </div>
+                  {reservation.date && (
+                    <>
+                      <p className="mb-3 mt-4">Select Time(s)</p>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th scope="col">From</th>
+                            <th scope="col">To</th>
+                            <th scope="col">Duration</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {data?.times?.map((time, i) => {
+                            return (
+                              <tr>
+                                <td>
+                                  <input
+                                    type={"checkbox"}
+                                    disabled={!time.available}
+                                    value={time.time}
+                                    onClick={updateReservationTimes}
+                                  />
+                                </td>
+                                <td>{time.time}</td>
+                                <td>{time.to}</td>
+                                <td>60 Minutes</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                      <p className="mb-3 mt-4">Select Equipment</p>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Equipment</th>
+                            <th scope="col">Price / Unit</th>
+                            <th scope="col">Count</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {data?.equipment?.map((eq, i) => {
+                            return (
+                              <tr>
+                                <td>{eq.name}</td>
+                                <td>{eq.price}</td>
+                                <td>
+                                  <input
+                                    type={"number"}
+                                    className="form-control"
+                                    min={0}
+                                    value={
+                                      Number(
+                                        reservation?.equipment?.[eq.id]?.count
+                                      ) || 0
+                                    }
+                                    onChange={(e) => {
+                                      updateReservationEquipment(
+                                        e,
+                                        eq.id,
+                                        eq.name,
+                                        eq.price
+                                      );
+                                    }}
+                                  />
+                                </td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </>
+                  )}
+                </div>
+                <div className="col-12 col-md-3 offset-md-1">
+                  <h4>Total Cost</h4>
+                  <p className="mb-1 mt-4">
+                    <label htmlFor="required-date">Field Cost:</label>
+                  </p>
+                  <table className="table">
+                    <tr>
+                      <th>Hours</th>
+                      <th>Price</th>
+                    </tr>
+                    <tr>
+                      <td>{reservation.times.length}</td>
+                      <td>{reservation.times.length * field.hourPrice}</td>
+                    </tr>
+                  </table>
+                  {
+                     (Object.keys(reservation.equipment)?.length > 0) &&  <>
+                      <p className="mb-1 mt-4">
+                    <label htmlFor="required-date">Equipment Cost:</label>
+                  </p>
+                  <table className="table">
+                    <tr>
+                      <th>Item</th>
+                      <th>Price</th>
+                    </tr>
+                    {Object.keys(reservation?.equipment)?.map((eq, i) => {
+                      if (reservation.equipment[eq].count == 0) {
+                        return <></>;
+                      }
+                      return (
+                        <tr key={i}>
+                          <td>{reservation.equipment[eq].name}</td>
+                          <td>
+                            {reservation.equipment[eq].count *
+                              reservation.equipment[eq].price}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </table>
+                    </>
+                  }
+                  <button type="submit" className="btn btn-dark">Reserve Now</button>
                 </div>
               </div>
             </form>
-            </div>
-            <div className="col-12 col-md-6 offset-md-3">
-            <table class="table pt-5" style={{width:200}}>
-              <thead>
-                <tr>
-                  <th scope="col">Time</th>
-                  <th scope="col">Available</th>
-                </tr>
-              </thead>
-              <tbody>
-                {
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>hour</td>
-                  </tr>
-                }
-              </tbody>
-            </table>
-            </div>
-          
+          </div>
         </>
       )}
 
