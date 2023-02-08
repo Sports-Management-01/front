@@ -8,7 +8,7 @@ const Booking = () => {
   const { id } = useParams();
   const [field, setField] = useState({});
   const [equipments, setEquipments] = useState([]);
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     fetch(`http://localhost:3000/fields/${id}`)
@@ -36,17 +36,20 @@ const Booking = () => {
   }, []);
 
   const handleDateChange = async (e) => {
-    const times = await fetch(`http://localhost:3000/fields/${id}/availability`, {
-        method: "POST" ,
-        headers:{
+    const times = await fetch(
+      `http://localhost:3000/fields/${id}/availability`,
+      {
+        method: "POST",
+        headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({date: e.target.value})
+        body: JSON.stringify({ date: e.target.value }),
+      }
+    );
 
-    });
-    
-    const data = await times.json()
-  }
+    const data = await times.json();
+    console.log(data);
+  };
 
   return (
     <>
@@ -71,14 +74,39 @@ const Booking = () => {
               <div className="row pt-5">
                 <div className="col-12 col-md-6 offset-md-3">
                   <h4>Reserve Now:</h4>
-                  <p className="mb-1 mt-3"><label htmlFor="required-date">Required Date:</label></p>
+                  <p className="mb-1 mt-3">
+                    <label htmlFor="required-date">Required Date:</label>
+                  </p>
                   <div className="form-row">
-                    <input type='date'className="form-control" onChange={handleDateChange} />
+                    <input
+                      type="date"
+                      className="form-control"
+                      onChange={handleDateChange}
+                    />
                   </div>
                 </div>
               </div>
             </form>
-          </div>
+            </div>
+            <div className="col-12 col-md-6 offset-md-3">
+            <table class="table pt-5" style={{width:200}}>
+              <thead>
+                <tr>
+                  <th scope="col">Time</th>
+                  <th scope="col">Available</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>hour</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+            </div>
+          
         </>
       )}
 
