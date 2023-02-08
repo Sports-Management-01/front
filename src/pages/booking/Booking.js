@@ -84,6 +84,7 @@ const Booking = () => {
                 </div>
               </div>
             </form>
+            
           </div>
         </>
       )}
