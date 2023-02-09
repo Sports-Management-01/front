@@ -1,16 +1,16 @@
-import hero from '../../assets/img/soccer.jpeg'
+import imagethree from '../../assets/sport images/imagethree.jpg'
 
 const Hero = () => {
 return(
     <>
-        <section className="hero spad set-bg" style={{ backgroundImage:`url(${hero})`,backgroundRepeat:"no-repeat" }}>
+        <section className="hero spad set-bg" style={{ backgroundImage:`url(${imagethree})`,backgroundRepeat:"no-repeat" }}>
     
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
                     <div className="hero__text">
-                        <h5>WELCOME HIROTO</h5>
-                        <h2>Experience the greatest for you holidays.</h2>
+                        <h5>WELCOME TOP TEPE</h5>
+                        <h2>Experience The Greatest for your Games</h2>
                     </div>
                     <form action="#" className="filter__form">
                         <div className="filter__form__item filter__form__item--search">
@@ -20,7 +20,7 @@ return(
                                 <span className="icon_search"></span>
                             </div>
                         </div>
-                        <div className="filter__form__item">
+                        <div className=" filter__form__item">
                             <p>Check In</p>
                             <div className="filter__form__datepicker">
                                 <span className="icon_calendar"></span>

@@ -2,6 +2,7 @@ import './SignUp.css';
 import { useState } from 'react';
 import { useNavigate, Link } from "react-router-dom";
 import Header from '../../components/Header/Header';
+import logo2 from '../../assets/logo/logo2.PNG'
 
 const SignUp = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -55,7 +56,7 @@ const SignUp = () => {
                     <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
                         <div className="Register_register__csfwh my-5 p-5 " >
                             <div className='Register_logo__-jKtP mb-4'>
-                                <img className='logo-img' src="logo.svg" alt="react-logo" width={100} />
+                                <img className='logo-img' src={logo2} alt="react-logo"/>
 
                             </div>
 
@@ -89,12 +90,12 @@ const SignUp = () => {
                                     <label htmlFor="passwordConfirm" className="form-label">password Confirmation</label>
                                     <input type="Password" className="form-control" name='passwordConfirmation' onChange={handleOnChange}></input>
                                 </div>
-                                <div className='row mt-5 align-items-center'>
+                                <div className='end row mt-5 align-items-center'>
                                     <div className='col-5'>
                                         <Link className="loginLink w-100" to={"/signin"}>Login</Link>
                                     </div>
                                     <div className='col-7'>
-                                        <button type="submit" className="btn btn-primary w-100" disabled={isLoading}>
+                                        <button type="submit" className="btn btn-primary1 w-50" disabled={isLoading}>
                                             {isLoading ? "Please Wait" : "Register"}
                                         </button>
                                     </div>
