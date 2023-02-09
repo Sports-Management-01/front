@@ -36,7 +36,7 @@ function App() {
 
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
         <Route path='/userDashboard' element={<Suspense fallback={<Loading />} ><UserDashboard /></Suspense>} />
-        <Route path='/profile' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
+        <Route path='/profile/:id' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
 
         <Route path="*" element={<>NOT FOUND</>} />
        

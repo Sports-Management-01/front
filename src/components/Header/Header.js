@@ -2,10 +2,13 @@ import logo from "../../assets/img/logo.png";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import PersonIcon from '@mui/icons-material/Person';
+
 
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const { token } = useContext(AuthContext);
+  const {user, setUser} = useContext(AuthContext);
   const getCategory = async () => {
     const res = await fetch(`http://localhost:3000/categories`, {
       method: "GET",
@@ -67,6 +70,10 @@ const Header = () => {
               <div className="header__top__right">
                 <div className="header__top__auth">
                   <ul>
+                    <li>
+                    <Link to={`/profile/${user.id}`}><PersonIcon/></Link>
+                    
+                    </li>
                     <li>
                       {" "}
                       <Link to={"/signout"}>LogOut</Link>

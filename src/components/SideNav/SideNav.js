@@ -6,13 +6,16 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import { Link, NavLink } from "react-router-dom";
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Link, NavLink, useParams  } from "react-router-dom";
 import Header from "../Header/Header"
 import Hero from "../Hero/Hero";
-
 import Profile from "../../pages/profile/Profile";
+import { AuthContext } from "../../contexts/AuthContext";
+
 
 const SideNav = ()=> {
+  const { id } = useParams();
   const {  collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } = useProSidebar();
   const toggle = () => {
     toggleSidebar();
@@ -40,11 +43,10 @@ const SideNav = ()=> {
             <h2 color="#E9AD28"></h2>
           </MenuItem>
           <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
-          <MenuItem   icon={<PeopleOutlinedIcon />}>Team</MenuItem>
-          <MenuItem icon={<ContactsOutlinedIcon />}>Contacts</MenuItem>
-          <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={'/profile'} >Profile</NavLink> </MenuItem>
-          <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
-          <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
+          <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/:${id}`} >Profile</NavLink> </MenuItem>
+          <MenuItem   icon={<PeopleOutlinedIcon />}>My Booking</MenuItem> 
+          <MenuItem icon={<LogoutIcon/>}>LogOut</MenuItem>
+          
         </Menu>
       </Sidebar>
      {/*  <main> */}
