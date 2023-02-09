@@ -6,12 +6,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000;
+    border: 1px solid #E9AD28;
+    border-radius: 0 15px 0 15px;
+    background-color: #e9edddcc;
 }
 #logoImg {
     margin: 15px;
     padding-left: 80px;
     height: 90px !important;
+    
 }
 .optionButtons {
     display: flex;
@@ -20,25 +23,34 @@
 }
 .Register_logo__-jKtP {
     margin: auto;
-    width: 100px;
+    width: 150px;
+    
+    
 }
 .Register_register__csfwh {
     background: #fdfdfd;
-    border: 1px solid #dadce0;
-    border-radius: 15px;
+    border: 1px solid #e0deda;
+    border-radius: 0 15px 0 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    
 }
 .container {
     font-family: Poppins,sans-serif;
     line-height: 1.5;
 }
 .form-field label {
-    font-size: 1.2em; 
+    font-size: 1em; 
 }
 .Register_title__QRiY2 {
-    font-weight: 600;
+    font-weight: 500;
+    align-items: center;
+    margin-left: 50px;
 }
-.btn-primary {
-    color: #fff;
+.btn-primary1 {
+    color: #000000;
     background-color: #E9AD28;
     border-color: #E9AD28;
 }
@@ -49,4 +61,40 @@
 .loginLink:hover{
     color: #E9AD28;
     border-color: #E9AD28;
+}
+.logo-img{
+    border-radius: 15px 0 15px 0;
+    border: 3px solid #E9AD28;
+}
+.end{
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+}
+.login-box{
+    margin-top: 100px;
+    width: 750px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10%;
+    height: 50%;
+   padding-bottom: 30px;
+   border-color: #E9AD28;
+}
+.logoandtitle{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.logoandtitle >h2{
+    margin-left: 37%;
+}
+.logo{
+    width: 230px
+}
+.btn-secondary2{
+    background-color: hsl(40, 11%, 22%);
+    color: #fdfdfd;
+    border-color: #6c757d
 }
