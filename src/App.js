@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
 
+
 const SignIn = React.lazy(() => import('./pages/signin/SignIn'));
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
 const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
@@ -15,6 +16,8 @@ const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
 
 const Categories = React.lazy(() => import('./pages/categories/Categories'));
+const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
+const Profile = React.lazy(() => import('./pages/profile/Profile'));
 
 
 function App() {
@@ -32,6 +35,8 @@ function App() {
         <Route path='/booking/:id' element={<Suspense fallback={<Loading />} ><Booking /></Suspense>} />
 
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
+        <Route path='/userDashboard' element={<Suspense fallback={<Loading />} ><UserDashboard /></Suspense>} />
+        <Route path='/profile' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
 
         <Route path="*" element={<>NOT FOUND</>} />
        

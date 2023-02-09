@@ -14,15 +14,15 @@ import './assets/css/style.css'
 
 import { BrowserRouter } from 'react-router-dom';
 import UserManager from './contexts/AuthContext';
-
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <UserManager>
-   
+    <ProSidebarProvider>
       <App />
-      
+    </ProSidebarProvider>
     </UserManager>
   </BrowserRouter>
 );

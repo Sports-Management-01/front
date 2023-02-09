@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import {Link} from "react-router-dom";
 
 const images = [
     { url: img1 },
@@ -68,8 +69,8 @@ const FieldDetails = () => {
                     <div className="room__details__content">
                         <div className="room__details__title">
                             <h2>{field.name}</h2>
-                            <a href="#" className="primary-btn">Book Now</a>
-                        </div>
+                            <Link to={`/booking/${field.id}`} className="primary-btn" >Book Now</Link>
+                       </div>
                         <div className="room__details__desc">
                             <h2>Description:</h2>
                             <p>We’re halfway through the summer, but while plenty of people are kicking back and

@@ -1,9 +1,11 @@
 import logo from "../../assets/img/logo.png";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 const Header = () => {
   const [categories, setCategories] = useState([]);
-
+  const { token } = useContext(AuthContext);
   const getCategory = async () => {
     const res = await fetch(`http://localhost:3000/categories`, {
       method: "GET",
@@ -38,17 +40,33 @@ const Header = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-5">
+            {/* Check if there is token or NOT to display login register logout */}
+           
+            {
+             (!token ?
+               (<>
+                <div className="col-lg-5">
               <div className="header__top__right">
                 <div className="header__top__auth">
                   <ul>
-                    <li>
+                 <li>
                       <Link to={"/signin"}>Login</Link>
                     </li>
                     <li>
                       {" "}
                       <Link to={"/signup"}>Register</Link>
                     </li>
+                   </ul>
+                   </div>
+                   </div>
+                   </div>
+               </>)
+             :(
+              <>
+                <div className="col-lg-5">
+              <div className="header__top__right">
+                <div className="header__top__auth">
+                  <ul>
                     <li>
                       {" "}
                       <Link to={"/signout"}>LogOut</Link>
@@ -57,6 +75,10 @@ const Header = () => {
                 </div>
               </div>
             </div>
+              </>
+             ))
+            }
+          
           </div>
         </div>
       </div>
@@ -105,7 +127,7 @@ const Header = () => {
                   </ul>
                 </nav>
                 <div className="header__nav__widget">
-                  <a href="#">
+                  <a href="/exploreFields">
                     Book Now <span className="arrow_right"></span>
                   </a>
                 </div>
