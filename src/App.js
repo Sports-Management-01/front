@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+
 import React, { Suspense } from 'react';
 import Loading from './components/loading/Loading';
 import { Route, Routes } from 'react-router-dom';
