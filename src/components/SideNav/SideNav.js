@@ -61,7 +61,7 @@ const SideNav = ()=> {
             ):(user.roleId == 3 ?(<>
           <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
           <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/${id}`} >Profile</NavLink> </MenuItem>
-          <MenuItem   icon={<PeopleOutlinedIcon />}>My Booking</MenuItem> 
+          <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={`/myBooking`} >My Booking</NavLink></MenuItem> 
           <MenuItem   icon={<LogoutIcon/>}><NavLink to={"/signout"}>LogOut</NavLink></MenuItem>
             </>):(
               <>
