@@ -71,7 +71,9 @@ const Header = () => {
                 <div className="header__top__auth">
                   <ul>
                     <li>
-                    <Link to={`/profile/${user.id}`}><PersonIcon/></Link>
+                      {(user.roleId==1) ?(<><Link to={`/adminDashboard/${user.id}`}><PersonIcon/></Link></>)
+                      :(<><Link to={`/profile/${user.id}`}><PersonIcon/></Link>
+                      </>)}
                     
                     </li>
                     <li>
