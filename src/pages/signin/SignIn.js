@@ -5,6 +5,7 @@ import {Loading} from "../../components/loading/Loading";
 import { AuthContext } from '../../contexts/AuthContext';
 import Header from '../../components/Header/Header';
 import logo2 from '../../assets/logo/logo2.PNG'
+import Footer from "../../components/Footer/Footer";
 
 const SignIn =() =>{
 
@@ -78,6 +79,7 @@ const SignIn =() =>{
             </div>
         </div>
     </div>
+    <Footer />
     </>
     )
 }
