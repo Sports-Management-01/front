@@ -75,3 +75,9 @@
     .links a{
     margin-left: 4px;
     }
+    .links a:hover{
+        color: #FFC312 ;
+    }
+    a:hover{
+        color: #FFC312;
+    }
