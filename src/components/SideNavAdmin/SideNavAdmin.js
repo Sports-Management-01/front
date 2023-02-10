@@ -12,12 +12,11 @@ import Header from "../Header/Header"
 import Hero from "../Hero/Hero";
 import Profile from "../../pages/profile/Profile";
 import { AuthContext } from "../../contexts/AuthContext";
-import  { useState, useContext, useEffect } from "react";
 
-const SideNav = ()=> {
+
+const SideNavAdmin = ()=> {
   const { id } = useParams();
-  const {user, setUser} = useContext(AuthContext);
-  const token = useContext(AuthContext);
+
   const {  collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } = useProSidebar();
   const toggle = () => {
     toggleSidebar();
@@ -44,10 +43,7 @@ const SideNav = ()=> {
             {" "}
             <h2 color="#E9AD28"></h2>
           </MenuItem>
-          {
-            user.roleId == 1 ?  (
-              <>
-         <MenuItem    icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
+          <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
           <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/${id}`} >Profile</NavLink> </MenuItem>
           <MenuItem   icon={<PeopleOutlinedIcon />}>Users</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Categories</MenuItem> 
@@ -56,26 +52,7 @@ const SideNav = ()=> {
           <MenuItem   icon={<PeopleOutlinedIcon />}>Booking</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Roles</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Permissions</MenuItem> 
-          <MenuItem icon={<LogoutIcon/>}><NavLink to={"/signout"}>LogOut</NavLink></MenuItem>
-              </>
-            ):(user.roleId == 3 ?(<>
-          <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
-          <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/${id}`} >Profile</NavLink> </MenuItem>
-          <MenuItem   icon={<PeopleOutlinedIcon />}>My Booking</MenuItem> 
-          <MenuItem   icon={<LogoutIcon/>}><NavLink to={"/signout"}>LogOut</NavLink></MenuItem>
-            </>):(
-              <>
-          <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
-          <MenuItem    icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/${id}`} >Profile</NavLink> </MenuItem>
-          <MenuItem    icon={<PeopleOutlinedIcon />}><NavLink to={`/company/fields`} >My Courts</NavLink></MenuItem> 
-          <MenuItem    icon={<PeopleOutlinedIcon />}><NavLink to={`/company/reservations`} >Reservations</NavLink></MenuItem> 
-          <MenuItem    icon={<LogoutIcon/>}><NavLink to={"/signout"}>LogOut</NavLink></MenuItem>      
-              </>
-            )
-             
-            )
-          }
-        
+          <MenuItem icon={<LogoutIcon/>}>LogOut</MenuItem>
           
         </Menu>
       </Sidebar>
@@ -85,4 +62,4 @@ const SideNav = ()=> {
   );
 }
 
-export default SideNav;
+export default SideNavAdmin;

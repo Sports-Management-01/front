@@ -1,11 +1,10 @@
 import SideNav from '../../components/SideNav/SideNav';
-import Nav from '../../components/Nav/Nav';
 import { Link } from "react-router-dom";
 import {useState} from 'react';
 
 
 
-const AdminDashboard = () =>{
+const CompanyDashboard = () =>{
     const [scrollTop, setScrollTop] = useState(0);
 
     const handleScroll = event => {
@@ -24,4 +23,4 @@ const AdminDashboard = () =>{
     )
 }
 
-export default AdminDashboard;
+export default CompanyDashboard;
