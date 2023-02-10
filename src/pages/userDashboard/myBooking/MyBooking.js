@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import SideNav from "../../components/SideNav/SideNav";
-import Nav from "../../components/Nav/Nav";
+import SideNav from "../../../components/SideNav/SideNav";
+import Nav from "../../../components/Nav/Nav";
 import { useParams } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
+import { AuthContext } from "../../../contexts/AuthContext";
 import { useContext, useEffect } from "react";
 const dayjs = require('dayjs')
 
@@ -55,18 +55,6 @@ if(json.success){
 }
 
 
-
-  
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/fields/${id}`)
-  //     .then((response) => {
-  //       return response.json().then((json) => {
-  //         setField(json.data);
-  //       });
-  //     })
-  //     .catch();
-  // }, [id]);
   return (
     <>
       <Nav />

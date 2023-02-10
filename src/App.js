@@ -23,8 +23,7 @@ const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const Reservations = React.lazy(() => import('./pages/companyDashboard/Reservations'));
-
-const MyBooking = React.lazy(() => import('./pages/myBooking/MyBooking'));
+const MyBooking = React.lazy(() => import('./pages/userDashboard/myBooking/MyBooking'));
 
 function App() {
   const { token } = useContext(AuthContext)
