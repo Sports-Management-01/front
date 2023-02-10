@@ -18,7 +18,7 @@ const Booking = React.lazy(() => import('./pages/booking/Booking'));
 const Categories = React.lazy(() => import('./pages/categories/Categories'));
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
-
+const MyBooking = React.lazy(() => import('./pages/myBooking/MyBooking'));
 
 function App() {
   const { token } = useContext(AuthContext)
@@ -37,6 +37,8 @@ function App() {
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
         <Route path='/userDashboard' element={<Suspense fallback={<Loading />} ><UserDashboard /></Suspense>} />
         <Route path='/profile/:id' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
+        <Route path='/myBooking' element={<Suspense fallback={<Loading />} ><MyBooking /></Suspense>} />
+
 
         <Route path="*" element={<>NOT FOUND</>} />
        

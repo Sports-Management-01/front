@@ -44,7 +44,7 @@ const SideNav = ()=> {
           </MenuItem>
           <MenuItem   icon={<HomeOutlinedIcon />}><NavLink to={'/'} >Home</NavLink> </MenuItem>
           <MenuItem   icon={<ReceiptOutlinedIcon />}><NavLink to={`/profile/:${id}`} >Profile</NavLink> </MenuItem>
-          <MenuItem   icon={<PeopleOutlinedIcon />}>My Booking</MenuItem> 
+          <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={`/myBooking`}>My Booking</NavLink></MenuItem> 
           <MenuItem icon={<LogoutIcon/>}>LogOut</MenuItem>
           
         </Menu>

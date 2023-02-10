@@ -217,6 +217,7 @@ const Booking = () => {
                             </thead>
                             <tbody>
                               {data?.equipment?.map((eq, i) => {
+                                console.log(data.equipment)
                                 return (
                                   <tr>
                                     <td>{eq.name}</td>
