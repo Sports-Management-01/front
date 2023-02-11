@@ -61,29 +61,25 @@ const Fields = () => {
                         <th>State</th>
                         <th>Status</th>
                         <th>options</th>
-                     
-
-
                       </tr>
-                     
+                      {
+                        fieldDetails?.map((field, i)=>(
                           <tr>
                       
-                          <td>name</td>
+                          <td>{field.name}</td>
                           
-                          <td>name</td>
-                          <td> name</td>
-                   
+                          <td>{field.Category.name}</td>
+                          <td>{field.hourPrice}$</td>
+                          <td>{field.from}-{field.to}</td>
+                          <td>{field.State.name}</td>
+                          <td>{!field.isActive ? "Active": "Not Active"}</td>
                           
-                            
-                          
-                         
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>
                           <td>{/* {dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')} */}</td>
-                          <td>price</td>
-                          
+                         
                           <td>
                             <span className="badge badge-danger"> canceled</span>
-                         <span className="badge badge-warning">Passed</span> <><span class="badge badge-primary">Acitve</span></>  
+                         <span className="badge badge-warning">Passed</span> <><span className="badge badge-primary">Acitve</span></>  
                           
                           </td>
                           <td><>
@@ -92,6 +88,11 @@ const Fields = () => {
 
 
                         </tr>
+
+                        ))
+                      }
+                     
+                         
 
                      
                     </table>
