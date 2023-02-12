@@ -72,7 +72,7 @@ const Fields = () => {
                           <td>{field.hourPrice}$</td>
                           <td>{field.from}-{field.to}</td>
                           <td>{field.State.name}</td>
-                          <td>{!field.isActive ? "Active": "Not Active"}</td>
+                          <td>{field.isActive ? "Active": "Not Active"}</td>
                           
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>
                           <td>{/* {dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')} */}</td>
