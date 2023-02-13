@@ -26,12 +26,16 @@ const AddField = () => {
     isActive: 1,
     from: "",
     to: "",
+    longitude:longitude,
+    latitude: latitude
   });
 
   const createCourt = async (e) => {
     e.preventDefault();
     const form = e.target;
     const newCourt = new FormData(form);
+    newCourt.append('latitude', latitude);
+    newCourt.append('longitude', longitude);
     const response = await fetch("http://localhost:3000/fields", {
       method: "post",
       body: newCourt,
@@ -91,8 +95,8 @@ useEffect(()=>{
   }
   const handleOnChange = (e) => {
     fieldData[e.target.name] = e.target.value;
-    fieldData[latitude] = latitude;
-    fieldData[longitude] = longitude;
+    
+    console.log(latitude +''+longitude)
     const updatedData = { ...fieldData };
     updatedData[e.target.name] = e.target.value;
     setFieldData(updatedData);
@@ -204,9 +208,11 @@ useEffect(()=>{
                         </div>
                         <div className="form-group col-md-3">
                           <label for="inputState">Status</label>
-                          <select id="inputState" className="form-control" onChange={handleOnChange} >
-                            <option  selected name='isActive' value='1'>Active{/* {fieldData.isActive == 1?fieldData.isActive=1:fieldData.isActive=0} */}</option>
-                            <option name='isActive' value='0'>Not Active </option>
+                          <select id="inputState" className="form-control" name="isActive"
+                          onChange={handleOnChange} value={fieldData.isActive}>
+                            <option  selected  value='1'>Active</option>
+                            <option  value='0'>Not Active </option>
+                           
                           </select>
                         </div>
                       </div>
@@ -260,7 +266,7 @@ useEffect(()=>{
                             setLat={setLatitude}
                             setLng={setLongitude}
                             zoom={8}
-                           onChange= {handleOnChange}
+                         /*   onChange= {handleOnChange} */
                           />
                         </Wrapper>
                       </div>
