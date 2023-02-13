@@ -13,29 +13,16 @@ const Map = ({ center, zoom, setLat, setLng }) => {
         }));
     }, []);
 
-    // useEffect(() => {
-    //     console.log(markers)
-    //     if (markers.length) {
-    //         for (var i = 0; i < markers.length - 1; i++) {
-    //             markers[i].setMap(null)
-    //         }
-    //         // lastMarker.splice(0, 1)
-    //         // setMarkers(lastMarker)
-    //     }
-    // }, [markers])
-
     const displayMarkers = () => {
         console.log(markers)
         for (var i = 0; i < markers.current.length - 1; i++) {
             markers.current[i].setMap(null)
         }
-
     }
 
     useEffect(() => {
         if (map) {
             map.addListener("click", (mapsMouseEvent) => {
-
                 const coordinates = mapsMouseEvent.latLng.toJSON()
                 setLat(coordinates.lat)
                 setLng(coordinates.lng)
@@ -43,12 +30,9 @@ const Map = ({ center, zoom, setLat, setLng }) => {
                     position: mapsMouseEvent.latLng,
                     map: map
                 });
-                // console.log(markers)
-                // var currentMarkers = [...markers]
                 markers.current.push(pin)
                 markers.current.splice(0, 1)
                 displayMarkers()
-                // setMarkers(currentMarkers)
                 map.panTo(mapsMouseEvent.latLng);
             });
         }

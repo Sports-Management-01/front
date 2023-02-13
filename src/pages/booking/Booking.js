@@ -175,7 +175,7 @@ const Booking = () => {
                   {reservation.date && (
                     <>
                       <p className="mb-3 mt-4">Select Time(s)</p>
-                      <table class="table">
+                      <table className="table">
                         <thead>
                           <tr>
                             <th></th>
@@ -207,7 +207,7 @@ const Booking = () => {
                       {reservation.times.length > 0 ? (
                         <>
                           <p className="mb-3 mt-4">Select Equipment</p>
-                          <table class="table">
+                          <table className="table">
                             <thead>
                               <tr>
                                 <th scope="col">Equipment</th>

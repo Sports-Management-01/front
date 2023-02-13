@@ -118,7 +118,7 @@ if(json.success){
                           
                           <td>
                             {reservation.deletedAt ? <> <span className="badge badge-danger"> canceled</span></>
-                          : dayjs(reservation.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span class="badge badge-primary">Acitve</span></>  
+                          : dayjs(reservation.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span className="badge badge-primary">Acitve</span></>  
                           }
                           </td>
                           <td><>

@@ -149,7 +149,7 @@ const AddField = () => {
                           </select>
                         </div>
                       </div>
-                      <div class="form-group">
+                      <div className="form-group">
                         <label for="exampleFormControlFile1">
                           Upload Court Images
                         </label>

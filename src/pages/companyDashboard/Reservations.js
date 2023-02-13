@@ -97,7 +97,7 @@ const Reservations = () => {
                               <td>{re.total}$</td>
                               <td>
                             {re.deletedAt ? <> <span className="badge badge-danger"> canceled</span></>
-                          : dayjs(re.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span class="badge badge-primary">Acitve</span></>  
+                          : dayjs(re.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span className="badge badge-primary">Acitve</span></>  
                           }
                           </td> 
 
