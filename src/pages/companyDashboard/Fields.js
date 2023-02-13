@@ -1,12 +1,9 @@
-
-
 import SideNav from "../../components/SideNav/SideNav";
 import Nav from "../../components/Nav/Nav";
 import { NavLink, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect,useState  } from "react";
 const dayjs = require('dayjs')
-
 const Fields = () => {
     const {token} = useContext(AuthContext);
     const { id } = useParams();
@@ -28,17 +25,11 @@ const Fields = () => {
          setFieldDetails(json.data);
           console.log(json.data);
         }
-        
       };
       useEffect(() => {
         getMyFields();
       }, []);
-    
       console.log(fieldDetails)
-
-
-
-
     return (
       <>
         <Nav/>
@@ -67,9 +58,7 @@ const Fields = () => {
                       {
                         fieldDetails?.map((field, i)=>(
                           <tr>
-                      
                           <td>{field.name}</td>
-                          
                           <td>{field.Category.name}</td>
                           <td>{field.hourPrice}$</td>
                           <td>{field.from}-{field.to}</td>
@@ -81,23 +70,15 @@ const Fields = () => {
                           <input className="btn-danger btn" type="button" value="Delete"  />
                           </>
                           </td>
-                          
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>
                           <td>{/* {dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')} */}</td>
-                         
                           {/* <td> */}
                             {/* <span className="badge badge-danger"> canceled</span> */}
                          {/* <span className="badge badge-warning">Passed</span> <><span className="badge badge-primary">Acitve</span></>   */}
-                          
                           {/* </td> */}
-                          
                         </tr>
                         ))
                       }
-                     
-                         
-
-                     
                     </table>
                   </div>
                 </div>
@@ -110,5 +91,4 @@ const Fields = () => {
       </>
     );
 }
-
 export default Fields;
