@@ -23,6 +23,8 @@ const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDash
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
+const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
+
 const Reservations = React.lazy(() => import('./pages/companyDashboard/Reservations'));
 const MyBooking = React.lazy(() => import('./pages/userDashboard/myBooking/MyBooking'));
 const NotFound = React.lazy(() => import('./pages/notFound/NotFound'));
@@ -47,6 +49,7 @@ function App() {
         <Route path='/adminDashboard/:id' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
+        <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />
         
         <Route path='/company/fields' element={<Suspense fallback={<Loading />} ><Fields /></Suspense>} />
         <Route path='/company/reservations' element={<Suspense fallback={<Loading />} ><Reservations /></Suspense>} />

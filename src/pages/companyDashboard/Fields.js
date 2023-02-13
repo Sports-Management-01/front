@@ -2,7 +2,7 @@
 
 import SideNav from "../../components/SideNav/SideNav";
 import Nav from "../../components/Nav/Nav";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect,useState  } from "react";
 const dayjs = require('dayjs')
@@ -51,7 +51,9 @@ const Fields = () => {
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info">My Courts</div>
+                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>My Courts 
+                    <NavLink  to={"/company/addfield"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Court</NavLink> 
+                    </div>
                     <table className="table">
                       <tr>
                         <th>Name</th>
@@ -61,37 +63,39 @@ const Fields = () => {
                         <th>State</th>
                         <th>Status</th>
                         <th>options</th>
-                     
-
-
                       </tr>
-                     
+                      {
+                        fieldDetails?.map((field, i)=>(
                           <tr>
                       
-                          <td>name</td>
+                          <td>{field.name}</td>
                           
-                          <td>name</td>
-                          <td> name</td>
-                   
+                          <td>{field.Category.name}</td>
+                          <td>{field.hourPrice}$</td>
+                          <td>{field.from}-{field.to}</td>
+                          <td>{field.State.name}</td>
+                          <td>{field.isActive ? "Active": "Not Active"}</td>
+                          <td>
+                            <>
+                          <input className="btn-primary btn m-1" type="button" value="Edit"  />
+                          <input className="btn-danger btn" type="button" value="Delete"  />
+                          </>
+                          </td>
                           
-                            
-                          
-                         
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>
                           <td>{/* {dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')} */}</td>
-                          <td>price</td>
+                         
+                          {/* <td> */}
+                            {/* <span className="badge badge-danger"> canceled</span> */}
+                         {/* <span className="badge badge-warning">Passed</span> <><span className="badge badge-primary">Acitve</span></>   */}
                           
-                          <td>
-                            <span className="badge badge-danger"> canceled</span>
-                         <span className="badge badge-warning">Passed</span> <><span class="badge badge-primary">Acitve</span></>  
+                          {/* </td> */}
                           
-                          </td>
-                          <td><>
-                          <input className="btn-danger btn" type="button" value="Cancel"  />
-                          </></td>
-
-
                         </tr>
+                        ))
+                      }
+                     
+                         
 
                      
                     </table>
