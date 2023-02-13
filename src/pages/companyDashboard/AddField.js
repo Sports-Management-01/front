@@ -1,8 +1,15 @@
 import React from "react";
 import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
+import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import Map from "./Map";
+import { useState } from "react";
+
+
 
 const AddField = () => {
+  const [longitude, setLongitude] = useState(28.5)
+  const [latitude, setLatitude] = useState(40.5)
   return (
     <>
       <Nav />
@@ -107,6 +114,7 @@ const AddField = () => {
                             type="text"
                             className="form-control"
                             id="inputZip"
+                            value={latitude}
                           />
                         </div>
                         <div className="form-group col-md-2">
@@ -115,6 +123,7 @@ const AddField = () => {
                             type="text"
                             className="form-control"
                             id="inputZip"
+                            value={longitude}
                           />
                         </div>
                       </div>
@@ -149,6 +158,11 @@ const AddField = () => {
                           className="form-control-file"
                           id="exampleFormControlFile1"
                         />
+                      </div>
+                      <div>
+                        <Wrapper apiKey={'AIzaSyCG_3C9QPf5GdMaQ9V5R27n537RjXjv7V4'} >
+                          <Map center={{ lat: latitude, lng: longitude }} setLat={setLatitude} setLng={setLongitude} zoom={8} />
+                        </Wrapper>
                       </div>
                       <button type="submit" className="btn btn-primary">
                         Create
