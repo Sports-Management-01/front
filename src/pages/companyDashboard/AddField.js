@@ -3,13 +3,46 @@ import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import Map from "./Map";
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+
 
 
 
 const AddField = () => {
   const [longitude, setLongitude] = useState(28.5)
   const [latitude, setLatitude] = useState(40.5)
+  const { user, token } = useContext(AuthContext);
+  const [userData, setUserData] = useState(user);
+const fieldImage=useRef()
+
+
+  const createCourt = async(e)=>{
+    e.preventDefault();
+    const form = e.target;
+    const newCourt = new FormData(form);
+    const response = await fetch("http://localhost:3000/fields", {
+      method: "post",
+      body: newCourt,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: `application/json`,
+      },
+    });
+    const json = await response.json();
+    if(json.success){
+    (alert(json.messages))
+    setUserData([...user, ...json.data])
+
+    } else{
+      (alert(json.messages))
+    }
+
+  };
+  
+
+
+
   return (
     <>
       <Nav />
@@ -23,9 +56,9 @@ const AddField = () => {
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
                     <div className="alert alert-info">Add Court</div>
-                    <form>
+                    <form >
                       <div className="form-row">
-                        <div className="form-group col-md-6">
+                        <div className="form-group col-md-3">
                           <label for="inputEmail4">Name</label>
                           <input
                             type="text"
@@ -34,7 +67,7 @@ const AddField = () => {
                             placeholder="Name"
                           />
                         </div>
-                        <div className="form-group col-md-4">
+                        <div className="form-group col-md-3">
                           <label for="inputState">Category</label>
                           <select id="inputState" className="form-control">
                             <option selected>Choose...</option>
@@ -43,96 +76,65 @@ const AddField = () => {
                           </select>
                         </div>
                       </div>
-                      <div
-                        className="form-row"
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">State</label>
+                      <div className="form-row">
+                        <div className="form-group col-md-3">
+                          <label for="inputEmail4">Address</label>
                           <input
                             type="text"
                             className="form-control"
-                            id="inputZip"
+                            id="inputName4"
+                            placeholder="Name"
                           />
                         </div>
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Address</label>
+                        <div className="form-group col-md-3">
+                          <label for="inputState">State</label>
+                          <select id="inputState" className="form-control">
+                            <option selected>Choose...</option>
+                            <option>Football</option>
+                            <option>Basketball</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group col-md-3">
+                          <label for="inputEmail4">Length</label>
                           <input
                             type="text"
                             className="form-control"
-                            id="inputZip"
+                            id="inputName4"
+                            placeholder="Length"
                           />
                         </div>
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Hour Price</label>
+                        <div className="form-group col-md-3">
+                          <label for="inputEmail4">Width</label>
                           <input
                             type="text"
                             className="form-control"
-                            id="inputZip"
+                            id="inputName4"
+                            placeholder="Width"
                           />
                         </div>
                       </div>
-                      <div
-                        className="form-row"
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Length(m)</label>
+                      <div className="form-row">
+                        <div className="form-group col-md-3">
+                          <label for="inputEmail4">Hour Price</label>
                           <input
                             type="text"
                             className="form-control"
-                            id="inputZip"
+                            id="inputName4"
                           />
                         </div>
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Width(m)</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="inputZip"
-                          />
-                        </div>
-                        <div className="form-group col-md-2">
+                        <div className="form-group col-md-3">
                           <label for="inputState">Status</label>
                           <select id="inputState" className="form-control">
-                            <option selected>Choose...</option>
-                            <option>Active</option>
+                            <option selected>Active</option>
                             <option>Not Active</option>
                           </select>
                         </div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Latitude</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="inputZip"
-                            value={latitude}
-                          />
-                        </div>
-                        <div className="form-group col-md-2">
-                          <label for="inputZip">Longitude</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="inputZip"
-                            value={longitude}
-                          />
-                        </div>
-                      </div>
-                      <div className="form-row">
-                        <div className="form-group col-md-2">
-                          <br />
-                          <label>Working Hours</label>
-                        </div>
-                        <div className="form-group col-md-2">
+                        
+                        <div className="form-group col-md-3">
                           <label for="inputState">From</label>
                           <select id="inputState" className="form-control">
                             <option selected>Choose...</option>
@@ -140,7 +142,7 @@ const AddField = () => {
                             <option>09:00</option>
                           </select>
                         </div>
-                        <div className="form-group col-md-2">
+                        <div className="form-group col-md-3">
                           <label for="inputState">To</label>
                           <select id="inputState" className="form-control">
                             <option selected>Choose...</option>
@@ -149,6 +151,7 @@ const AddField = () => {
                           </select>
                         </div>
                       </div>
+
                       <div className="form-group">
                         <label for="exampleFormControlFile1">
                           Upload Court Images

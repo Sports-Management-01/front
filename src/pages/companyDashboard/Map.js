@@ -18,6 +18,7 @@ const Map = ({ center, zoom, setLat, setLng }) => {
         for (var i = 0; i < markers.current.length - 1; i++) {
             markers.current[i].setMap(null)
         }
+        markers.current = [markers.current[markers.current.length - 1]]
     }
 
     useEffect(() => {
@@ -31,7 +32,7 @@ const Map = ({ center, zoom, setLat, setLng }) => {
                     map: map
                 });
                 markers.current.push(pin)
-                markers.current.splice(0, 1)
+                // markers.current.splice(0, 1)
                 displayMarkers()
                 map.panTo(mapsMouseEvent.latLng);
             });
