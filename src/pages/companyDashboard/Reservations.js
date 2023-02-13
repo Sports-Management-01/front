@@ -58,6 +58,7 @@ const Reservations = () => {
                         <th>From</th>
                         <th>To</th>
                         <th>Cost</th>
+                        <th>Status</th>
                         <th>Options</th>
                       </tr>
 
@@ -87,21 +88,24 @@ const Reservations = () => {
                                   "ddd,MMM D, YYYY h:mm A"
                                 )}
                               </td>
+                         
 
                               <td>
                                 {dayjs(re.to).format("ddd,MMM D, YYYY h:mm A")}
                               </td>
+                          
                               <td>{re.total}$</td>
+                              <td>
+                            {re.deletedAt ? <> <span className="badge badge-danger"> canceled</span></>
+                          : dayjs(re.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span class="badge badge-primary">Acitve</span></>  
+                          }
+                          </td> 
 
                               {/* <td>{dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')}</td>
                           <td>{dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')}</td>
                           <td>{reservation.total}$</td>
-                          
-                          <td>
-                            {reservation.deletedAt ? <> <span className="badge badge-danger"> canceled</span></>
-                          : dayjs(reservation.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span class="badge badge-primary">Acitve</span></>  
+                          */
                           }
-                          </td> */}
                               <td>
                                 <input
                                   className="btn-danger btn"
