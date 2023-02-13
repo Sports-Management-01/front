@@ -88,30 +88,78 @@ const Reservations = () => {
                                   "ddd,MMM D, YYYY h:mm A"
                                 )}
                               </td>
-                         
 
                               <td>
                                 {dayjs(re.to).format("ddd,MMM D, YYYY h:mm A")}
                               </td>
-                          
+
                               <td>{re.total}$</td>
                               <td>
                             {re.deletedAt ? <> <span className="badge badge-danger"> canceled</span></>
-                          : dayjs(re.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span className="badge badge-primary">Acitve</span></>  
+                          : dayjs(re.to).isBefore(dayjs(new Date())) ? <><span className="badge badge-warning">Passed</span></> : <><span class="badge badge-primary">Acitve</span></>  
                           }
                           </td> 
 
                               {/* <td>{dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')}</td>
                           <td>{dayjs(reservation.to).format('ddd,MMM D, YYYY h:mm A')}</td>
                           <td>{reservation.total}$</td>
-                          */
-                          }
+                          */}
                               <td>
-                                <input
+                                <button
                                   className="btn-danger btn"
                                   type="button"
                                   value="Cancel"
-                                />
+                                  data-toggle="modal"
+                                  data-target="#exampleModal"
+                                >Cancel</button>
+                                {/*  <!-- Modal --> */}
+                                <div
+                                  class="modal fade"
+                                  id="exampleModal"
+                                  tabindex="-1"
+                                  role="dialog"
+                                  aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true"
+                                >
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5
+                                          class="modal-title"
+                                          id="exampleModalLabel"
+                                        >
+                                          Modal title
+                                        </h5>
+                                        <button
+                                          type="button"
+                                          class="close"
+                                          data-dismiss="modal"
+                                          aria-label="Close"
+                                        >
+                                          <span aria-hidden="true">
+                                            &times;
+                                          </span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">...</div>
+                                      <div class="modal-footer">
+                                        <button
+                                          type="button"
+                                          class="btn btn-secondary"
+                                          data-dismiss="modal"
+                                        >
+                                          Close
+                                        </button>
+                                        <button
+                                          type="button"
+                                          class="btn btn-primary"
+                                        >
+                                          Save changes
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                               </td>
                             </tr>
                           ))}
