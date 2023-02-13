@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
-import findItemByObjectID from "../../utils/utils";
+import {findItemByObjectID} from "../../utils/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Booking = () => {
