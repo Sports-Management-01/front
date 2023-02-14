@@ -11,16 +11,12 @@ const Profile = () => {
     const {user, setUser} = useContext(AuthContext);
     const [image, setImage] = useState();
     const [userData, setUserData] = useState({
-        
             name: user.name,
             email: user.email,
             image:image,
             password: "",
             new_password: "",
             new_password_confirmation: "",
-
-            
-
         }
     );
     const [userProfile, setUserProfile] = useState({

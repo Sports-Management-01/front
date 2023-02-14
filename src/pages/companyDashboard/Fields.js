@@ -67,7 +67,7 @@ const Fields = () => {
                           <td>{field.isActive ? "Active": "Not Active"}</td>
                           <td>
                             <>
-                          <Link to={`update/court/${field.id}`} className="btn-primary btn m-1" >
+                          <Link to={`/company/fields/${field.id}`} className="btn-primary btn m-1" >
                           Edit
                           </Link>
                           <input className="btn-danger btn" type="button" value="Delete"  />

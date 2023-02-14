@@ -56,7 +56,7 @@ function App() {
 
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />
-        <Route path='company/fields/update/court/:id' element={<Suspense fallback={<Loading />} ><UpdateCourt /></Suspense>} />
+        <Route path='/company/fields/:id' element={<Suspense fallback={<Loading />} ><UpdateCourt /></Suspense>} />
         
         <Route path='/company/fields' element={<Suspense fallback={<Loading />} ><Fields /></Suspense>} />
         <Route path='/company/reservations' element={<Suspense fallback={<Loading />} ><Reservations /></Suspense>} />
