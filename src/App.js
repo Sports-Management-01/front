@@ -26,6 +26,7 @@ const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
+const UpdateCourt = React.lazy(() => import('./pages/companyDashboard/UpdateCourt'));
 
 const Reservations = React.lazy(() => import('./pages/companyDashboard/Reservations'));
 const MyBooking = React.lazy(() => import('./pages/userDashboard/myBooking/MyBooking'));
@@ -55,6 +56,7 @@ function App() {
 
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />
+        <Route path='company/fields/update/court/:id' element={<Suspense fallback={<Loading />} ><UpdateCourt /></Suspense>} />
         
         <Route path='/company/fields' element={<Suspense fallback={<Loading />} ><Fields /></Suspense>} />
         <Route path='/company/reservations' element={<Suspense fallback={<Loading />} ><Reservations /></Suspense>} />

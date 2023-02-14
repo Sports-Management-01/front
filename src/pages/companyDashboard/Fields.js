@@ -1,14 +1,16 @@
 import SideNav from "../../components/SideNav/SideNav";
 import Nav from "../../components/Nav/Nav";
-import { NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect,useState  } from "react";
+import UpdateCourt from "./UpdateCourt";
 const dayjs = require('dayjs')
 const Fields = () => {
     const {token} = useContext(AuthContext);
     const { id } = useParams();
     const { user, setUser } = useContext(AuthContext);
     const [fieldDetails, setFieldDetails] = useState([]);
+    const [open , setOpen ] = useState(false)
     const getMyFields = async () => {
         const res = await fetch(`http://localhost:3000/fields/company/fields`, {
           method: "GET",
@@ -18,7 +20,6 @@ const Fields = () => {
             "Authorization": `Bearer ${token}`,
           },
         });
-        console.log(user.id)
         const json = await res.json();
         console.log(json)
         if(json.success){
@@ -66,7 +67,9 @@ const Fields = () => {
                           <td>{field.isActive ? "Active": "Not Active"}</td>
                           <td>
                             <>
-                          <input className="btn-primary btn m-1" type="button" value="Edit"  />
+                          <Link to={`update/court/${field.id}`} className="btn-primary btn m-1" >
+                          Edit
+                          </Link>
                           <input className="btn-danger btn" type="button" value="Delete"  />
                           </>
                           </td>
