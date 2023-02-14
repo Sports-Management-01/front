@@ -5,8 +5,8 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const dayjs = require("dayjs");
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+const Roles = () => {
+
   const [roles, setRoles] = useState([]);
   const token = useContext(AuthContext);
   const allRoles = async () => {
@@ -21,36 +21,16 @@ const Users = () => {
     const json = await res.json();
     if (json.success) {
       console.log(json.data);
-      setUsers(json.data);
+      setRoles(json.data);
     } else {
       window.alert("There is no Role!");
       console.log(json.data);
     }
   };
   useEffect(() => {
-   // allRoles();
+   allRoles();
   }, []);
-  const allUsers = async () => {
-    const res = await fetch(`http://localhost:3000/users/`, {
-      method: "GET",
-      body: null,
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token.token}`,
-      },
-    });
-    const json = await res.json();
-    if (json.success) {
-      console.log(json.data);
-      setUsers(json.data);
-    } else {
-      window.alert("There is no User!");
-      console.log(json.data);
-    }
-  };
-  useEffect(() => {
-    allUsers();
-  }, []);
+
  
 
   return (
@@ -69,23 +49,18 @@ const Users = () => {
                     <table className="table">
                       <tr>
                         <th> Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Role</th>
-                        <th>ApprovedAt</th>
+                        <th>Require</th>
+                        <th>Status</th>
                       </tr>
 
-                      {users?.map((user, i) => (
+                      {roles?.map((role, i) => (
                         
                         <>
                           <tr>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.phone}</td>
-
-                        <td>{user.Role?.name}</td>
-                           <td>
-                              {dayjs(user.approvedAt).format(
+                            <td>{role.name}</td>
+                            <td>{role.require}</td>
+                            <td>
+                              {dayjs(role.deletedAt).format(
                                 "ddd,MMM D, YYYY h:mm A"
                               )}
                             </td>
@@ -104,4 +79,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Roles;

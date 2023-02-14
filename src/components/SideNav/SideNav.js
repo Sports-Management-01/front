@@ -54,8 +54,8 @@ const SideNav = ()=> {
           <MenuItem   icon={<PeopleOutlinedIcon />}>Courts</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Equipment</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Booking</MenuItem> 
-          <MenuItem   icon={<PeopleOutlinedIcon />}>Roles</MenuItem> 
-          <MenuItem   icon={<PeopleOutlinedIcon />}>Permissions</MenuItem> 
+          <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/roles'} >Roles</NavLink></MenuItem> 
+          <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/permissions'} >Permissions</NavLink></MenuItem> 
           <MenuItem icon={<LogoutIcon/>}><NavLink to={"/signout"}>LogOut</NavLink></MenuItem>
               </>
             ):(user.roleId == 3 ?(<>

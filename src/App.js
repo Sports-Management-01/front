@@ -21,6 +21,8 @@ const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboa
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
+const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
+const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
@@ -48,6 +50,9 @@ function App() {
         <Route path='/profile/:id' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
         <Route path='/adminDashboard/:id' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
+        <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
+        <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
+
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />
         

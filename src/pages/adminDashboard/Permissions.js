@@ -5,12 +5,12 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const dayjs = require("dayjs");
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
-  const [roles, setRoles] = useState([]);
+const Permissions = () => {
+
+  const [permissions, setPermissions] = useState([]);
   const token = useContext(AuthContext);
-  const allRoles = async () => {
-    const res = await fetch(`http://localhost:3000/roles/`, {
+  const allPermissions = async () => {
+    const res = await fetch(`http://localhost:3000/permissions/`, {
       method: "GET",
       body: null,
       headers: {
@@ -21,36 +21,16 @@ const Users = () => {
     const json = await res.json();
     if (json.success) {
       console.log(json.data);
-      setUsers(json.data);
+      setPermissions(json.data);
     } else {
-      window.alert("There is no Role!");
+      window.alert("There is no Permission!");
       console.log(json.data);
     }
   };
   useEffect(() => {
-   // allRoles();
+   allPermissions();
   }, []);
-  const allUsers = async () => {
-    const res = await fetch(`http://localhost:3000/users/`, {
-      method: "GET",
-      body: null,
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${token.token}`,
-      },
-    });
-    const json = await res.json();
-    if (json.success) {
-      console.log(json.data);
-      setUsers(json.data);
-    } else {
-      window.alert("There is no User!");
-      console.log(json.data);
-    }
-  };
-  useEffect(() => {
-    allUsers();
-  }, []);
+
  
 
   return (
@@ -65,30 +45,21 @@ const Users = () => {
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info">Users</div>
+                    <div className="alert alert-info">Permissions</div>
                     <table className="table">
                       <tr>
                         <th> Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Role</th>
-                        <th>ApprovedAt</th>
+                        <th>Allowed</th>
+                       
                       </tr>
 
-                      {users?.map((user, i) => (
+                      {permissions?.map((permission, i) => (
                         
                         <>
                           <tr>
-                            <td>{user.name}</td>
-                            <td>{user.email}</td>
-                            <td>{user.phone}</td>
-
-                        <td>{user.Role?.name}</td>
-                           <td>
-                              {dayjs(user.approvedAt).format(
-                                "ddd,MMM D, YYYY h:mm A"
-                              )}
-                            </td>
+                            <td>{permission.name}</td>
+                            <td>{permission.allowed}</td>
+                          
                           </tr>
                         </>
                       ))}
@@ -104,4 +75,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Permissions;
