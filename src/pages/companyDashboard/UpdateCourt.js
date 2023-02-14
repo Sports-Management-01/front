@@ -32,7 +32,7 @@ const json = await res.json();
 if (json.success) {
   console.log(json.data);
   setField(json.data);
-  console.log(field.length)
+  console.log(json.data.length)
 } else {
   window.alert("There is no Field!");
   console.log(json.data);
@@ -167,7 +167,7 @@ const handleOnChange = (e) => {
                         <div className="form-group col-md-3">
                           <label for="inputEmail4" >Address</label>
                           <input
-                          defaultValue={field.name}
+                          defaultValue={field.adress}
                           onChange={handleOnChange}
                             name="adress" 
                             type="text"
@@ -192,7 +192,7 @@ const handleOnChange = (e) => {
                         <div className="form-group col-md-3">
                           <label for="inputEmail4">Length</label>
                           <input
-                            defaultValue={field?.length}
+                            value={field?.['length']}
                             name="length"
                             onChange={handleOnChange} 
                             type="text"

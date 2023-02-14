@@ -46,13 +46,13 @@ function App() {
         <Route path='/fieldDetails/:id' element={<Suspense fallback={<Loading />} ><FieldDetails /></Suspense>} />
         <Route path='/booking/:id' element={<Suspense fallback={<Loading />} ><Booking /></Suspense>} />
 
-        <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
         <Route path='/userDashboard' element={<Suspense fallback={<Loading />} ><UserDashboard /></Suspense>} />
         <Route path='/profile/:id' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
         <Route path='/adminDashboard/:id' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
         <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
+        <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
 
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />

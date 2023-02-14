@@ -31,6 +31,21 @@ const Fields = () => {
         getMyFields();
       }, []);
       console.log(fieldDetails)
+      const deleteField= async(id) =>{
+        const res = await fetch(`http://localhost:3000/fields/${id}`,
+        {
+          method: "DELETE",
+          headers:{
+            "Content-Type":"aplication/json",
+             Authorization: `Bearer ${token}`,
+          }
+        });
+        const json = await res.json();
+        if(json.success){
+          window.alert(json.messages)
+       
+        }
+      };
     return (
       <>
         <Nav/>
@@ -70,7 +85,7 @@ const Fields = () => {
                           <Link to={`/company/fields/${field.id}`} className="btn-primary btn m-1" >
                           Edit
                           </Link>
-                          <input className="btn-danger btn" type="button" value="Delete"  />
+                          <input className="btn-danger btn" type="button" value="Delete" onClick={()=>deleteField(field.id)} />
                           </>
                           </td>
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>
