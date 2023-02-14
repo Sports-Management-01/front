@@ -6,8 +6,6 @@ import Loading from './components/loading/Loading';
 import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
-
-
 const SignIn = React.lazy(() => import('./pages/signin/SignIn'));
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
 const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
@@ -15,7 +13,7 @@ const Home = React.lazy(() => import('./pages/home/Home'));
 const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFields'));
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
-
+const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
 const Categories = React.lazy(() => import('./pages/categories/Categories'));
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
@@ -51,6 +49,8 @@ function App() {
         <Route path='/adminDashboard/:id' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
+        <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
+        
         <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
 
