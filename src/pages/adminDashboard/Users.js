@@ -85,9 +85,13 @@ const Users = () => {
 
                         <td>{user.Role?.name}</td>
                            <td>
-                              {dayjs(user.approvedAt).format(
+                             {/*  {dayjs(user.approvedAt).format(
                                 "ddd,MMM D, YYYY h:mm A"
-                              )}
+                              )} */}
+                              Approved
+                         <input className="form-check-input ml-2" type="checkbox"
+                          id="check1" name="option1" value="something" />
+
                             </td>
                           </tr>
                         </>
