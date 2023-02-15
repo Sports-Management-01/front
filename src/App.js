@@ -15,7 +15,7 @@ const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFiel
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
 const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
-const Categories = React.lazy(() => import('./pages/categories/Categories'));
+const Categories = React.lazy(() => import('./pages/adminDashboard/Categories'));
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
