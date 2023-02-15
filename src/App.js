@@ -13,24 +13,17 @@ const Home = React.lazy(() => import('./pages/home/Home'));
 const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFields'));
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
-<<<<<<< HEAD
-
-
-=======
 const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
 const Categories = React.lazy(() => import('./pages/categories/Categories'));
->>>>>>> cb397703687da9eec3c46ac542a195cc0c944ab5
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
-const Categories = React.lazy(() => import('./pages/adminDashboard/Categories'));
 const AddCategory = React.lazy(() => import('./pages/adminDashboard/AddCategory'));
 const UpdateCategory = React.lazy(() => import('./pages/adminDashboard/UpdateCategory'));
 
-const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
 const Courts = React.lazy(() => import('./pages/adminDashboard/Courts'));
 
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
