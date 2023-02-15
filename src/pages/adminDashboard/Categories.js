@@ -31,7 +31,7 @@ const [counter, setCounter] = useState(0);
   };
   useEffect(() => {
    allCategories();
-  }, [[counter]]);
+  }, [counter]);
   function handleChange(e) {
     setImage(URL.createObjectURL(e.target.files[0]));
     categories.icon = image;
