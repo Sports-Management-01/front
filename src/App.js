@@ -6,6 +6,7 @@ import Loading from './components/loading/Loading';
 import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
+
 const SignIn = React.lazy(() => import('./pages/signin/SignIn'));
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
 const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
@@ -20,11 +21,13 @@ const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
+
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
 const AddCategory = React.lazy(() => import('./pages/adminDashboard/AddCategory'));
 const UpdateCategory = React.lazy(() => import('./pages/adminDashboard/UpdateCategory'));
 
 const Courts = React.lazy(() => import('./pages/adminDashboard/Courts'));
+const UpdateEquipment = React.lazy(() => import('./pages/adminDashboard/UpdateEquipment'));
 
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
@@ -55,6 +58,7 @@ function App() {
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
         <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
+        <Route path='/equipment/update/:id' element={<Suspense fallback={<Loading />} ><UpdateEquipment/></Suspense>} />
         
         <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
