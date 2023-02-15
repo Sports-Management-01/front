@@ -6,6 +6,7 @@ import Loading from './components/loading/Loading';
 import { Route, Routes } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from './contexts/AuthContext';
+
 const SignIn = React.lazy(() => import('./pages/signin/SignIn'));
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
 const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
@@ -14,12 +15,14 @@ const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFiel
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
 const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
+const UpdateEquipment = React.lazy(() => import('./pages/adminDashboard/UpdateEquipment'));
 const Categories = React.lazy(() => import('./pages/categories/Categories'));
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
+
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
@@ -50,6 +53,7 @@ function App() {
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
         <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
+        <Route path='/equipment/update/:id' element={<Suspense fallback={<Loading />} ><UpdateEquipment/></Suspense>} />
         
         <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />

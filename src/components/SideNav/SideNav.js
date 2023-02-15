@@ -52,7 +52,7 @@ const SideNav = ()=> {
           <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/users'} >Users</NavLink></MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/categories'} >Categories</NavLink></MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Courts</MenuItem> 
-          <MenuItem   icon={<PeopleOutlinedIcon />}>Equipment</MenuItem> 
+          <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/equipment'}>Equipment</NavLink></MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}>Booking</MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/roles'} >Roles</NavLink></MenuItem> 
           <MenuItem   icon={<PeopleOutlinedIcon />}><NavLink to={'/permissions'} >Permissions</NavLink></MenuItem> 
