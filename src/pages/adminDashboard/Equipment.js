@@ -3,21 +3,16 @@ import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-const dayjs = require("dayjs");
-
-const Equipment = () => {
-
-  const [equipment, setEquipment] = useState([]);
-  const token = useContext(AuthContext);
-
-
+const Equipment = () =>{
+    const [equipment, setEquipment] = useState([]);
+  const {token} = useContext(AuthContext);
   const allEquipment = async () => {
-    const res = await fetch(`http://localhost:3000/equipment/`, {
+    const res = await fetch(`http://localhost:3000/equipments`, {
       method: "GET",
       body: null,
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${token.token}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     const json = await res.json();
@@ -25,26 +20,18 @@ const Equipment = () => {
       console.log(json.data);
       setEquipment(json.data);
     } else {
-      window.alert("There is no Category!");
+      window.alert("There is no Equipment!");
       console.log(json.data);
     }
   };
   useEffect(() => {
-   allEquipment();
+    allEquipment();
   }, []);
 
-
- /*  const handleOnChange = (e) => {
-    userData[e.target.name] = e.target.value;
-    const updatedData = {...userData}
-    updatedData[e.target.name] = e.target.value;
-    setUserData(updatedData)
-    setUser(updatedData)
-  }; */
  
-
-  return (
-    <>
+    
+    return (
+        <>
       <Nav />
       <div className="user-hero" style={{ display: "flex" }}>
         <SideNav />
@@ -55,23 +42,21 @@ const Equipment = () => {
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info">Equipments</div>
+                    <div className="alert alert-info">Users</div>
                     <table className="table">
                       <tr>
                         <th> Name</th>
+                        <th>Require</th>
                         <th>Status</th>
-                       <th>icon</th>
                       </tr>
 
-                      {equipment?.map((c, i) => (
+                      {equipment?.map((role, i) => (
                         
                         <>
                           <tr>
-                            <td>{c.name}</td>
-                            <td>{c.isActive}</td>
-                            <td>
-                          
-                            </td>
+                            <td>{equipment.name}</td>
+                            <td>{equipment.require}</td>
+                            
                           </tr>
                         </>
                       ))}
@@ -84,7 +69,6 @@ const Equipment = () => {
         </div>
       </div>
     </>
-  );
-};
-
-export default Equipment;
+    )
+}
+export default Equipment
