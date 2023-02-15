@@ -16,13 +16,20 @@ const ExploreFields = React.lazy(() => import('./pages/exploreFields/ExploreFiel
 const FieldDetails = React.lazy(() => import('./pages/fieldDetails/FieldDetails'));
 const Booking = React.lazy(() => import('./pages/booking/Booking'));
 
-const Categories = React.lazy(() => import('./pages/categories/Categories'));
+
 const UserDashboard = React.lazy(() => import('./pages/userDashboard/UserDashboard'));
 const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
+const Categories = React.lazy(() => import('./pages/adminDashboard/Categories'));
+const AddCategory = React.lazy(() => import('./pages/adminDashboard/AddCategory'));
+const UpdateCategory = React.lazy(() => import('./pages/adminDashboard/UpdateCategory'));
+
+const Equipment = React.lazy(() => import('./pages/adminDashboard/Equipment'));
+const Courts = React.lazy(() => import('./pages/adminDashboard/Courts'));
+
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
@@ -53,6 +60,11 @@ function App() {
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
         <Route path='/permissions' element={<Suspense fallback={<Loading />} ><Permissions /></Suspense>} />
         <Route path='/categories' element={<Suspense fallback={<Loading />} ><Categories /></Suspense>} />
+        <Route path='/addcategory' element={<Suspense fallback={<Loading />} ><AddCategory /></Suspense>} />
+        <Route path='/updatecategory/:id' element={<Suspense fallback={<Loading />} ><UpdateCategory /></Suspense>} />
+
+        <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
+        <Route path='/courts' element={<Suspense fallback={<Loading />} ><Courts /></Suspense>} />
 
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />
