@@ -4,70 +4,39 @@ import SideNav from "../../components/SideNav/SideNav";
 import { Link, NavLink, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-const UpdateEquipment = ()=>{
-    const token = useContext(AuthContext);
-    const { id } = useParams();
-    const [equipment , setEquipment] = useState({})
-    const [eqUpdated, setEqUpdated] = useState({
-      name:"",
-      price:"",
-      multiple:""
-    });
 
-    const getEquipment = async () => {
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
-          method: "GET",
-          body: null,
+const AddEquipment = ()=>{
+    const token = useContext(AuthContext);
+    const [equipment , setEquipment] = useState({})
+
+    const createEquipment = async () => {
+        const res = await fetch(`http://localhost:3000/equipments/`, {
+          method: "POST",
+          body: JSON.stringify({equipment}
+
+         ),
           headers: {
             "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token.token}`,
           },
         });
         const json = await res.json();
         if (json.success) {
           console.log(json.data);
           setEquipment(json.data);
-          setEqUpdated(json.data)
         } else {
-          window.alert("There is no Equipment!");
+          window.alert("Equipment has not been added!");
           console.log(json.data);
         }
       };
-      useEffect(() => {
-        getEquipment();
-      }, []);
+  
 
-    const updateEquipment =  async (e) => {
-        console.log(eqUpdated)
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
-          method: 'PUT',
-          headers: {
-              'Content-Type': "Application/json",
-              'Authorization': `Bearer ${token.token}`,
-          },
-          body: JSON.stringify({
-            ...eqUpdated
-          }),
-      });
-      const json = await res.json();
-      
-      if (json.success){
-          console.log(json)
-          window.alert(json.messages)
-          setEqUpdated(json.data)
-          
-      }
-      else{
-          window.alert(json.messages)
-      }
-      
-      }
+
       const handleOnChange = (e) => {
         equipment[e.target.name] = e.target.value;
-        const updatedData = {...eqUpdated}
+        const updatedData = {...equipment}
         updatedData[e.target.name] = e.target.value;
-        setEqUpdated(updatedData)
- 
+        setEquipment(updatedData)
       };
 
     return (
@@ -93,7 +62,6 @@ const UpdateEquipment = ()=>{
                      
                           <tr>
                           <td><input
-                           defaultValue={equipment.name}
                            onChange={handleOnChange}
                             name="name"
                             type="text"
@@ -103,7 +71,6 @@ const UpdateEquipment = ()=>{
                           /></td>
                           <td>
                             <input
-                           defaultValue={equipment.price}
                            onChange={handleOnChange}
                             name="price"
                             type="text"
@@ -113,14 +80,14 @@ const UpdateEquipment = ()=>{
                           /></td>
                           <td> 
                             <select id="inputState" className="form-control" name="multiple"
-                          onChange={handleOnChange} value={equipment.multiple}>
+                          onChange={handleOnChange} >
                             <option  selected  value='1'>Yes</option>
                             <option  value='0'>No</option>
                            
                           </select>
                           </td>
                         </tr>
-                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>updateEquipment(equipment.id)}>Update</button>
+                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>createEquipment()}>Create</button>
                       
                       
                     </table>
@@ -136,4 +103,4 @@ const UpdateEquipment = ()=>{
     )
 
 }
-export default UpdateEquipment
+export default AddEquipment

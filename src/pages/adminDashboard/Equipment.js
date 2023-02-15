@@ -6,7 +6,27 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 const Equipment = () =>{
     const [equipment, setEquipment] = useState([]);
+    const [counter, setCounter] = useState(0);
   const {token} = useContext(AuthContext);
+  //Delete
+const deleteEquipment= async(id) =>{
+  const res = await fetch(`http://localhost:3000/equipments/${id}`,
+  {
+    method: "DELETE",
+    headers:{
+      "Content-Type":"aplication/json",
+       'Authorization': `Bearer ${token}`,
+    }
+  });
+  const json = await res.json();
+
+  if(json.success){
+    window.alert(json.messages)
+    setEquipment([...equipment])
+    setCounter(counter+1)
+  }
+};
+//END 
   const allEquipment = async () => {
     const res = await fetch(`http://localhost:3000/equipments`, {
       method: "GET",
@@ -27,9 +47,8 @@ const Equipment = () =>{
   };
   useEffect(() => {
     allEquipment();
-  }, []);
+  }, [counter]);
 
- 
     
     return (
       <>
@@ -44,7 +63,7 @@ const Equipment = () =>{
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
                     <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Equipment 
-                    <NavLink  to={"/company/addfield"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Equipment</NavLink> 
+                    <NavLink  to={"/addequipment"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Equipment</NavLink> 
                     </div>
                     <table className="table">
                       <tr>
@@ -67,7 +86,16 @@ const Equipment = () =>{
                           Edit
                           </Link>
                           <input className="btn-danger btn" type="button" value="Delete" 
-                          // onClick={()=>deleteField(field.id)} 
+                           onClick={
+                            ()=>{ 
+                              if (window.confirm('Are you sure you want to delete this equipment?')) {
+                                deleteEquipment(eq.id)
+                                console.log('Equipment has been deleted successfully...');
+                              } else {
+                                console.log('equipment did not deleted!');
+                              }
+                            }
+                            } 
                           />
                           </>
                           </td>

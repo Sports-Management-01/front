@@ -8,6 +8,7 @@ const dayjs = require("dayjs");
 const Users = () => {
   const [users, setUsers] = useState([]);
   const [roles, setRoles] = useState([]);
+  const [counter, setCounter] = useState(0);
   const token = useContext(AuthContext);
   const allRoles = async () => {
     const res = await fetch(`http://localhost:3000/roles/`, {
@@ -51,8 +52,28 @@ const Users = () => {
   useEffect(() => {
     allUsers();
   }, []);
- 
-
+ const approve = async(id)=>{
+  const res = await fetch(`http://localhost:3000/users/approve/${id}`, {
+    method: "PUT",
+    body: null,
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${token.token}`,
+    },
+  });
+  const json = await res.json();
+  if (json.success) {
+    console.log(json.data);
+    setUsers([...users]);
+    setCounter(counter++);
+  } else {
+    window.alert("There is no updating!!");
+    console.log(json.data);
+  }
+ }
+ useEffect(() => {
+  approve();
+}, [counter]);
   return (
     <>
       <Nav />
@@ -84,15 +105,24 @@ const Users = () => {
                             <td>{user.phone}</td>
 
                         <td>{user.Role?.name}</td>
-                           <td>
-                             {/*  {dayjs(user.approvedAt).format(
-                                "ddd,MMM D, YYYY h:mm A"
-                              )} */}
+                        {
+                          user.Role?.id ==2 ?(
+                            <td>
                               Approved
-                         <input className="form-check-input ml-2" type="checkbox"
-                          id="check1" name="option1" value="something" />
-
+                              {
+                                user.approvedAt!=null?( <input className="form-check-input ml-2" type="checkbox"
+                                id="check1" name="approvedAt" value="something"
+                                onClick={()=>approve(user.id)} checked />):(<input className="form-check-input ml-2" type="checkbox"
+                                id="check1" name="approvedAt" value="something"
+                                onClick={()=>approve(user.id)}  />)
+                              }
+                        
                             </td>
+                          ):(
+                            <td></td>
+                          )
+                        }
+                           
                           </tr>
                         </>
                       ))}
