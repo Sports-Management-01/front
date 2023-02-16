@@ -33,22 +33,23 @@ const [counter, setCounter] = useState(0);
   };
   useEffect(() => {
    allPermissions();
-  }, []);
+  }, [counter]);
   const deletePermission= async(id) =>{
     const res = await fetch(`http://localhost:3000/permissions/${id}`,
     {
       method: "DELETE",
       headers:{
         "Content-Type":"aplication/json",
-         'Authorization': `Bearer ${token}`,
+         'Authorization': `Bearer ${token.token}`,
       }
     });
     const json = await res.json();
 
     if(json.success){
       window.alert(json.messages)
-      setCounter(counter++)
       setPermissions([...permissions])
+      setCounter(counter+1)
+
      
    
     }
@@ -85,16 +86,14 @@ const [counter, setCounter] = useState(0);
                           <tr>
                             <td>{permission.permission}</td>
                             <td>{permission.Role.name}</td>
-                            <td>{permission.allowed}</td>
+                            <td>{permission.allowed ? "Yes": "No"}</td>
                             <td>
                           <Link to={`/updatepermission/${permission.id}`} className="btn-primary btn m-1" >
                           Edit
                           </Link>
                           <input className="btn-danger btn" type="button" value="Delete"
                            onClick={
-                            ()=>{ 
-                              if (window.confirm('Are you sure you want to delete this permission?')) {
-                                deletePermission(permission.id)
+                            ()=>{if (window.confirm('Are you sure you want to delete this permission?')){deletePermission(permission.id)
                                 console.log('Permission has been deleted successfully...');
                               } else {
                                 console.log('Permission did not deleted!');
