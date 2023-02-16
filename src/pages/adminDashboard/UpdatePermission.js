@@ -10,12 +10,30 @@ const UpdatePermission = ()=>{
     const token = useContext(AuthContext);
     const { id } = useParams();
     const [permission, setPermission] = useState({})
+    const [roles, setRoles] = useState([])
     const [updatePermission, setUpdatePermission] = useState({
         permission:"",
         roleId:"",
         allowed:""
       });
-
+      const getRoles = async () => {
+        const res = await fetch(`http://localhost:3000/roles`, {
+            method: "GET",
+            body: null,
+            headers: {
+              "content-type": "application/json",
+              "Authorization": `Bearer ${token.token}`,
+            },
+          });
+          const json = await res.json();
+          if (json.success) {
+            console.log(json.data);
+            setRoles(json.data);
+          } else {
+            window.alert("There is no role!");
+            console.log(json.data);
+          }
+        };
     const getPermission = async () => {
     const res = await fetch(`http://localhost:3000/permissions/${id}`, {
         method: "GET",
@@ -35,7 +53,8 @@ const UpdatePermission = ()=>{
       }
     };
     useEffect(() => {
-        getPermission();
+        getPermission()
+        getRoles();
     }, []);
     const editPermission =  async (e) => {
       console.log(updatePermission)
@@ -108,15 +127,22 @@ const UpdatePermission = ()=>{
                             placeholder="Name"
                           /></td>
                           <td>
-                            <input
-                           defaultValue={permission.roleId}
-                           onChange={handleOnChange}
-                            name="roleId"
-                            type="text"
-                            className="form-control"
-                            id="inputName4"
-                            placeholder="Price"
-                          /></td>
+                          <select selected
+                           name="roleId"
+                           onChange={handleOnChange} 
+                           id="inputState"
+                           className="form-control"
+                         >
+                         
+                        {
+                            roles.map((role,i)=> permission.roleId == role.id ? (
+                              <option key={i} value={role.id} selected>{role.name}</option>):
+                              (<option key={i} value={role.id} >{role.name}</option>
+                          ))}
+                         
+                          </select>
+                          
+                          </td>
                           <td> 
                             <select id="inputState" className="form-control" name="allowed"
                           onChange={handleOnChange} >
