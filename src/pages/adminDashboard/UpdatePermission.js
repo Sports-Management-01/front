@@ -29,7 +29,6 @@ const UpdatePermission = ()=>{
       if (json.success) {
         console.log(json.data);
         setPermission(json.data);
-        setUpdatePermission(json.data)
       } else {
         window.alert("There is no Permission!");
         console.log(json.data);
@@ -38,14 +37,44 @@ const UpdatePermission = ()=>{
     useEffect(() => {
         getPermission();
     }, []);
+    const editPermission =  async (e) => {
+      console.log(updatePermission)
+      const res = await fetch(`http://localhost:3000/permissions/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': "Application/json",
+            'Authorization': `Bearer ${token.token}`,
+        },
+        body: JSON.stringify({
+          ...permission
+        }),
+    });
+    const json = await res.json();
+    
+    if (json.success){
+        console.log(json)
+        window.alert(json.messages)
+        setUpdatePermission(json.data)
+        
+    }
+    else{
+        window.alert(json.messages)
+    }
+    
+    }
 
     const handleOnChange = (e) => {
-        permission[e.target.name] = e.target.value;
-        const updatedData = {...updatePermission}
+      // equipment[e.target.name] = e.target.value;
+      const updatedData = {...permission}
+      if (e.target.nodeName === "SELECT") {
+        updatedData[e.target.name] = e.target.options[e.target.selectedIndex].value;
+      } else {
         updatedData[e.target.name] = e.target.value;
-        setUpdatePermission(updatedData)
- 
-      };
+      }
+      console.log(updatedData)
+      setPermission(updatedData)
+    };
+
 
     return (
         <>
@@ -89,16 +118,16 @@ const UpdatePermission = ()=>{
                             placeholder="Price"
                           /></td>
                           <td> 
-                            <select id="inputState" className="form-control" name="multiple"
-                          onChange={handleOnChange} value={permission.allowed}>
-                            <option  selected  value='1'>Yes</option>
-                            <option  value='0'>No</option>
+                            <select id="inputState" className="form-control" name="allowed"
+                          onChange={handleOnChange} >
+                            <option selected={permission.allowed == "1" && <>selected</>} value='1'>Yes</option>
+                            <option selected={permission.allowed == "0" && <>selected</>}  value='0'>No</option>
                            
                           </select>
                           </td>
                         </tr>
                         <button  type="submit" value="Update" className="btn btn-primary" 
-                        // onClick={()=>updateEquipment(equipment.id)}
+                        onClick={()=>editPermission(permission.id)}
                         >Update</button>
                       
                       

@@ -68,7 +68,9 @@ const [counter, setCounter] = useState(0);
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info">Permissions</div>
+                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Permissions 
+                    <NavLink  to={"/addpermission"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Permission</NavLink> 
+                    </div>
                     <table className="table">
                       <tr>
                         <th>Permission</th>

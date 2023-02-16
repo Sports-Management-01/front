@@ -5,14 +5,14 @@ import { Link, NavLink, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
-const AddEquipment = ()=>{
+const AddPermission = ()=>{
     const token = useContext(AuthContext);
-    const [equipment , setEquipment] = useState({})
+    const [permission , setPermission] = useState({})
 
-    const createEquipment = async () => {
-        const res = await fetch(`http://localhost:3000/equipments/`, {
+    const createPermission = async () => {
+        const res = await fetch(`http://localhost:3000/permissions/`, {
           method: "POST",
-          body: JSON.stringify(equipment), // false: {equipment: equipment} - true: {...equipment}
+          body: JSON.stringify(permission),
           headers: {
             "content-type": "application/json",
             "Authorization": `Bearer ${token.token}`,
@@ -21,28 +21,42 @@ const AddEquipment = ()=>{
         const json = await res.json();
         if (json.success) {
           console.log(json.data);
-          setEquipment(json.data);
+          setPermission(json.data);
+          window.alert("Permission has been added!");
+
         } else {
-          window.alert("Equipment has not been added!");
+          window.alert("Permission has not been added!");
           console.log(json.data);
         }
       };
+
+
   
 
 
+
+
+
+
+
+
+
+
+    
+    
       const handleOnChange = (e) => {
         // equipment[e.target.name] = e.target.value;
-        const updatedData = {...equipment}
+        const updatedData = {...permission}
         if (e.target.nodeName === "SELECT") {
           updatedData[e.target.name] = e.target.options[e.target.selectedIndex].value;
         } else {
           updatedData[e.target.name] = e.target.value;
         }
         console.log(updatedData)
-        setEquipment(updatedData)
+        setPermission(updatedData)
       };
 
-    return (
+    return(
         <>
         <Nav/>
       <div className='user-hero' style={{display:"flex"}}>
@@ -54,19 +68,19 @@ const AddEquipment = ()=>{
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Edit Equipment 
+                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Add Permission 
                     </div>
                     <table className="table">
                       <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Multiple</th>
+                        <th>Permission</th>
+                        <th>Role</th>
+                        <th>allowed</th>
                       </tr>
                      
                           <tr>
                           <td><input
                            onChange={handleOnChange}
-                            name="name"
+                            name="permission"
                             type="text"
                             className="form-control"
                             id="inputName4"
@@ -75,14 +89,14 @@ const AddEquipment = ()=>{
                           <td>
                             <input
                            onChange={handleOnChange}
-                            name="price"
+                            name="roleId"
                             type="text"
                             className="form-control"
                             id="inputName4"
-                            placeholder="Price"
+                            placeholder="roleId"
                           /></td>
                           <td> 
-                            <select id="inputState" className="form-control" name="multiple"
+                            <select id="inputState" className="form-control" name="allowed"
                           onChange={handleOnChange} >
                             <option  selected  value='1'>Yes</option>
                             <option  value='0'>No</option>
@@ -90,7 +104,7 @@ const AddEquipment = ()=>{
                           </select>
                           </td>
                         </tr>
-                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>createEquipment()}>Create</button>
+                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>createPermission()}>Create</button>
                       
                       
                     </table>
@@ -104,6 +118,6 @@ const AddEquipment = ()=>{
 
       </>
     )
-
 }
-export default AddEquipment
+
+export default AddPermission
