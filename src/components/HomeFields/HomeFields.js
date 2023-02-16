@@ -41,9 +41,9 @@ const HomeFields = () => {
                     </div>
                 </div>
                 <div className="container-fluid">
-                    <div className="row" style={{margin:10}}>
+                    <div className="row" style={{margin:30, marginRight: -45}}>
                         {
-                            fields.slice(0, 4)?.map((field, i) => (<HomeField key={i} data={field} />))
+                            fields.slice(0, 3)?.map((field, i) => (<HomeField key={i} data={field} />))
                         }
                     </div>
                 </div>

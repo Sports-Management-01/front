@@ -14,7 +14,7 @@ const HomeField = ({data}) => {
 
   return (
     <>
-      <div className="col-lg-3 col-md-6 col-sm-6 p-0">
+      <div className="col-lg-4 col-md-6 col-sm-6 p-0">
         <div
           className="home__room__item set-bg"
           style={{
@@ -23,7 +23,7 @@ const HomeField = ({data}) => {
         >
           
               <SimpleImageSlider
-              width={280}
+              width={400}
               height={500}
               images={data.image}
               showBullets={true}

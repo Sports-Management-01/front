@@ -1,11 +1,11 @@
-import footerImg from '../../assets/img/footer-bg.jpg'
+import footer from '../../assets/footer.jpg'
 
 const Footer = () => {
 
     return (
         <>
         
-    <footer className="footer set-bg" style={{ backgroundImage:`url(${footerImg})`,backgroundRepeat:"no-repeat",backgroundSize: "cover" }}>
+    <footer className="footer set-bg" style={{ backgroundImage:`url(${footer})`,backgroundRepeat:"no-repeat",backgroundSize: "cover" }}>
         <div className="container">
             <div className="row">
                 <div className="col-lg-12">
