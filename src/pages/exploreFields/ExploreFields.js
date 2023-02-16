@@ -47,6 +47,7 @@ useEffect(()=>{
     allCategories();
 }, [])
 const handleOnChange = (e) => {
+  e.preventDefault()
   fields[e.target.name] = e.target.value;
   const updatedData = {...fields}
   updatedData[e.target.name] = e.target.value;
@@ -61,9 +62,9 @@ const filterFields = async(e)=>{
 const json = await res.json()
 if(json.success){
     console.log(json.success)
-    setCategories(json.data)
+    setFields(json.data)
 }else {
-    window.alert("There is no Categories!");
+    window.alert("There is no Result!");
     console.log(json.data);
   }
 
@@ -125,7 +126,7 @@ if(json.success){
                          >
                          
                         {
-                            categories.map((category,i)=>
+                            categories?.length > 0 && categories?.map((category,i)=>
                               <option key={i} value={category.id} selected>{category.name}</option>
                              
                           )}
@@ -136,7 +137,7 @@ if(json.success){
                             <p>Time</p>
                             <select id="inputState" className="form-control" onChange={handleOnChange} name='from'>
                             <option selected>Choose...</option>
-                            {timesOptions.map((item, i) => (
+                            {categories?.length > 0 && timesOptions?.map((item, i) => (
                               <>
                                 <option value={item}>{item}</option>
                               </>
@@ -152,7 +153,7 @@ if(json.success){
       <section className="rooms spad">
         <div className="container">
           <div className="row">
-            {fields.map((field, i) => (
+            {fields.length > 0 && fields?.map((field, i) => (
               <>
                 <div className="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6 ">
                   <div className="room__text">
