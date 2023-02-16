@@ -154,7 +154,7 @@ const Booking = () => {
             <div className="row">
               <div className="col">
                 <h1>{field.name}</h1>
-                <h5 className="mt-4">Category: {field.Category.name}</h5>
+                <h5 className="mt-4">Category: {field?.Category?.name}</h5>
               </div>
             </div>
             <form onSubmit={booking}>
