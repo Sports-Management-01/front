@@ -29,7 +29,7 @@ const Users = () => {
     }
   };
   useEffect(() => {
-   // allRoles();
+    // allRoles();
   }, []);
   const allUsers = async () => {
     const res = await fetch(`http://localhost:3000/users/`, {
@@ -52,28 +52,26 @@ const Users = () => {
   useEffect(() => {
     allUsers();
   }, []);
- const approve = async(id)=>{
-  const res = await fetch(`http://localhost:3000/users/approve/${id}`, {
-    method: "PUT",
-    body: null,
-    headers: {
-      "content-type": "application/json",
-      Authorization: `Bearer ${token.token}`,
-    },
-  });
-  const json = await res.json();
-  if (json.success) {
-    console.log(json.data);
-    setUsers([...users]);
-    setCounter(counter++);
-  } else {
-    window.alert("There is no updating!!");
-    console.log(json.data);
-  }
- }
- useEffect(() => {
-  approve();
-}, [counter]);
+  const approve = async (id) => {
+    const res = await fetch(`http://localhost:3000/users/approve/${id}`, {
+      method: "PUT",
+      body: null,
+      headers: {
+        "content-type": "application/json",
+        Authorization: `Bearer ${token.token}`,
+      },
+    });
+    const json = await res.json();
+    if (json.success) {
+      console.log(json.data);
+      setUsers([...users]);
+      setCounter(counter++);
+    } else {
+      window.alert("There is no updating!!");
+      console.log(json.data);
+    }
+  };
+ 
   return (
     <>
       <Nav />
@@ -97,32 +95,43 @@ const Users = () => {
                       </tr>
 
                       {users?.map((user, i) => (
-                        
                         <>
                           <tr>
                             <td>{user.name}</td>
                             <td>{user.email}</td>
                             <td>{user.phone}</td>
 
-                        <td>{user.Role?.name}</td>
-                        {
-                          user.Role?.id ==2 ?(
-                            <td>
-                              Approved
-                              {
-                                user.approvedAt!=null?( <input className="form-check-input ml-2" type="checkbox"
-                                id="check1" name="approvedAt" value="something"
-                                onClick={()=>approve(user.id)} checked />):(<input className="form-check-input ml-2" type="checkbox"
-                                id="check1" name="approvedAt" value="something"
-                                onClick={()=>approve(user.id)}  />)
-                              }
-                        
-                            </td>
-                          ):(
-                            <td></td>
-                          )
-                        }
-                           
+                            <td>{user.Role?.name}</td>
+                            {user.Role?.id == 2 ? (
+                              <td>
+                                Approved
+                                {user.approvedAt != null ? (
+                                  <input
+                                    className="form-check-input ml-2"
+                                    type="checkbox"
+                                    id="check1"
+                                    name="approvedAt"
+                                    value="something"
+                                    onClick={() => approve(user.id)}
+                                    checked
+                                  />
+                                ) : (
+                                  <input
+                                    className="form-check-input ml-2"
+                                    type="checkbox"
+                                    id="check1"
+                                    name="approvedAt"
+                                    value="something"
+                                    onClick={() => {
+                                      approve(user.id);
+                                      console.log(user);
+                                    }}
+                                  />
+                                )}
+                              </td>
+                            ) : (
+                              <td></td>
+                            )}
                           </tr>
                         </>
                       ))}
