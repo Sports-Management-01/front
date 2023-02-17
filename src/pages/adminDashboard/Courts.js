@@ -36,7 +36,7 @@ const Courts = () => {
         {
           method: "DELETE",
           headers:{
-            "Content-Type":"aplication/json",
+            "Content-Type":"application/json",
              Authorization: `Bearer ${token}`,
           }
         });
