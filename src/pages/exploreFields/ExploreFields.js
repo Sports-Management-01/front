@@ -11,6 +11,8 @@ const ExploreFields = () => {
   const navigate = useNavigate();
   const [fields, setFields] = useState([]);
   const [categories, setCategories] = useState([])
+  const [filter, setFilter] = useState([])
+  const [states, setStates] = useState([])
 
   const allFields = async () => {
     const res = await fetch(`http://localhost:3000/fields`, {
@@ -41,22 +43,54 @@ const ExploreFields = () => {
         window.alert("There is no Categories!");
         console.log(json.data);
       }
-
 };
+const allStates = async ()=>{
+  const res = await fetch(`http://localhost:3000/states`,{
+      method: "GET",
+  });
+  const json = await res.json()
+  if(json.success){
+      console.log(json.success)
+      setStates(json.data)
+  }else {
+      window.alert("There is no State!");
+      console.log(json.data);
+    }
+};
+
 useEffect(()=>{
     allCategories();
+    allStates()
 }, [])
 const handleOnChange = (e) => {
-  e.preventDefault()
-  fields[e.target.name] = e.target.value;
-  const updatedData = {...fields}
-  updatedData[e.target.name] = e.target.value;
-  setFields(updatedData)
+  const updatedData = {...filter}
+  if (e.target.nodeName === "SELECT") {
+    updatedData[e.target.name] = e.target.options[e.target.selectedIndex].value;
+  } else {
+    updatedData[e.target.name] = e.target.value;
+  }
+  console.log(updatedData)
+  setFilter(updatedData)
 
 };
 const filterFields = async(e)=>{
   e.preventDefault()
-  const res = await fetch(`http://localhost:3000/fields?category=${fields.categoryId}&date=${fields.date}&time=${fields.from}`,{
+  var Url = "http://localhost:3000/fields?"
+  if(filter.stateId){
+    Url += `state=${filter.stateId}&`
+  }
+  if(filter.categoryId){
+    Url += `category=${filter.categoryId}&`
+  }
+  if(filter.date){
+    Url += `date=${filter.date}&`
+  }
+  if(filter.from){
+    Url += `time=${filter.from}`
+  }
+
+  
+  const res = await fetch(Url,{
     method: "GET",
 });
 const json = await res.json()
@@ -97,12 +131,25 @@ if(json.success){
       {/*  <!-- Breadcrumb End --> */}
       {/* Search */}
       <form onSubmit={filterFields} className="filter__form">
-                        <div className="filter__form__item filter__form__item--search">
-                            <p>Location</p>
-                            <div className="filter__form__input">
-                                <input type="text" placeholder="Search Location"/>
-                                <span className="icon_search"></span>
-                            </div>
+      <div className="filter__form__item">
+                            <p>State</p>
+                            <select 
+                           name="stateId"
+                           onChange={handleOnChange}  
+                           id="inputState"
+                           className="form-control"
+                         >
+                            <option selected value="">Choose...</option>
+                         
+                        {
+                            states?.length > 0 && states?.map((state,i)=>
+                            <>
+                            <option key={i} value={state.id} >{state.name}</option>
+                           </>
+                            
+                          )}
+                         
+                          </select>
                         </div>
                         <div className=" filter__form__item">
                             <p>Check In</p>
@@ -117,18 +164,21 @@ if(json.success){
                   </div>
                         </div>
                         <div className="filter__form__item">
-                            <p>Check Out</p>
-                            <select selected
+                            <p>Category</p>
+                            <select 
                            name="categoryId"
                            onChange={handleOnChange}  
                            id="inputState"
                            className="form-control"
                          >
+                            <option selected value="">Choose...</option>
                          
                         {
                             categories?.length > 0 && categories?.map((category,i)=>
-                              <option key={i} value={category.id} selected>{category.name}</option>
-                             
+                            <>
+                            <option key={i} value={category.id} >{category.name}</option>
+                           </>
+                            
                           )}
                          
                           </select>
