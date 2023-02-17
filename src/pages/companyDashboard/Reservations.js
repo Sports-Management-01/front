@@ -69,18 +69,25 @@ else{
 }
   }
   const cancelReservation = async(id) =>{
+   console.log(cancelationReason.current.value ) 
     const res = await fetch(`http://localhost:3000/reservations/${id}`,
     {
       method: "DELETE",
+      body: JSON.stringify({ cancelationReason: cancelationReason.current.value }),
+
       headers:{
-        "Content-Type":"aplication/json",
+        "Content-Type":"application/json",
          "Authorization": `Bearer ${token}`,
       }
     });
     const json = await res.json();
-    if(json.success){
-      window.alert(json.messages)
-   
+    if (json.success){
+        console.log(json)
+        window.alert(json.messages)
+       setUpdatedReservation(json.data)   
+    }
+    else{
+        window.alert(json.messages)
     }
   }
   return (
@@ -109,22 +116,22 @@ else{
                         <th>Options</th>
                       </tr>
 
-                      {fieldDetails.map((field, i) => (
+                      {fieldDetails?.map((field, i) => (
                         <>
-                          {field.Reservations.map((re, i) => (
+                          {field?.Reservations?.map((re, i) => (
                             <tr>
-                              <td>{re.User.name}</td>
-                              <td>{field.Category.name}</td>
-                              <td>{field.name}</td>
+                              <td>{re?.User?.name}</td>
+                              <td>{field?.Category?.name}</td>
+                              <td>{field?.name}</td>
                               <td>
-                                {re.ReservationEquipments.map((equ, i) => (
+                                {re.ReservationEquipments?.map((equ, i) => (
                                   <>
-                                    {equ.Equipment.name}
-                                    {equ.Equipment.multiple && (
-                                      <>({equ.count}) </>
+                                    {equ?.Equipment?.name}
+                                    {equ?.Equipment?.multiple && (
+                                      <>({equ?.count}) </>
                                     )}
                                     {i <
-                                      re.ReservationEquipments.length - 1 && (
+                                      re?.ReservationEquipments.length - 1 && (
                                       <>,</>
                                     )}
                                   </>
@@ -172,7 +179,6 @@ else{
                                   </Button>
                                   <Button variant="primary" onClick={()=>{
 
-                                      editReservation(re.id);
                                       cancelReservation(re.id)
                                       handleClose()
                                   }}>
