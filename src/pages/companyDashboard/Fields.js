@@ -74,12 +74,12 @@ const Fields = () => {
                       {
                         fieldDetails?.map((field, i)=>(
                           <tr>
-                          <td>{field.name}</td>
-                          <td>{field.Category.name}</td>
-                          <td>{field.hourPrice}$</td>
-                          <td>{field.from}-{field.to}</td>
-                          <td>{field.State.name}</td>
-                          <td>{field.isActive ? "Active": "Not Active"}</td>
+                          <td>{field?.name}</td>
+                          <td>{field?.Category.name}</td>
+                          <td>{field?.hourPrice}$</td>
+                          <td>{field?.from}-{field.to}</td>
+                          <td>{field?.State?.name}</td>
+                          <td>{field?.isActive ? "Active": "Not Active"}</td>
                           <td>
                             <>
                           <Link to={`/company/fields/${field.id}`} className="btn-primary btn m-1" >
