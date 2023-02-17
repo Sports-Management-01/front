@@ -118,7 +118,7 @@ const SignIn =() =>{
 					Don't have an account?<a href="/signup">Sign Up</a>
 				</div>
 				<div className="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+					<a href="/forgotpassword">Forgot your password?</a>
 				</div>
 			</div>
 		</div>

@@ -18,7 +18,7 @@ const Reservations = () => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const cancelationReason = useRef();
-  const [updatedreservation, setUpdatedReservation] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   const getResevrations = async () => {
     const res = await fetch(
@@ -42,32 +42,7 @@ const Reservations = () => {
     }
     console.log(setReservationgDetails);
   };
-  useEffect(() => {
-    getResevrations();
-  }, []);
-
-  const editReservation = async (id) =>{
-    const res = await fetch(
-      `http://localhost:3000/reservations/${id}`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ cancelationReason: cancelationReason.current.value }),
-        headers: {
-          "content-type": "application/json",
-          "Authorization": `Bearer ${token}`,
-        },
-      }
-    );
-    const json = await res.json();
-if (json.success){
-    console.log(json)
-    window.alert(json.messages)
-   setUpdatedReservation(json.data)   
-}
-else{
-    window.alert(json.messages)
-}
-  }
+ 
   const cancelReservation = async(id) =>{
    console.log(cancelationReason.current.value ) 
     const res = await fetch(`http://localhost:3000/reservations/${id}`,
@@ -84,12 +59,16 @@ else{
     if (json.success){
         console.log(json)
         window.alert(json.messages)
-       setUpdatedReservation(json.data)   
+       setCounter(counter+1) 
+       console.log(counter)
     }
     else{
         window.alert(json.messages)
     }
   }
+  useEffect(() => {
+    getResevrations();
+  }, [counter]);
   return (
     <>
       <Nav />

@@ -58,7 +58,7 @@ const Users = () => {
       body: null,
       headers: {
         "content-type": "application/json",
-        Authorization: `Bearer ${token.token}`,
+        "Authorization": `Bearer ${token.token}`,
       },
     });
     const json = await res.json();
