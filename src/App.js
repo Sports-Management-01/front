@@ -26,6 +26,7 @@ const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
 const UpdatePermission = React.lazy(() => import('./pages/adminDashboard/UpdatePermission'));
 const AddPermission = React.lazy(() => import('./pages/adminDashboard/AddPermission'));
+const ManageBooking  = React.lazy(() => import('./pages/adminDashboard/ManageBooking'));
 
 const AddCategory = React.lazy(() => import('./pages/adminDashboard/AddCategory'));
 const UpdateCategory = React.lazy(() => import('./pages/adminDashboard/UpdateCategory'));
@@ -75,6 +76,10 @@ function App() {
         <Route path='/updatecategory/:id' element={<Suspense fallback={<Loading />} ><UpdateCategory /></Suspense>} />
         <Route path='/updatepermission/:id' element={<Suspense fallback={<Loading />} ><UpdatePermission /></Suspense>} />
         
+        <Route path='/booking' element={<Suspense fallback={<Loading />} ><ManageBooking /></Suspense>} />
+
+
+
         <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
         <Route path='/addequipment' element={<Suspense fallback={<Loading />} ><AddEquipment /></Suspense>} />
 
