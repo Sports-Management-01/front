@@ -8,11 +8,9 @@ const dayjs = require('dayjs')
 const Courts = () => {
     const {token} = useContext(AuthContext);
     const { id } = useParams();
-    const { user, setUser } = useContext(AuthContext);
-    const [fieldDetails, setFieldDetails] = useState([]);
-    const [open , setOpen ] = useState(false)
-    const getMyFields = async () => {
-        const res = await fetch(`http://localhost:3000//fields`, {
+    const [fields, setFields] = useState([]);
+    const getAllFields = async () => {
+        const res = await fetch(`http://localhost:3000/fields/`, {
           method: "GET",
           body: null,
           headers: {
@@ -23,14 +21,14 @@ const Courts = () => {
         const json = await res.json();
         console.log(json)
         if(json.success){
-         setFieldDetails(json.data);
+         setFields(json.data);
           console.log(json.data);
         }
       };
       useEffect(() => {
-        getMyFields();
+        getAllFields();
       }, []);
-      console.log(fieldDetails)
+      console.log(fields)
       const deleteField= async(id) =>{
         const res = await fetch(`http://localhost:3000/fields/${id}`,
         {
@@ -64,6 +62,7 @@ const Courts = () => {
                     <table className="table">
                       <tr>
                         <th>Name</th>
+                        <th>Company</th>
                         <th>Category</th>
                         <th>Price/<small>h</small></th>
                         <th>Working Hours</th>
@@ -72,20 +71,21 @@ const Courts = () => {
                         <th>options</th>
                       </tr>
                       {
-                        fieldDetails?.map((field, i)=>(
+                        fields?.map((field, i)=>(
                           <tr>
-                          <td>{field.name}</td>
-                          <td>{field.Category.name}</td>
-                          <td>{field.hourPrice}$</td>
-                          <td>{field.from}-{field.to}</td>
-                          <td>{field.State.name}</td>
-                          <td>{field.isActive ? "Active": "Not Active"}</td>
+                          <td>{field?.name}</td>
+                          <td>{field?.User?.name}</td>
+                          <td>{field?.Category?.name}</td>
+                          <td>{field?.hourPrice}$</td>
+                          <td>{field?.from}-{field.to}</td>
+                          <td>{field?.State?.name}</td>
+                          <td>{field?.isActive ? "Active": "Not Active"}</td>
                           <td>
                             <>
-                          <Link to={`/company/fields/${field.id}`} className="btn-primary btn m-1" >
+                          <Link to={`/company/fields/${field?.id}`} className="btn-primary btn m-1" >
                           Edit
                           </Link>
-                          <input className="btn-danger btn" type="button" value="Delete" onClick={()=>deleteField(field.id)} />
+                          <input className="btn-danger btn" type="button" value="Delete" onClick={()=>deleteField(field?.id)} />
                           </>
                           </td>
                           <td>{/* {dayjs(reservation.from).format('ddd,MMM D, YYYY h:mm A')} */}</td>

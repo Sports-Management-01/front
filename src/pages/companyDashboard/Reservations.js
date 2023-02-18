@@ -6,19 +6,19 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import {Modal, Button} from 'react-bootstrap';
 import CloseIcon from '@mui/icons-material/Close';
+import AppModal from "../../components/AppModal/AppModal";
 
 const dayjs = require("dayjs");
 
 const Reservations = () => {
   const { token } = useContext(AuthContext);
   const { id } = useParams();
-  const { user, setUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [fieldDetails, setReservationgDetails] = useState([]);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   const cancelationReason = useRef();
   const [counter, setCounter] = useState(0);
+  const [currentReservationId, setCurrentReservationId] = useState(null)
 
 
   const getResevrations = async () => {
@@ -29,7 +29,7 @@ const Reservations = () => {
         body: null,
         headers: {
           "content-type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
@@ -41,32 +41,31 @@ const Reservations = () => {
       setReservationgDetails(json.data);
       console.log(json.data);
     }
-    console.log(setReservationgDetails);
   };
  
-  const cancelReservation = async(id) =>{
-   console.log(cancelationReason.current.value ) 
-    const res = await fetch(`http://localhost:3000/reservations/${id}`,
-    {
+ 
+  const cancelReservation = async (id, cancelationReason) => {
+    const res = await fetch(`http://localhost:3000/reservations/${id}`, {
       method: "DELETE",
-      body: JSON.stringify({ cancelationReason: cancelationReason.current.value }),
+      body: JSON.stringify({
+        cancelationReason
+      }),
 
-      headers:{
-        "Content-Type":"application/json",
-         "Authorization": `Bearer ${token}`,
-      }
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     });
     const json = await res.json();
-    if (json.success){
-        console.log(json)
-        window.alert(json.messages)
-       setCounter(counter+1) 
-       console.log(counter)
+    if (json.success) {
+      console.log(json);
+      window.alert(json.messages);
+      setCounter(counter + 1);
+      console.log(counter);
+    } else {
+      window.alert(json.messages);
     }
-    else{
-        window.alert(json.messages)
-    }
-  }
+  };
   useEffect(() => {
     getResevrations();
   }, [counter]);
@@ -83,6 +82,9 @@ const Reservations = () => {
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
                     <div className="alert alert-info">Reservations</div>
+                    {
+                      show && <AppModal show={show} setShow={setShow} id={currentReservationId} cancelFunc={cancelReservation}/>
+                    }
                     <table className="table">
                       <tr>
                         <th>User</th>
@@ -139,33 +141,14 @@ const Reservations = () => {
                                   className="btn-danger btn"
                                   type="button"
                                   value="Cancel"
-                                  onClick={handleShow}
+                                  onClick={()=>{
+                                    setCurrentReservationId(re.id)
+                                    setShow(true)
+                                  }
+                                  }
                                 >Cancel</button>
                                 {/*  <!-- Modal --> */}
-                                <Modal show={show} onHide={handleClose}>
-                               
-                                <Modal.Header closeButton >
-                                
-                                  <Modal.Title>Modal heading</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body >   <input style={{width:460, height:50,border:0}}
-                                                ref={cancelationReason}
-                                                type="text"
-                                                placeholder="What is the reason?"/>
-                                              </Modal.Body>
-                                <Modal.Footer>
-                                  <Button variant="secondary" onClick={handleClose}>
-                                    Close
-                                  </Button>
-                                  <Button variant="primary" onClick={()=>{
-
-                                      cancelReservation(re.id)
-                                      handleClose()
-                                  }}>
-                                    Save Changes
-                                  </Button>
-                                </Modal.Footer>
-                              </Modal>
+                              
                                 {/* END Model */}
                               </td>
                             </tr>

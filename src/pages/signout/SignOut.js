@@ -9,7 +9,7 @@ const SignOut = () => {
         signOut()
         setTimeout(() => {
             navigate('/signin')
-        }, 2000)
+        })
     }, [])
     return(
         <>
