@@ -99,7 +99,7 @@ const ManageBooking = () => {
                         <>
                           
                             <tr>
-                              <td>{reservation?.User?.name}</td>
+                              <td style={{whiteSpace: 'pre-wrap'}}>{reservation?.User?.name}</td>
                              <td>
                            </td>
                               <td>{reservation?.Field?.Category?.name}</td>
