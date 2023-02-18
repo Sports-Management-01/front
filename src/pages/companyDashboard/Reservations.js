@@ -20,6 +20,7 @@ const Reservations = () => {
   const cancelationReason = useRef();
   const [counter, setCounter] = useState(0);
 
+
   const getResevrations = async () => {
     const res = await fetch(
       `http://localhost:3000/reservations/companyreservation`,
