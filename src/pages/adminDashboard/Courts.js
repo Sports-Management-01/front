@@ -10,7 +10,7 @@ const Courts = () => {
     const { id } = useParams();
     const [fields, setFields] = useState([]);
     const getAllFields = async () => {
-        const res = await fetch(`http://localhost:3000/fields/`, {
+        const res = await fetch(`http://localhost:3000/fields/all/`, {
           method: "GET",
           body: null,
           headers: {
