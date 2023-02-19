@@ -35,6 +35,16 @@ const Courts = React.lazy(() => import('./pages/adminDashboard/Courts'));
 const UpdateEquipment = React.lazy(() => import('./pages/adminDashboard/UpdateEquipment'));
 const AddEquipment = React.lazy(() => import('./pages/adminDashboard/AddEquipment'));
 
+const Countries = React.lazy(() => import('./pages/adminDashboard/Countries'));
+
+const AddCountry = React.lazy(() => import('./pages/adminDashboard/AddCountry'));
+const UpdateCountry = React.lazy(() => import('./pages/adminDashboard/UpdateCountry'));
+
+const States = React.lazy(() => import('./pages/adminDashboard/States'));
+
+
+
+
 const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/CompanyDashboard'));
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
@@ -84,6 +94,13 @@ function App() {
         <Route path='/addequipment' element={<Suspense fallback={<Loading />} ><AddEquipment /></Suspense>} />
 
         <Route path='/courts' element={<Suspense fallback={<Loading />} ><Courts /></Suspense>} />
+        <Route path='/countries' element={<Suspense fallback={<Loading />} ><Countries /></Suspense>} />
+        <Route path='/addcountry' element={<Suspense fallback={<Loading />} ><AddCountry /></Suspense>} />
+        <Route path='/updatecountry/:id' element={<Suspense fallback={<Loading />} ><UpdateCountry/></Suspense>} />
+
+
+        <Route path='/states' element={<Suspense fallback={<Loading />} ><States /></Suspense>} />
+        
 
         <Route path='/companyDashboard/:id' element={<Suspense fallback={<Loading />} ><CompanyDashboard /></Suspense>} />
         <Route path='/company/addfield' element={<Suspense fallback={<Loading />} ><AddField /></Suspense>} />

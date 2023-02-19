@@ -4,18 +4,18 @@ import SideNav from "../../components/SideNav/SideNav";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-const UpdateEquipment = ()=>{
+
+const UpdateCountry = ()=>{
     const token = useContext(AuthContext);
     const { id } = useParams();
-    const [equipment , setEquipment] = useState({})
-    const [eqUpdated, setEqUpdated] = useState({
+    const [country , setCountry] = useState({})
+    const [updateCountry, setUpdateCountry] = useState({
       name:"",
-      price:"",
-      multiple:""
+     
     });
 
-    const getEquipment = async () => {
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
+    const getCountry = async () => {
+        const res = await fetch(`http://localhost:3000/countries/${id}`, {
           method: "GET",
           body: null,
           headers: {
@@ -26,27 +26,25 @@ const UpdateEquipment = ()=>{
         const json = await res.json();
         if (json.success) {
           console.log(json.data);
-          setEquipment(json.data);
-          setEqUpdated(json.data)
+          setCountry(json.data);
+          setUpdateCountry(json.data)
         } else {
-          window.alert("There is no Equipment!");
+          window.alert("There is no Country!");
           console.log(json.data);
         }
       };
       useEffect(() => {
-        getEquipment();
+        getCountry();
       }, []);
-
-    const updateEquipment =  async (e) => {
-        console.log(eqUpdated)
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
+      const editCountry =  async (e) => {
+        const res = await fetch(`http://localhost:3000/countries/${id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': "Application/json",
               'Authorization': `Bearer ${token.token}`,
           },
           body: JSON.stringify({
-            ...eqUpdated
+            ...updateCountry
           }),
       });
       const json = await res.json();
@@ -54,7 +52,7 @@ const UpdateEquipment = ()=>{
       if (json.success){
           console.log(json)
           window.alert(json.messages)
-          setEqUpdated(json.data)
+          setUpdateCountry(json.data)
           
       }
       else{
@@ -63,16 +61,15 @@ const UpdateEquipment = ()=>{
       
       }
       const handleOnChange = (e) => {
-        equipment[e.target.name] = e.target.value;
-        const updatedData = {...eqUpdated}
+        country[e.target.name] = e.target.value;
+        const updatedData = {...updateCountry}
         updatedData[e.target.name] = e.target.value;
-        setEqUpdated(updatedData)
+        setUpdateCountry(updatedData)
  
       };
-
     return (
         <>
-        <Nav/>
+         <Nav/>
       <div className='user-hero' style={{display:"flex"}}>
       <SideNav/>
       <div className="container-fluid">
@@ -86,14 +83,11 @@ const UpdateEquipment = ()=>{
                     </div>
                     <table className="table">
                       <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Multiple</th>
+                        <th>Country</th>
                       </tr>
-                     
                           <tr>
                           <td><input
-                           defaultValue={equipment.name}
+                           defaultValue={country.name}
                            onChange={handleOnChange}
                             name="name"
                             type="text"
@@ -101,28 +95,8 @@ const UpdateEquipment = ()=>{
                             id="inputName4"
                             placeholder="Name"
                           /></td>
-                          <td>
-                            <input
-                           defaultValue={equipment.price}
-                           onChange={handleOnChange}
-                            name="price"
-                            type="text"
-                            className="form-control"
-                            id="inputName4"
-                            placeholder="Price"
-                          /></td>
-                          <td> 
-                            <select id="inputState" className="form-control" name="multiple"
-                          onChange={handleOnChange} value={equipment.multiple}>
-                            <option  selected  value='1'>Yes</option>
-                            <option  value='0'>No</option>
-                           
-                          </select>
-                          </td>
                         </tr>
-                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>updateEquipment(equipment.id)}>Update</button>
-                      
-                      
+                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>editCountry(country.id)}>Update</button> 
                     </table>
                   </div>
                 </div>
@@ -131,9 +105,8 @@ const UpdateEquipment = ()=>{
           </div>
         </div>
       </div>
-
-      </>
+        </>
     )
-
 }
-export default UpdateEquipment
+
+export default UpdateCountry

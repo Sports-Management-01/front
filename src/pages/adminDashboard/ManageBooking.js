@@ -1,9 +1,8 @@
 import React from "react";
 import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
-import { useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useContext, useEffect, useState, useRef } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppModal from "../../components/AppModal/AppModal"
 
 const dayjs = require("dayjs");
