@@ -96,13 +96,13 @@ const ManageBooking = () => {
                           <tr>
                             <td style={{ whiteSpace: "pre-wrap" }}>
                               {reservation?.User?.name}
-                              {reservation.id}
+                              {/* {reservation?.id} */}
                             </td>
-                            <td></td>
+                            <td>{reservation?.Field?.User?.name}</td>
                             <td>{reservation?.Field?.Category?.name}</td>
                             <td>{reservation?.Field?.name}</td>
                             <td>
-                              {reservation.ReservationEquipments?.map(
+                              {reservation?.ReservationEquipments?.map(
                                 (equ, i) => (
                                   <>
                                     {equ?.Equipment?.name}
@@ -149,7 +149,7 @@ const ManageBooking = () => {
                                 </>
                               ) : (
                                 <>
-                                  <span class="badge badge-primary">
+                                  <span className="badge badge-primary">
                                     Acitve
                                   </span>
                                 </>

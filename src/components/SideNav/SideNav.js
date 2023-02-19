@@ -13,6 +13,7 @@ import Hero from "../Hero/Hero";
 import Profile from "../../pages/profile/Profile";
 import { AuthContext } from "../../contexts/AuthContext";
 import  { useState, useContext, useEffect } from "react";
+import { display } from "@mui/system";
 
 const SideNav = ()=> {
   const { id } = useParams();
@@ -32,8 +33,8 @@ const SideNav = ()=> {
   return (
     <>
   
-    <div id="user" style={({ height: "100vh" }, { display: "flex"/* , flexDirection: "row-reverse"  */})}>
-      <Sidebar backgroundColor="#1a1a1a" rtl={false} style={{ height: "100vh" }} transitionDuration={300}>
+    <div id="user" style={{position:"sticky" ,height: "100vh", display:"flex" }}>
+      <Sidebar backgroundColor="#1a1a1a" rtl={false} style={{position:"sticky" ,height: "100vh" }} transitionDuration={300}>
         <Menu style={{color:"#E9AD28"}}>
           <MenuItem
             icon={<MenuOutlinedIcon />}
