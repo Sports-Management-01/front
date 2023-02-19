@@ -35,29 +35,9 @@ const Countries = () => {
       console.log(json.data);
     }
   };
-  //   const getCountry = async () => {
-  //     const res = await fetch(`http://localhost:3000/countries/${id}`, {
-  //       method: "GET",
-  //       body: null,
-  //       headers: {
-  //         "content-type": "application/json",
-  //         Authorization: `Bearer ${token.token}`,
-  //       },
-  //     });
-  //     const json = await res.json();
-  //     if (json.success) {
-  //       console.log(json.data);
-  //       setCountries(json.data);
-  //       setUpdateCountry(json.data);
-
-  //     } else {
-  //       window.alert("There is no Equipment!");
-  //       console.log(json.data);
-  //     }
-  //   };
+  
   useEffect(() => {
     allCountries();
-    // getCountry()
   }, [counter]);
 
   const deleteCountry = async (id) => {
@@ -78,26 +58,7 @@ const Countries = () => {
       setCounter(counter + 1);
     }
   };
-  const editCountry = async (id) => {
-    const response = await fetch(`http://localhost:3000/countries/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.token}`,
-      },
-      body: JSON.stringify({
-        name: nameRef.current.value,
-      }),
-    });
-    const json = await response.json();
-    console.log(json)
-    if (json.success) {
-      alert(json.messages);
-      setUpdateCountry(json.data);
-    } else {
-      alert(json.messages);
-    }
-  };
+  
   // const handleOnChange = (e) => {
   //   updateCountry[e.target.name] = e.target.value;
   //   // const updatedData = { ...updateCountry };

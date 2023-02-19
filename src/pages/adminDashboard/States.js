@@ -31,11 +31,10 @@ const States = ()=>{
       };
       useEffect(() => {
         allStates();
-        // getCountry()
       }, [counter]);
     return(
         <>
-        
+
 
         
         </>
