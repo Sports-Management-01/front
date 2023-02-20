@@ -11,6 +11,7 @@ const Fields = () => {
     const { user, setUser } = useContext(AuthContext);
     const [fieldDetails, setFieldDetails] = useState([]);
     const [open , setOpen ] = useState(false)
+    const [counter, setCounter] = useState(0)
     const getMyFields = async () => {
         const res = await fetch(`http://localhost:3000/fields/company/fields`, {
           method: "GET",
@@ -29,7 +30,7 @@ const Fields = () => {
       };
       useEffect(() => {
         getMyFields();
-      }, []);
+      }, [counter]);
       console.log(fieldDetails)
       const deleteField= async(id) =>{
         const res = await fetch(`http://localhost:3000/fields/${id}`,
@@ -43,6 +44,7 @@ const Fields = () => {
         const json = await res.json();
         if(json.success){
           window.alert(json.messages)
+          setCounter(counter+1)
        
         }
       };

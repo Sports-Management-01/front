@@ -242,9 +242,7 @@ useEffect(()=>{
                       </div>
 
                       <div className="form-group">
-                        <label for="exampleFormControlFile1">
-                          Upload Court Images
-                        </label>
+                       
                         <img
                           id="blah"
                           alt="your image"
@@ -253,12 +251,14 @@ useEffect(()=>{
                         />
                         <input
                           type="file"
+                          multiple
                           name="image"
                           onchange={handleChange}
                         />
                       </div>
                       <div>
                         <Wrapper
+                        // libraries={["places"]}
                           apiKey={"AIzaSyCG_3C9QPf5GdMaQ9V5R27n537RjXjv7V4"}
                         >
                           <Map

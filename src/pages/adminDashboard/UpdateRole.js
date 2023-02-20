@@ -4,49 +4,44 @@ import SideNav from "../../components/SideNav/SideNav";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-const UpdateEquipment = ()=>{
+
+const UpdateRole = ()=>{
     const token = useContext(AuthContext);
     const { id } = useParams();
-    const [equipment , setEquipment] = useState({})
-    const [eqUpdated, setEqUpdated] = useState({
-      name:"",
-      price:"",
-      multiple:""
-    });
+    const [role , setRole] = useState({})
+    
 
-    const getEquipment = async () => {
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
+    const getRole = async () => {
+        const res = await fetch(`http://localhost:3000/roles/${id}`, {
           method: "GET",
-          body: null,
+        
           headers: {
             "content-type": "application/json",
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token.token}`,
           },
         });
         const json = await res.json();
         if (json.success) {
           console.log(json.data);
-          setEquipment(json.data);
-          setEqUpdated(json.data)
+          setRole(json.data);
         } else {
-          window.alert("There is no Equipment!");
+          window.alert("There is no Role!");
           console.log(json.data);
         }
       };
       useEffect(() => {
-        getEquipment();
+        getRole();
       }, []);
 
-    const updateEquipment =  async (e) => {
-        console.log(eqUpdated)
-        const res = await fetch(`http://localhost:3000/equipments/${id}`, {
+    const updateRole =  async (e) => {
+        const res = await fetch(`http://localhost:3000/roles/${id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': "Application/json",
               'Authorization': `Bearer ${token.token}`,
           },
           body: JSON.stringify({
-            ...eqUpdated
+            ...role
           }),
       });
       const json = await res.json();
@@ -54,7 +49,7 @@ const UpdateEquipment = ()=>{
       if (json.success){
           console.log(json)
           window.alert(json.messages)
-          setEqUpdated(json.data)
+          setRole(json.data)
           
       }
       else{
@@ -62,20 +57,20 @@ const UpdateEquipment = ()=>{
       }
       
       }
-      
-      const handleOnChange = (e) => {
-        const updatedData = {...eqUpdated}
+    const handleOnChange = (e) => {
+        const updatedData = {...role}
         if (e.target.nodeName === "SELECT") {
           updatedData[e.target.name] = e.target.options[e.target.selectedIndex].value;
         } else {
           updatedData[e.target.name] = e.target.value;
         }
         console.log(updatedData)
-        setEqUpdated(updatedData)
+        setRole(updatedData)
       };
+
     return (
         <>
-        <Nav/>
+            <Nav/>
       <div className='user-hero' style={{display:"flex"}}>
       <SideNav/>
       <div className="container-fluid">
@@ -85,18 +80,17 @@ const UpdateEquipment = ()=>{
                 <div className="table">
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
-                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Edit Equipment 
+                    <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>Edit Role 
                     </div>
                     <table className="table">
                       <tr>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Multiple</th>
+                        <th>Role</th>
+                        <th>Required</th>
                       </tr>
                      
                           <tr>
                           <td><input
-                           defaultValue={equipment.name}
+                           value={role?.name}
                            onChange={handleOnChange}
                             name="name"
                             type="text"
@@ -105,25 +99,15 @@ const UpdateEquipment = ()=>{
                             placeholder="Name"
                           /></td>
                           <td>
-                            <input
-                           defaultValue={equipment.price}
-                           onChange={handleOnChange}
-                            name="price"
-                            type="text"
-                            className="form-control"
-                            id="inputName4"
-                            placeholder="Price"
-                          /></td>
-                          <td> 
-                            <select id="inputState" className="form-control" name="multiple"
-                          onChange={handleOnChange} value={equipment.multiple}>
+                          <select id="inputState" className="form-control" name="required"
+                          onChange={handleOnChange} >
                             <option  selected  value='1'>Yes</option>
                             <option  value='0'>No</option>
                            
                           </select>
                           </td>
                         </tr>
-                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>updateEquipment(equipment.id)}>Update</button>
+                        <button  type="submit" value="Update" className="btn btn-primary" onClick={()=>updateRole(role.id)}>Update</button>
                       
                       
                     </table>
@@ -134,9 +118,8 @@ const UpdateEquipment = ()=>{
           </div>
         </div>
       </div>
-
-      </>
+        </>
     )
-
 }
-export default UpdateEquipment
+
+export default UpdateRole;

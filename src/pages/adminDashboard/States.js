@@ -42,7 +42,7 @@ const States = () => {
     if (json.success) {
       window.alert(json.messages);
       setCounter(counter++);
-      setStates([...states]);
+    
     }
   };
   return (

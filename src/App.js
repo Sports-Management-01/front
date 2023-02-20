@@ -22,6 +22,8 @@ const Profile = React.lazy(() => import('./pages/profile/Profile'));
 const AdminDashboard = React.lazy(() => import('./pages/adminDashboard/AdminDashboard'));
 const Users = React.lazy(() => import('./pages/adminDashboard/Users'));
 const Roles = React.lazy(() => import('./pages/adminDashboard/Roles'));
+const AddRole = React.lazy(() => import('./pages/adminDashboard/AddRole'));
+const UpdateRole = React.lazy(() => import('./pages/adminDashboard/UpdateRole'));
 
 const Permissions = React.lazy(() => import('./pages/adminDashboard/Permissions'));
 const UpdatePermission = React.lazy(() => import('./pages/adminDashboard/UpdatePermission'));
@@ -75,7 +77,11 @@ function App() {
         <Route path='/profile/:id' element={<Suspense fallback={<Loading />} ><Profile /></Suspense>} />
         <Route path='/adminDashboard/:id' element={<Suspense fallback={<Loading />} ><AdminDashboard /></Suspense>} />
         <Route path='/users' element={<Suspense fallback={<Loading />} ><Users /></Suspense>} />
+       
         <Route path='/roles' element={<Suspense fallback={<Loading />} ><Roles /></Suspense>} />
+        <Route path='/addrole' element={<Suspense fallback={<Loading />} ><AddRole /></Suspense>} />
+        <Route path='/updaterole/:id' element={<Suspense fallback={<Loading />} ><UpdateRole/></Suspense>} />
+
         <Route path='/equipment' element={<Suspense fallback={<Loading />} ><Equipment /></Suspense>} />
         <Route path='/equipment/update/:id' element={<Suspense fallback={<Loading />} ><UpdateEquipment/></Suspense>} />
         

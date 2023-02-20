@@ -78,6 +78,7 @@ const Booking = () => {
 
     const data = await times.json();
     setData(data.data);
+    window.alert(data.messages)
   };
 
   useEffect(() => {

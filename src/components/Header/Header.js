@@ -114,19 +114,7 @@ const Header = () => {
                     <li>
                       <a href="./about.html">About Us</a>
                     </li>
-                    <li>
-                      <a href="#">Category</a>
-                      <ul className="dropdown">
-                        {
-                          categories.map((category, i)=> (
-                            <li>{category.name}</li>
-                          )
-                            )
-                        }
-                          
-                         
-                      </ul>
-                    </li>
+                   
                     <li>
                       <a href="./blog.html">News</a>
                     </li>

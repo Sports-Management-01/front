@@ -11,6 +11,7 @@ const Categories = () => {
   const token = useContext(AuthContext);
   const [image, setImage] = useState();
 const [counter, setCounter] = useState(0);
+
   const allCategories = async () => {
     const res = await fetch(`http://localhost:3000/categories/`, {
       method: "GET",
@@ -32,6 +33,7 @@ const [counter, setCounter] = useState(0);
   useEffect(() => {
    allCategories();
   }, [counter]);
+
   function handleChange(e) {
     setImage(URL.createObjectURL(e.target.files[0]));
     categories.icon = image;
@@ -51,8 +53,9 @@ const [counter, setCounter] = useState(0);
 
     if(json.success){
       window.alert(json.messages)
-      setCounter(counter++)
-      setCategories([...categories])
+      setCounter(counter+1)
+      console.log(counter)
+    //  setCategories([...categories])
      
    
     }
