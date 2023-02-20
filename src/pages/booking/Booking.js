@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
-import {findItemByObjectID} from "../../utils/utils";
+import { findItemByObjectID } from "../../utils/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Booking = () => {
@@ -12,8 +12,8 @@ const Booking = () => {
   const { id } = useParams();
   const [cost, setCost] = useState({
     times: 0,
-    eq: 0
-  })
+    eq: 0,
+  });
   const [field, setField] = useState({});
   const [data, setData] = useState({});
   const [reservation, setReservation] = useState({
@@ -21,10 +21,6 @@ const Booking = () => {
     times: [],
     equipment: [],
   });
-  
-
-  
-
 
   useEffect(() => {
     fetch(`http://localhost:3000/fields/${id}`)
@@ -35,31 +31,27 @@ const Booking = () => {
       })
       .catch();
   }, [id]);
-  const booking = async (e)=>{
-    e.preventDefault()
-    const reserveNow = await fetch (`http://localhost:3000/reservations`,  {
+  const booking = async (e) => {
+    e.preventDefault();
+    const reserveNow = await fetch(`http://localhost:3000/reservations`, {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
-
       },
       body: JSON.stringify({
         fieldId: field.id,
         times: reservation.times,
         date: reservation.date,
-        equipment: reservation.equipment
+        equipment: reservation.equipment,
       }),
-  
     });
     const bookingData = await reserveNow.json();
-    if(bookingData.success){
+    if (bookingData.success) {
+      alert(bookingData.messages); //Shafeeq Added This
 
     }
-  }
-
-
-
+  };
 
   const handleDateChange = async (e) => {
     setReservation((pr) => {
@@ -78,14 +70,12 @@ const Booking = () => {
 
     const data = await times.json();
     setData(data.data);
-    window.alert(data.messages)
+    // window.alert(data.messages); //Shafeeq Commited This
   };
 
   useEffect(() => {
     console.log(reservation);
   }, [reservation]);
-
-
 
   const updateReservationTimes = (e) => {
     let finalTimes = [...reservation.times];
@@ -96,8 +86,8 @@ const Booking = () => {
     }
     setCost({
       eq: cost.eq,
-      times: finalTimes.length * field.hourPrice
-    })
+      times: finalTimes.length * field.hourPrice,
+    });
     setReservation((pr) => {
       return {
         ...pr,
@@ -107,13 +97,13 @@ const Booking = () => {
   };
 
   const updateReservationEquipment = (e, eqId, name, price) => {
-    let eqCost = cost.eq
+    let eqCost = cost.eq;
     const equipments = [...reservation.equipment];
     const index = findItemByObjectID(reservation.equipment, eqId);
     if (index > -1) {
-      eqCost -= (equipments[index].count * price)
+      eqCost -= equipments[index].count * price;
       equipments[index].count = +e.target.value;
-      eqCost +=(equipments[index].count * price)
+      eqCost += equipments[index].count * price;
     } else {
       equipments.push({
         id: eqId,
@@ -121,7 +111,7 @@ const Booking = () => {
         name,
         price,
       });
-      eqCost += +e.target.value * price
+      eqCost += +e.target.value * price;
     }
 
     if (e.target.value == 0) {
@@ -129,8 +119,8 @@ const Booking = () => {
     }
     setCost({
       times: cost.times,
-      eq: eqCost
-    })
+      eq: eqCost,
+    });
     setReservation((pr) => {
       return {
         ...pr,
@@ -218,7 +208,7 @@ const Booking = () => {
                             </thead>
                             <tbody>
                               {data?.equipment?.map((eq, i) => {
-                                console.log(data.equipment)
+                                console.log(data.equipment);
                                 return (
                                   <tr>
                                     <td>{eq.name}</td>
@@ -289,38 +279,44 @@ const Booking = () => {
                       </div>
                     </>
                   )}
-                  {((reservation.equipment?.length > 0) && (reservation.times.length > 0)) && (
-                    <>
-                      <p className="mb-1 mt-4">
-                        <label htmlFor="required-date">Equipment Cost:</label>
-                      </p>
-                      <table className="table">
-                        <tr>
-                          <th>Item</th>
-                          <th>Price</th>
-                        </tr>
-                        {reservation?.equipment?.map((eq, i) => {
-                          if (eq.count == 0) {
-                            return <></>;
-                          }
-                          return (
-                            <tr key={i}>
-                              <td>{eq.name}</td>
-                              <td>{eq.count * eq.price}</td>
-                            </tr>
-                          );
-                        })}
-                      </table>
-                    </>
-                  )}
-
-                  {
+                  {reservation.equipment?.length > 0 &&
                     reservation.times.length > 0 && (
-                      <div className="alert alert-info my-4 d-flex justify-content-between"><span>Total:</span> <span style={{
-                        borderBottom:'3px #0c5460 double'
-                        }}>${cost.times + cost.eq} USD</span></div>
-                    )
-                  }
+                      <>
+                        <p className="mb-1 mt-4">
+                          <label htmlFor="required-date">Equipment Cost:</label>
+                        </p>
+                        <table className="table">
+                          <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                          </tr>
+                          {reservation?.equipment?.map((eq, i) => {
+                            if (eq.count == 0) {
+                              return <></>;
+                            }
+                            return (
+                              <tr key={i}>
+                                <td>{eq.name}</td>
+                                <td>{eq.count * eq.price}</td>
+                              </tr>
+                            );
+                          })}
+                        </table>
+                      </>
+                    )}
+
+                  {reservation.times.length > 0 && (
+                    <div className="alert alert-info my-4 d-flex justify-content-between">
+                      <span>Total:</span>{" "}
+                      <span
+                        style={{
+                          borderBottom: "3px #0c5460 double",
+                        }}
+                      >
+                        ${cost.times + cost.eq} USD
+                      </span>
+                    </div>
+                  )}
 
                   <button type="submit" className="btn btn-dark">
                     Reserve Now
