@@ -5,10 +5,12 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect,useState  } from "react";
 
 const dayjs = require('dayjs')
+
 const Courts = () => {
     const {token} = useContext(AuthContext);
     const { id } = useParams();
     const [fields, setFields] = useState([]);
+    const [counter, setCounter] = useState(0);
     const getAllFields = async () => {
         const res = await fetch(`http://localhost:3000/fields/all/`, {
           method: "GET",
@@ -27,7 +29,7 @@ const Courts = () => {
       };
       useEffect(() => {
         getAllFields();
-      }, []);
+      }, [counter]);
       console.log(fields)
       const deleteField= async(id) =>{
         const res = await fetch(`http://localhost:3000/fields/${id}`,
@@ -40,6 +42,7 @@ const Courts = () => {
         });
         const json = await res.json();
         if(json.success){
+          setCounter(counter+1)
           window.alert(json.messages)
        
         }

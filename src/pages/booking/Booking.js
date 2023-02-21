@@ -48,8 +48,10 @@ const Booking = () => {
     });
     const bookingData = await reserveNow.json();
     if (bookingData.success) {
-      alert(bookingData.messages); //Shafeeq Added This
-
+      alert(bookingData.messages); 
+    }
+    else{
+      alert(bookingData.messages); 
     }
   };
 
@@ -70,7 +72,7 @@ const Booking = () => {
 
     const data = await times.json();
     setData(data.data);
-    // window.alert(data.messages); //Shafeeq Commited This
+   
   };
 
   useEffect(() => {

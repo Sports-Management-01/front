@@ -1,7 +1,7 @@
 import React from "react";
 import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
-import { useParams } from "react-router-dom";
+import {Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import {Modal, Button} from 'react-bootstrap';
@@ -33,13 +33,13 @@ const Reservations = () => {
         },
       }
     );
-    console.log(user.id);
+   // console.log(user.id);
     const json = await res.json();
-    console.log(json);
+   // console.log(json);
 
     if (json.success) {
       setReservationgDetails(json.data);
-      console.log(json.data);
+     // console.log(json.data);
     }
   };
  
@@ -138,7 +138,7 @@ const Reservations = () => {
 
                           <td>
                                 <button
-                                  className="btn-danger btn"
+                                  className="btn-danger btn btn-sm"
                                   type="button"
                                   value="Cancel"
                                   onClick={()=>{
@@ -147,6 +147,14 @@ const Reservations = () => {
                                   }
                                   }
                                 >Cancel</button>
+                                {/*  <!-- Modal --> */}
+                              
+                                {/* END Model */}
+                              
+                              
+                                <Link to={`/addpayment/${re.id}`} className="btn-primary btn m-1" >
+                          Add Payment
+                          </Link>
                                 {/*  <!-- Modal --> */}
                               
                                 {/* END Model */}

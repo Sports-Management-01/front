@@ -57,7 +57,7 @@ const Categories = ()=>{
                 style={{display: "flex",
                 margin: "10px",
                 justifyContent: "center",
-                padding: "50"
+                padding: "50",
             }}>
                     <div className="p-10"> <img src={item.icon} alt="photo" /></div>
                     <div className="m-0"><h4>{item.name}</h4></div>

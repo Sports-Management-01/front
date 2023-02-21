@@ -52,9 +52,11 @@ const CompanyDashboard = React.lazy(() => import('./pages/companyDashboard/Compa
 const Fields = React.lazy(() => import('./pages/companyDashboard/Fields'));
 const AddField = React.lazy(() => import('./pages/companyDashboard/AddField'));
 const UpdateCourt = React.lazy(() => import('./pages/companyDashboard/UpdateCourt'));
+const AddPayment = React.lazy(() => import('./pages/companyDashboard/AddPayment'));
 
 const Reservations = React.lazy(() => import('./pages/companyDashboard/Reservations'));
 const MyBooking = React.lazy(() => import('./pages/userDashboard/myBooking/MyBooking'));
+
 const NotFound = React.lazy(() => import('./pages/notFound/NotFound'));
 
 function App() {
@@ -94,6 +96,8 @@ function App() {
         <Route path='/updatecategory/:id' element={<Suspense fallback={<Loading />} ><UpdateCategory /></Suspense>} />
         
         <Route path='/booking' element={<Suspense fallback={<Loading />} ><ManageBooking /></Suspense>} />
+        <Route path='/addpayment/:id' element={<Suspense fallback={<Loading />} ><AddPayment /></Suspense>} />
+
 
 
 
