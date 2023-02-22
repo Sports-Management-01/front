@@ -12,7 +12,7 @@ const MyBooking = () => {
   const { user, setUser } = useContext(AuthContext);
   const [bookingDetails, setBookingDetails] = useState([]);
   const [field, setField] = useState({});
-  
+  const [counter, setCounter] = useState(0);
   
 
   const getMyBooking = async () => {
@@ -35,7 +35,7 @@ const MyBooking = () => {
   };
   useEffect(() => {
     getMyBooking();
-  }, []);
+  }, [counter]);
 
   console.log(bookingDetails)
 const destroy = async (reserveId)=>{
@@ -51,6 +51,12 @@ const json = await resp.json();
 console.log(json)
 if(json.success){
  console.log(json.success) 
+ window.alert(json.messages)
+ setCounter(counter+1)
+}
+else{
+  console.log(json.success) 
+ window.alert(json.messages)
 }
 }
 
