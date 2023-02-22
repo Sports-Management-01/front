@@ -41,6 +41,7 @@ const createPayment = async (e) => {
     e.preventDefault();
     const form = e.target;
     const newPayment = new FormData(form);
+    newPayment.append("reservationId", reservation.id)
    
     const response = await fetch("http://localhost:3000/payments", {
       method: "post",
@@ -92,7 +93,7 @@ const createPayment = async (e) => {
                         <div className="form-group col-md-3">
                           <label htmlFor="inputEmail4">Reservation Id:</label>
                           
-                          <h5 name="reservationId" onClick={handleOnChange}>{reservation?.id}</h5>
+                          <h5>{reservation?.id}</h5>
                         </div>
                       </div> 
                       <div className="form-row">
