@@ -1,8 +1,4 @@
 import SimpleImageSlider from "react-simple-image-slider";
-import img1 from "../../assets/img/soccer.jpeg";
-import img2 from "../../assets/img/soccer.jpeg";
-import img3 from "../../assets/img/soccer.jpeg";
-import img4 from "../../assets/img/soccer.jpeg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
@@ -49,8 +45,8 @@ const FieldDetails = () => {
       {field.image.length > 0 && (
         <>
           <SimpleImageSlider
-            width={540}
-            height={400}
+            width={"100%"}
+            height={600}
             images={field?.image}
             showBullets={true}
             showNavs={true}
