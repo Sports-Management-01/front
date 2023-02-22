@@ -1,5 +1,5 @@
 import logo from "../../assets/img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import PersonIcon from '@mui/icons-material/Person';
@@ -8,7 +8,7 @@ import PersonIcon from '@mui/icons-material/Person';
 const Header = () => {
   const [categories, setCategories] = useState([]);
   const { token } = useContext(AuthContext);
-  const {user, setUser} = useContext(AuthContext);
+  const { user, setUser } = useContext(AuthContext);
   const getCategory = async () => {
     const res = await fetch(`http://localhost:3000/categories`, {
       method: "GET",
@@ -25,8 +25,8 @@ const Header = () => {
   };
   useEffect(() => {
     getCategory();
-}, []);
-  
+  }, []);
+
   return (
     <header className="header">
       <div className="header__top">
@@ -44,50 +44,50 @@ const Header = () => {
               </ul>
             </div>
             {/* Check if there is token or NOT to display login register logout */}
-           
+
             {
-             (!token ?
-               (<>
-                <div className="col-lg-5">
-              <div className="header__top__right">
-                <div className="header__top__auth">
-                  <ul>
-                 <li>
-                      <Link to={"/signin"}>Login</Link>
-                    </li>
-                    <li>
-                      {" "}
-                      <Link to={"/signup"}>Register</Link>
-                    </li>
-                   </ul>
-                   </div>
-                   </div>
-                   </div>
-               </>)
-             :(
-              <>
-                <div className="col-lg-5">
-              <div className="header__top__right">
-                <div className="header__top__auth">
-                  <ul>
-                    <li>
-                      {(user.roleId==1) ?(<><Link to={`/adminDashboard/${user.id}`}><PersonIcon/></Link></>)
-                      :(<><Link to={`/profile/${user.id}`}><PersonIcon/></Link>
-                      </>)}
-                    
-                    </li>
-                    <li>
-                      {" "}
-                      <Link to={"/signout"}>LogOut</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-              </>
-             ))
+              (!token ?
+                (<>
+                  <div className="col-lg-5">
+                    <div className="header__top__right">
+                      <div className="header__top__auth">
+                        <ul>
+                          <li>
+                            <Link to={"/signin"}>Login</Link>
+                          </li>
+                          <li>
+                            {" "}
+                            <Link to={"/signup"}>Register</Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </>)
+                : (
+                  <>
+                    <div className="col-lg-5">
+                      <div className="header__top__right">
+                        <div className="header__top__auth">
+                          <ul>
+                            <li>
+                              {(user.roleId == 1) ? (<><Link to={`/adminDashboard/${user.id}`}><PersonIcon /></Link></>)
+                                : (<><Link to={`/profile/${user.id}`}><PersonIcon /></Link>
+                                </>)}
+
+                            </li>
+                            <li>
+                              {" "}
+                              <Link to={"/signout"}>LogOut</Link>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ))
             }
-          
+
           </div>
         </div>
       </div>
@@ -106,20 +106,16 @@ const Header = () => {
                 <nav className="header__menu">
                   <ul className="menu__class">
                     <li className="active">
-                      <a href="/">Home</a>
+                      <NavLink to="/">Home</NavLink>
                     </li>
                     <li>
-                      <a href="/exploreFields">Courts</a>
+                      <NavLink to="/courts">Courts</NavLink>
                     </li>
                     <li>
-                      <a href="./about.html">About Us</a>
-                    </li>
-                   
-                    <li>
-                      <a href="./blog.html">News</a>
+                      <NavLink to="/about">About Us</NavLink>
                     </li>
                     <li>
-                      <a href="./contact.html">Contact</a>
+                      <NavLink to="/contact">Contact</NavLink>
                     </li>
                   </ul>
                 </nav>
