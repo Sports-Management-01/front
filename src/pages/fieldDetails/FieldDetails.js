@@ -45,7 +45,7 @@ const FieldDetails = () => {
       {field.image.length > 0 && (
         <>
           <SimpleImageSlider
-            width={1500}
+            width={"100%"}
             height={600}
             images={field?.image}
             showBullets={true}
