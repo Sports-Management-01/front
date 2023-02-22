@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import breadcrumb from "../../assets/img/breadcrumb-bg.jpg";
+import alibeypadell from "../../assets/img/alibeypadel.jpg";
 import SimpleImageSlider from "react-simple-image-slider";
 import { timesOptions } from "../../utils/utils";
 
@@ -110,7 +110,7 @@ if(json.success){
       <div
         className="breadcrumb-option set-bg"
         style={{
-          backgroundImage: `url(${breadcrumb})`,
+          backgroundImage: `url(${alibeypadell})`,
           backgroundRepeat: "no-repeat",
         }}
       >
@@ -194,7 +194,7 @@ if(json.success){
                             ))}
                           </select>
                         </div>
-                        <button type="submit">BOOK NOW</button>
+                        <button className="btn" type="submit">BOOK NOW</button>
                     </form>
 
       {/* END search */}

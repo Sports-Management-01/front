@@ -503,17 +503,17 @@ ol {
 .filter__form button {
 	font-size: 18px;
 	font-weight: 500;
-	color: #ffffff;
-	background: #1d1c1c;
+	color: #041daa;
+	background: #ffffff;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	border: none;
+	border: 10px solid rgb(176, 212, 162);
 	width: 160px;
 	float: left;
 	text-align: center;
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 20px;
+	top: 10px;
 	height: 100%;
 	line-height: 100%;
 }
@@ -1376,7 +1376,7 @@ ol {
 -----------------------*/
 
 .breadcrumb-option {
-	padding: 130px 0;
+	padding: 200px 0;
 }
 
 .breadcrumb-option.contact-breadcrumb {
