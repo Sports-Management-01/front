@@ -85,10 +85,16 @@ const createPayment = async (e) => {
                         <div className="form-group col-md-3">
                           <label htmlFor="inputEmail4">User Name</label>
                           
-                          <h5>{reservation?.User?.name}</h5>
+                          <h5  onClick={handleOnChange}>{reservation?.User?.name}</h5>
                         </div>
-                     
                       </div>  
+                      <div className="form-row">
+                        <div className="form-group col-md-3">
+                          <label htmlFor="inputEmail4">Reservation Id:</label>
+                          
+                          <h5 name="reservationId" onClick={handleOnChange}>{reservation?.id}</h5>
+                        </div>
+                      </div> 
                       <div className="form-row">
                         <div className="form-group col-md-3">
                           <label htmlFor="inputEmail4" >Amount</label>
@@ -128,7 +134,7 @@ const createPayment = async (e) => {
                           />
                         </div>
                         </div>
-                      <p className="mb-1 mt-4">
+                 {/*      <p className="mb-1 mt-4">
                     <label htmlFor="required-date">Required Date:</label>
                   </p>
                   <div className="form-row">
@@ -138,7 +144,7 @@ const createPayment = async (e) => {
                       onChange={handleOnChange}
                       min={new Date().toISOString().split("T")[0]}
                     />
-                  </div>
+                  </div> */}
                       <div className="form-row">
                         <div className="form-group col-md-3">
                           <label for="inputState">From</label>
