@@ -82,15 +82,15 @@ if(json.success){
 
                       </tr>
                       {
-                        bookingDetails.map((reservation, i)=>(
+                        bookingDetails?.map((reservation, i)=>(
                           <tr>
                       
-                          <td>{reservation.Field.Category.name}</td>
+                          <td>{reservation?.Field?.Category?.name}</td>
                           
-                          <td>{reservation.Field.name}</td>
+                          <td>{reservation?.Field?.name}</td>
                           <td>
                           {
-                           reservation.ReservationEquipments.map((eq, i)=>(
+                           reservation?.ReservationEquipments?.map((eq, i)=>(
                             <>
                             {eq.Equipment.name} 
                             
@@ -98,7 +98,7 @@ if(json.success){
                               <> 
                               ({eq.count}) </>}
                               
-                            {i < reservation.ReservationEquipments.length -1 && (
+                            {i < reservation?.ReservationEquipments?.length -1 && (
                               <>
                               ,
                               </>

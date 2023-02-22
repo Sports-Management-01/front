@@ -42,7 +42,7 @@ const AppModal = ({ setShow, show, id, cancelFunc }) => {
               //   handleClose();
             }}
           >
-            Cancel
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>

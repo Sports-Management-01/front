@@ -30,6 +30,7 @@ const Courts = () => {
       useEffect(() => {
         getAllFields();
       }, [counter]);
+
       console.log(fields)
       const deleteField= async(id) =>{
         const res = await fetch(`http://localhost:3000/fields/${id}`,
@@ -60,8 +61,8 @@ const Courts = () => {
                   <div className="col-12 p-3 mb-4 bottom-border">
                     {/* blue area info */}
                     <div className="alert alert-info" style={{display: "flex", justifyContent:"space-between", alignItems:"center"}}>My Courts 
-                    <NavLink  to={"/company/addfield"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Court</NavLink> 
-                    </div>
+{/*                     <NavLink  to={"/company/addfield"} className="btn" style={{backgroundColor: "rgb(236 192 14 / 76%)"}}>Add Court</NavLink> 
+ */}                    </div>
                     <table className="table">
                       <tr>
                         <th>Name</th>
@@ -85,9 +86,9 @@ const Courts = () => {
                           <td>{field?.isActive ? "Active": "Not Active"}</td>
                           <td>
                             <>
-                          <Link to={`/company/fields/${field?.id}`} className="btn-primary btn m-1" >
+                          {/* <Link to={`/company/fields/${field?.id}`} className="btn-primary btn m-1" >
                           Edit
-                          </Link>
+                          </Link> */}
                           <input className="btn-danger btn" type="button" value="Delete" onClick={()=>deleteField(field?.id)} />
                           </>
                           </td>
