@@ -28,8 +28,8 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="header">
-      <div className="header__top">
+    <>
+    <div className="header__top">
         <div className="container">
           <div className="row">
             <div className="col-lg-7">
@@ -91,6 +91,8 @@ const Header = () => {
           </div>
         </div>
       </div>
+    <header className="header">
+      
       <div className="header__nav__option">
         <div className="container">
           <div className="row">
@@ -133,6 +135,8 @@ const Header = () => {
         </div>
       </div>
     </header>
+    </>
+    
   );
 };
 

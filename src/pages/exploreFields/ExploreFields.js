@@ -225,7 +225,7 @@ const ExploreFields = () => {
 					{(fields.length > 0) && fields?.map((field, i) => {
 						return (
 							<div key={i} className="col col-sm-6 col-md-4">
-								<Field field={field} />
+								<Field field={field} delay={Math.round((Math.random() * 10000) + 2000)} />
 							</div>
 						)
 					})}

@@ -1,10 +1,11 @@
 import './Field.css'
 import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 import { Link } from 'react-router-dom'
-import { Fragment } from 'react'
 
-const Field = ({ field }) => {
-    const [emblaRef] = useEmblaCarousel()
+
+const Field = ({ field, delay = 2000 }) => {
+    const [emblaRef] = useEmblaCarousel({}, [Autoplay({delay})])
     return (
         <div className="field">
             <div className="embla" ref={emblaRef}>
