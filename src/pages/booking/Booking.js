@@ -1,6 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
@@ -8,6 +8,7 @@ import { findItemByObjectID } from "../../utils/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 
 const Booking = () => {
+  const navigate = useNavigate()
   const { token } = useContext(AuthContext);
   const { id } = useParams();
   const [cost, setCost] = useState({
@@ -21,6 +22,12 @@ const Booking = () => {
     times: [],
     equipment: [],
   });
+
+  useEffect(() => {
+    if (!token) {
+      navigate('/signin?back=/booking/' + id)
+    }
+  }, [])
 
   useEffect(() => {
     fetch(`http://localhost:3000/fields/${id}`)

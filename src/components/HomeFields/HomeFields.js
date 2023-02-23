@@ -1,11 +1,14 @@
-import { AuthContext } from "../../contexts/AuthContext";
-import { useContext, useEffect, useRef, useState } from "react";
-import HomeField from "../HomeField/HomeField";
+import useEmblaCarousel from 'embla-carousel-react'
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Field from "../../pages/exploreFields/Field";
+import { shuffle } from '../../utils/utils';
+import './HomeFields.css';
 
 const HomeFields = () => {
-    const  navigate = useNavigate();
+    const navigate = useNavigate();
+    const [emblaRef] = useEmblaCarousel()
     const [fields, setFields] = useState([])
     const allFields = async () => {
         const res = await fetch(`http://localhost:3000/fields`, {
@@ -15,20 +18,20 @@ const HomeFields = () => {
         if (json.success) {
             console.log(`fielddddd`)
             setFields(json.data)
+            emblaRef.current.reInit()
         }
         else {
             window.alert("There is no Field!")
             console.log(json.data)
         }
     }
-    
+
     useEffect(() => {
         allFields();
     }, []);
 
     return (
         <>
-
             <section className="home-room spad">
                 <div className="container">
                     <div className="row">
@@ -40,11 +43,15 @@ const HomeFields = () => {
                         </div>
                     </div>
                 </div>
-                <div className="container-fluid">
-                    <div className="row" style={{margin:30, marginRight: -45}}>
-                        {
-                            fields.slice(0, 3)?.map((field, i) => (<HomeField key={i} data={field} />))
-                        }
+                <div className="container">
+                    <div className="row ">
+                                {
+                                    shuffle(fields.splice(0, 6))?.map((field, i) => (
+                                        <div key={i} className="col col-sm-6 col-md-4">
+                                            <Field field={field} />
+                                        </div>
+                                    ))
+                                }
                     </div>
                 </div>
                 <div className="container">
@@ -54,7 +61,7 @@ const HomeFields = () => {
                                 <h3>Planning your next match? Save up to 25% on your challange</h3>
                             </div>
                             <div className="col-lg-3 col-md-4 text-center">
-                            <Link className="primary-btn " to={"/exploreFields"}>Explore More</Link>    
+                                <Link className="primary-btn " to={"/exploreFields"}>Explore More</Link>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 .embla {
     overflow: hidden;
+    border-radius: 10px;
 }
-
 .embla__container {
     display: flex;
 }
@@ -10,6 +10,31 @@
     flex: 0 0 100%;
     min-width: 0;
 }
-.embla__slide img {
-    width: 100%;
+.embla__slide__padded {
+    padding-top: 56.25%;
+}
+.field {
+    margin-bottom: 30px;
+}
+.field span {
+    font-size: 15px
+}
+.field span a:hover {
+    color: #E9AD28
+}
+.address-row {
+    min-height: 72px;
+}
+.book-now-btn {
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 25px;
+}
+
+.book-now-btn:hover {
+    border: 1px solid #E9AD28;
+    color: #E9AD28;
+}
+.book-now-btn:hover path {
+    fill: #E9AD28;
 }

@@ -337,7 +337,11 @@ ol {
 	-o-transition: all, 0.3s;
 	transition: all, 0.3s;
 }
-
+header {
+	position: sticky;
+	top: 0;
+	z-index: 999;
+}
 .header__top__language ul li {
 	font-size: 15px;
 	color: #19191A;
@@ -348,6 +352,8 @@ ol {
 
 .header__nav__option {
 	background: #1a1a1a;
+	position: sticky;
+	top: 0;
 }
 
 .header__nav {
@@ -374,7 +380,7 @@ ol {
 	position: relative;
 }
 
-.header__menu ul li.active a {
+.header__menu ul li a.active {
 	color: #E9AD28;
 }
 
@@ -730,11 +736,13 @@ ol {
 }
 
 .home__explore {
-	padding-top: 65px;
+	margin-top: 65px;
+	padding: 2em;
+	background-color: rgb(76, 81, 45);
 }
 
 .home__explore h3 {
-	color: #000000;
+	color: #fff;
 	line-height: 50px;
 }
 
