@@ -120,9 +120,9 @@ const Header = () => {
                   </ul>
                 </nav>
                 <div className="header__nav__widget">
-                  <a href="/exploreFields">
+                  <Link to="/courts">
                     Book Now <span className="arrow_right"></span>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

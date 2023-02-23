@@ -1,0 +1,23 @@
+.emble_home > .embla {
+    overflow: hidden;
+}
+.emble_home > .embla > .embla__container {
+    display: flex;
+}
+
+.emble_home > .embla > .embla__container > .embla__slide {
+    flex: 0 0 33.33%;
+    min-width: 0;
+    margin-right: 30px;
+}
+
+@media screen and (max-width: 768px) {
+    .emble_home > .embla > .embla__container > .embla__slide {
+        flex: 0 0 50%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .emble_home > .embla > .embla__container > .embla__slide {
+        flex: 0 0 100%;
+    }
+}

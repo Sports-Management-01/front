@@ -730,11 +730,13 @@ ol {
 }
 
 .home__explore {
-	padding-top: 65px;
+	margin-top: 65px;
+	padding: 2em;
+	background-color: rgb(76, 81, 45);
 }
 
 .home__explore h3 {
-	color: #000000;
+	color: #fff;
 	line-height: 50px;
 }
 

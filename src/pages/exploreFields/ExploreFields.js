@@ -1,10 +1,8 @@
-import HomeField from "../../components/HomeField/HomeField";
 import { useContext, useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import alibeypadell from "../../assets/img/alibeypadel.jpg";
-import SimpleImageSlider from "react-simple-image-slider";
 import { timesOptions } from "../../utils/utils";
 import Field from "./Field";
 
@@ -233,66 +231,6 @@ const ExploreFields = () => {
 					})}
 				</div>
 			</div>
-
-			{/* END search */}
-
-
-
-			{/*  <!-- Rooms Section Begin --> */}
-			<section className="rooms spad">
-				<div className="container">
-					<div className="row">
-
-						{fields.length > 0 && fields?.map((field, i) => (
-							<>
-								<div className="col-lg-6 p-0 order-lg-1 order-md-1 col-md-6 ">
-									<div className="room__text">
-										<h3>{field.name}</h3>
-										<h2>
-											<sup>$</sup>
-											{field.hourPrice}
-											<span>/hour</span>
-										</h2>
-
-										<ul>
-											<li>
-												<span>Length:</span>
-												{field.length}
-											</li>
-											<li>
-												<span>Width:</span>
-												{field.width}
-											</li>
-											<li>
-												<span>Open At:</span>
-												{field.from}
-											</li>
-											<li>
-												<span>Close At:</span>
-												{field.to}
-											</li>
-											<li>
-												<span>Address:</span>
-												{field.adress}
-											</li>
-										</ul>
-										<Link to={`/fieldDetails/${field.id}`}>View Details </Link>
-
-										<SimpleImageSlider
-											width={540}
-											height={400}
-											images={field.image}
-											showBullets={true}
-											showNavs={true}
-										/>
-									</div>
-								</div>
-							</>
-						))}
-					</div>
-				</div>
-			</section>
-
 			<Footer />
 		</>
 	);
