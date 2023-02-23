@@ -9,6 +9,8 @@ import { AuthContext } from './contexts/AuthContext';
 
 const SignIn = React.lazy(() => import('./pages/signin/SignIn'));
 const ForgotPassword = React.lazy(() => import('./pages/forgotPassword/ForgotPassword'));
+const ContactUs = React.lazy(() => import('./pages/contactus/ContactUs'));
+
 const SignUp = React.lazy(() => import('./pages/signup/SignUp'));
 const SignOut = React.lazy(() => import('./pages/signout/SignOut'));
 const Home = React.lazy(() => import('./pages/home/Home'));
@@ -68,6 +70,7 @@ function App() {
         {<Route path='/' element={<Suspense fallback={<Loading />} ><Home /></Suspense>} />}
         <Route path='/signin' element={<Suspense fallback={<Loading />}><SignIn /></Suspense>} />
         <Route path='/forgotpassword' element={<Suspense fallback={<Loading />}><ForgotPassword /></Suspense>} />
+        <Route path='/contactus' element={<Suspense fallback={<Loading />}><ContactUs /></Suspense>} />
 
         <Route path='/signup' element={<Suspense fallback={<Loading />} ><SignUp /></Suspense>} />
         {token && <Route path='/signout' element={<Suspense fallback={<Loading />} ><SignOut /></Suspense>} />}
