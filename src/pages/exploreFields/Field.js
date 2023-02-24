@@ -85,7 +85,7 @@ const Field = ({ field, delay = 2000 }) => {
                 <div className='col d-flex justify-content-end'>
                     <Link to={`/fieldDetails/${field.id}`} className='book-now-btn btn-sm py-2 px-3'>
                         Book Now
-                        <svg className='ml-1 d-inline-block' viewBox='0 0 24 24 ' width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path fill='#000' d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+                        <svg className='ml-1 d-inline-block' viewBox='0 0 24 24 ' width="20" height="20" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path fill='#000' d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
                     </Link>
                 </div>
             </div>

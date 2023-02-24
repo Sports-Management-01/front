@@ -1,0 +1,14 @@
+footer {
+    background-color: #1a1a1a;
+    
+}
+footer p {
+    color: #DFDFDF;
+}
+footer a {
+    color: #DFDFDF;
+}
+footer li {
+    display: flex;
+    padding: 6px 0;
+}
