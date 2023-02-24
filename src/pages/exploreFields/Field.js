@@ -8,7 +8,7 @@ import SportsScoreIcon from '@mui/icons-material/SportsScore';
 const Field = ({ field, delay = 2000 }) => {
     const [emblaRef] = useEmblaCarousel({}, [Autoplay({delay})])
     return (
-        <div className="field">
+        <div className="field mb-5">
             <div className="embla" ref={emblaRef}>
                 <div className="embla__container">
                     {field?.image.map((img, j) => {
@@ -17,6 +17,11 @@ const Field = ({ field, delay = 2000 }) => {
                             backgroundSize: 'cover'
                         }}></div>
                     })}
+                </div>
+            </div>
+            <div className='row my-4'>
+                <div className='col'>
+                    <h3>{field?.name}</h3>
                 </div>
             </div>
             <div className='row mt-3'>
@@ -31,12 +36,13 @@ const Field = ({ field, delay = 2000 }) => {
                         </div>
                     </div>
                 </div>
+                
                 <div className='col'>
                     <div className='d-flex align-items-start'>
-                        <svg className='mr-2 d-inline-flex' xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path d="M5 20c0 .552-.447 1-1 1s-1-.448-1-1 .447-1 1-1 1 .448 1 1zm19-4v8h-24v-24h8v16h16zm-22 0h4v-2h-2v-1h2v-2h-2v-1h2v-2h-2v-1h2v-2h-2v-1h2v-2h-4v14zm20 2h-2v3h-1v-3h-2v2h-1v-2h-2v3h-1v-3h-2v2h-1v-2h-2v3h-1v-3h-5v4h20v-4z" /></svg>
+                        <svg className='mr-2 d-inline-flex' xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z" /></svg>
                         <div>
-                            <strong>Name</strong><br />
-                            <span>{field.name}</span>
+                            <strong>Time</strong><br />
+                            <span>{field.from} - {field.to}</span>
                         </div>
                     </div>
                 </div>
@@ -71,15 +77,6 @@ const Field = ({ field, delay = 2000 }) => {
                         <div>
                             <strong>Address</strong><br />
                             <span><a target='_blank' href={`https://www.google.com/maps/?q=${field.latitude},${field.longitude}`}>{field.adress}</a></span>
-                        </div>
-                    </div>
-                </div>
-                <div className='col'>
-                    <div className='d-flex align-items-start'>
-                        <svg className='mr-2 d-inline-flex' xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.848 12.459c.202.038.202.333.001.372-1.907.361-6.045 1.111-6.547 1.111-.719 0-1.301-.582-1.301-1.301 0-.512.77-5.447 1.125-7.445.034-.192.312-.181.343.014l.985 6.238 5.394 1.011z" /></svg>
-                        <div>
-                            <strong>Time</strong><br />
-                            <span>{field.from} - {field.to}</span>
                         </div>
                     </div>
                 </div>

@@ -63,7 +63,7 @@ const HomeFields = () => {
           <div className="row ">
             {shuffle(fields.splice(0, 6))?.map((field, i) => (
               <div key={i} className="col col-sm-6 col-md-4">
-                <Field field={field} />
+                <Field field={field} delay={Math.round((Math.random() * 10000) + 2000)} />
               </div>
             ))}
           </div>
@@ -84,17 +84,15 @@ const HomeFields = () => {
             </div>
           </div>
         </div>
-        <div className="container flex-row">
-          <div className="d-flex col-12 align-items-center justify-content-center">
-            {companies.map((company, i) => {
+        <div className="container mt-5">
+          <div className="row">
+            {[...companies].splice(0, 6).map((company, i) => {
               return (
-                <div className="d-flex align-items-center m-5 ">
+                <div className="col col-sm-6 col-md-4 col-lg-2 d-flex align-items-center justify-content-center" key={i}>
                   <img
                     src={company?.image ? company?.image : logo}
                     style={{
-                      width: "50",
-                      height: "50px",
-                      borderRadius: "10px",
+                      width: "70px",
                     }}
                   />
                   <div>{company?.name}</div>
