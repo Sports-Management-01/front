@@ -1,4 +1,4 @@
-import '../../pages/signup/SignUp.css';
+// import '../../pages/signup/SignUp.css';
 import { useState, useContext } from 'react';
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { Loading } from "../../components/loading/Loading";

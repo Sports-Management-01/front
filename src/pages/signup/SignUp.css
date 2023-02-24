@@ -3,7 +3,7 @@
 .card{
   
     padding: 15px;
-    height: 550px;
+    height: 550px !important;
     margin-top: auto;
     margin-bottom: auto;
     width: 400px;
