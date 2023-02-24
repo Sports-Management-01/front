@@ -1,100 +1,83 @@
-#SignUp {
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
-    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
-    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #E9AD28;
-    border-radius: 0 15px 0 15px;
-    background-color: #e9edddcc;
+
+
+.card{
+  
+    padding: 15px;
+    height: 550px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: rgb(253 251 251 / 50%) !important;
 }
-#logoImg {
-    margin: 15px;
-    padding-left: 80px;
-    height: 90px !important;
-    
-}
-.optionButtons {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 6%;
-}
-.Register_logo__-jKtP {
-    margin: auto;
-    width: 150px;
     
     
-}
-.Register_register__csfwh {
-    background: #fdfdfd;
-    border: 1px solid #e0deda;
-    border-radius: 0 15px 0 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    .social_icon span{
+    font-size: 60px;
+    margin-left: 10px;
+    color: #FFC312;
+    }
     
+    .social_icon span:hover{
+    color: white;
+    cursor: pointer;
+    }
     
-}
-.container {
-    font-family: Poppins,sans-serif;
-    line-height: 1.5;
-}
-.form-field label {
-    font-size: 1em; 
-}
-.Register_title__QRiY2 {
-    font-weight: 500;
-    align-items: center;
-    margin-left: 50px;
-}
-.btn-primary1 {
-    color: #000000;
-    background-color: #E9AD28;
-    border-color: #E9AD28;
-}
-.loginLink{
-    color: #E9AD28;
-    border-color: #E9AD28;
-}
-.loginLink:hover{
-    color: #E9AD28;
-    border-color: #E9AD28;
-}
-.logo-img{
-    border-radius: 15px 0 15px 0;
-    border: 3px solid #E9AD28;
-}
-.end{
-    display: flex;
-    justify-content: space-between;
+    .card-header h3{
+    color: black;
+    }
     
-    align-items: center;
-}
-.login-box{
-    margin-top: 100px;
-    width: 750px;
-    justify-content: center;
-    align-items: center;
-    margin-left: 10%;
-    height: 50%;
-   padding-bottom: 30px;
-   border-color: #E9AD28;
-}
-.logoandtitle{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.logoandtitle >h2{
-    margin-left: 37%;
-}
-.logo{
-    width: 230px
-}
-.btn-secondary2{
-    background-color: hsl(40, 11%, 22%);
-    color: #fdfdfd;
-    border-color: #6c757d
-}
+    .social_icon{
+    position: absolute;
+    right: 20px;
+    top: -45px;
+    }
+    
+    .input-group-prepend span{
+    width: 50px;
+    background-color: #FFC312;
+    color: black;
+    border:0 !important;
+    }
+    
+    input:focus{
+    outline: 0 0 0 0  !important;
+    box-shadow: 0 0 0 0 !important;
+    
+    }
+    
+    .remember{
+    color: black;
+    }
+    
+    .remember input
+    {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+    }
+    
+    .login_btn{
+    color: black;
+    background-color: #FFC312;
+    width: 100px;
+    }
+    
+    /* .login_btn:hover{
+    color: black;
+    background-color: white;
+    } */
+    
+    .links{
+    color: rgb(27, 26, 26);
+    }
+    
+    .links a{
+    margin-left: 4px;
+    }
+    .links a:hover{
+        color: #FFC312 ;
+    }
+    a:hover{
+        color: #FFC312;
+    }
