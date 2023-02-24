@@ -46,8 +46,9 @@ const FieldDetails = () => {
 	return (
 		<>
 			<Header />
-			<div className="d-flex flex-column flex-md-row align-items-center">
-				<div className="col p-3 px-5">
+			<div className="container mt-5">
+			<div className="row align-items-center">
+				<div className="col">
 					<h2 className="mt-5">{field.name}</h2>
 					<div className="row mt-3 w-100 room__details__facilities">
 						<div className="col">
@@ -83,9 +84,10 @@ const FieldDetails = () => {
 					</div>
 				</div>
 			</div>
+			</div>
 
 			{/* <!-- Field Details Section Begin --> */}
-			<section className="room-details spad p-3 px-5">
+			<section className="room-details spad container">
 
 					<div className="row">
 						<div className="col-lg-12">
