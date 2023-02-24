@@ -55,10 +55,10 @@ const Booking = () => {
     });
     const bookingData = await reserveNow.json();
     if (bookingData.success) {
-      alert(bookingData.messages); 
+      alert(bookingData.messages);
     }
-    else{
-      alert(bookingData.messages); 
+    else {
+      alert(bookingData.messages);
     }
   };
 
@@ -79,7 +79,7 @@ const Booking = () => {
 
     const data = await times.json();
     setData(data.data);
-   
+
   };
 
   useEffect(() => {
@@ -143,14 +143,19 @@ const Booking = () => {
       <Header />
       {field.name && (
         <>
-          <SimpleImageSlider
-            width={"100%"}
-            height={600}
-            images={field?.image}
-            showBullets={true}
-            showNavs={true}
-          />
+
           <div className="container my-5">
+            <div className="row mb-5">
+              <div className="col col-md-12">
+                <SimpleImageSlider
+                  width={"100%"}
+                  height={400}
+                  images={field?.image}
+                  showBullets={true}
+                  showNavs={true}
+                />
+              </div>
+            </div>
             <div className="row">
               <div className="col">
                 <h1>{field.name}</h1>
