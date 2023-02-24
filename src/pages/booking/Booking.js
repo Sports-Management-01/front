@@ -1,17 +1,36 @@
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useRef } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 import { type } from "@testing-library/user-event/dist/type";
 import { findItemByObjectID } from "../../utils/utils";
 import { AuthContext } from "../../contexts/AuthContext";
 
-// pk_test_51MIZEIJn1PSuOXdRNkUmGBwDV6CwZG66qh5i7EdgXERfSyNkT0p5x6jmTr3CyCDcY3CZvY4LyFEllgyoxdj0v9UK00TDegiFim
-// sk_test_51MIZEIJn1PSuOXdRnGJP93tzf8Fa87BoC7xQZ0IU8tUyCul1XNAZqquV3DcutsziSaLNu5HjMPf5W50zws3TeqeT00OC6C9FZu
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import { PaymentElement } from '@stripe/react-stripe-js';
+import CheckoutForm from "./CheckoutForm";
+
+
+const stripePromise = loadStripe("pk_test_51MIZEIJn1PSuOXdRNkUmGBwDV6CwZG66qh5i7EdgXERfSyNkT0p5x6jmTr3CyCDcY3CZvY4LyFEllgyoxdj0v9UK00TDegiFim")
 
 
 const Booking = () => {
+  const [sk, setSk] = useState(null)
+  const [reserved, setReserved] = useState(false)
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch("http://localhost:3000/create-payment-intent", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setSk(data.clientSecret)
+      });
+  }, []);
+
   const navigate = useNavigate()
   const { token } = useContext(AuthContext);
   const { id } = useParams();
@@ -26,6 +45,8 @@ const Booking = () => {
     times: [],
     equipment: [],
   });
+
+  const formRef = useRef(null)
 
   useEffect(() => {
     if (!token) {
@@ -59,11 +80,9 @@ const Booking = () => {
     });
     const bookingData = await reserveNow.json();
     if (bookingData.success) {
-      alert(bookingData.messages);
+      setReserved(true)
     }
-    else {
-      alert(bookingData.messages);
-    }
+    alert(bookingData.messages);
   };
 
   const handleDateChange = async (e) => {
@@ -166,9 +185,11 @@ const Booking = () => {
                 <h5 className="mt-4">Category: {field?.Category?.name}</h5>
               </div>
             </div>
-            <form onSubmit={booking}>
+            <form onSubmit={booking} ref={formRef}>
               <div className="row pt-5">
+
                 <div className="col-12 col-md-6 offset-md-2">
+
                   <h4>Reserve Now:</h4>
                   <p className="mb-1 mt-4">
                     <label htmlFor="required-date">Required Date:</label>
@@ -271,6 +292,7 @@ const Booking = () => {
                       )}
                     </>
                   )}
+
                 </div>
                 <div className="col-12 col-md-3 offset-md-1 pt-5 pt-md-0">
                   <h4>Total Cost</h4>
@@ -336,12 +358,37 @@ const Booking = () => {
                     </div>
                   )}
 
+
+
+
                   <button type="submit" className="btn btn-dark">
                     Reserve Now
                   </button>
+
+
                 </div>
               </div>
+
             </form>
+            <div className="row">
+              <div className="col col-md-6 offset-md-3 col-lg-4 offset-lg-4">
+                {
+                  (sk?.length > 0 && reserved) && (
+                    <>
+                      <p>Your reservation have been set, you have an option to pay online</p>
+                      <Elements stripe={stripePromise} options={{
+                        clientSecret: sk,
+                        appearance: {
+                          theme: 'stripe',
+                        }
+                      }}>
+                        <CheckoutForm form={formRef} />
+                      </Elements>
+                    </>
+                  )
+                }
+              </div>
+            </div>
           </div>
         </>
       )}
