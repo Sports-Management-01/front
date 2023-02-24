@@ -20,7 +20,7 @@ const HomeFields = () => {
     if (json.success) {
       console.log(`fielddddd`);
       setFields(json.data);
-      emblaRef.current.reInit();
+      // emblaRef.current.reInit();
     } else {
       window.alert("There is no Field!");
       console.log(json.data);
@@ -88,7 +88,7 @@ const HomeFields = () => {
           <div className="d-flex col-12 align-items-center justify-content-center">
             {companies.map((company, i) => {
               return (
-                <div className="d-flex align-items-center m-3 ">
+                <div className="d-flex align-items-center m-5 ">
                   <img
                     src={company?.image ? company?.image : logo}
                     style={{
