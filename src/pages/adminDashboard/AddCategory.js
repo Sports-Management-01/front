@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Nav from "../../components/Nav/Nav";
 import SideNav from "../../components/SideNav/SideNav";
 import { useState, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
+
 const AddCategory = () => {
   const [category, setCategory] = useState([]);
-  const token = useContext(AuthContext);
+  const {token} = useContext(AuthContext);
   const [image, setImage] = useState();
+  const [equips, setEquips] = useState([])
+
+  const getAllEquipments = async () => {
+    const response = await fetch("http://localhost:3000/equipments");
+    const json = await response.json()
+    if (json.success) {
+      setEquips(json.data)
+    }
+  }
+
+  useEffect(() => {
+    getAllEquipments()
+  }, [])
+
   const createCategory = async (e) => {
     e.preventDefault();
     const form = e.target;
@@ -115,6 +130,19 @@ const AddCategory = () => {
                           </option>
                           <option value="0">Not Available </option>
                         </select>{" "}
+                      </div>
+
+                      <div className="mb-3">
+                        <h5 className="my-3">Supported Equipment</h5>
+                        {
+                          equips.map((eq, i) => {
+                            return (
+                              <div key={i}>
+                                <input type='checkbox' name="eqs[]" value={eq.id} /> {eq.name}
+                              </div>
+                            )
+                          })
+                        }
                       </div>
 
                       <div className="mb-3">
