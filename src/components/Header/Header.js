@@ -1,4 +1,4 @@
-import logo from "../../assets/img/logo.png";
+import toptepe from "../../assets/img/toptepe.png";
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -99,7 +99,7 @@ const Header = () => {
             <div className="col-lg-2">
               <div className="header__logo">
                 <a href="./index.html">
-                  <img src={logo} alt="" />
+                  <img src={toptepe} alt="toptepe-logo" width={50} />
                 </a>
               </div>
             </div>
